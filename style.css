@@ -855,13 +855,13 @@ footer ul {
 
 [data-theme="dark"] .nav-dark-mode {
   background: #2b303b;
-  border-color: #848991;
+  border-color: #75ec76;
   color: #f4f4f5;
 }
 
 [data-theme="dark"] .nav-dark-mode:hover {
-  background: #3a4150;
-  color: #75ec76;
+  background: #640031;
+  color: #f4f4f5;
 }
 
 [data-theme="dark"] .nav-dark-mode:hover .icon-sun {
