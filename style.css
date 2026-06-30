@@ -679,11 +679,11 @@ main {
 }
 
 .resume-sidebar-body a {
-  display: block;
+  display: inline-block;
   text-decoration: underline;
   text-decoration-skip-ink: none;
   line-height: 1.25;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   margin-left: -4px;
   padding: 2px 4px;
   border-radius: 4px;
@@ -693,6 +693,7 @@ main {
 
 .resume-sidebar-body a:hover {
   background: rgba(255, 69, 159, 0.08);
+  font-weight: 600;
 }
 
 .resume-sidebar-body p {
