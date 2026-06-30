@@ -169,6 +169,11 @@ nav ul li a.nav-active::after {
   color: #278628;
 }
 
+.nav-dark-mode:hover .icon-moon {
+  fill: currentColor;
+  stroke: none;
+}
+
 .nav-dark-mode .icon-sun { display: none; }
 [data-theme="dark"] .nav-dark-mode .icon-moon { display: none; }
 [data-theme="dark"] .nav-dark-mode .icon-sun { display: block; }
