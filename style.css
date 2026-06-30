@@ -838,6 +838,9 @@ footer ul {
   border-bottom-color: #6abd71;
 }
 
+[data-theme="dark"] .nav-jw,
+[data-theme="dark"] .nav-sep { color: #6abd71; }
+
 [data-theme="dark"] nav ul li a {
   color: #f4f4f5;
 }
