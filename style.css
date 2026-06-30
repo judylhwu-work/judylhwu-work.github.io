@@ -166,6 +166,7 @@ nav ul li a.nav-active::after {
 
 .nav-dark-mode:hover {
   background: #ffc5e1;
+  color: #278628;
 }
 
 .nav-dark-mode .icon-sun { display: none; }
@@ -558,6 +559,7 @@ main {
 
 .sticky-action-btn:hover {
   background: #ffc5e1;
+  color: #278628;
 }
 
 .sticky-action-btn svg {
@@ -960,6 +962,7 @@ footer ul {
 
 [data-theme="dark"] .sticky-action-btn:hover {
   background: #3a4150;
+  color: #75ec76;
 }
 
 /* Footer */
