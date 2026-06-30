@@ -3,83 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png">
   <title>Judy Wu — Product Designer</title>
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark')</script>
   <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
 </head>
 <body>
 
   <nav>
-    <span class="nav-name">Judy Wu</span>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="mailto:judylhwu.work@gmail.com">Contact</a></li>
-    </ul>
+    <a href="index.html" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="index.html" class="nav-active"><span>Home</span></a></li>
+        <li><a href="work.html"><span>Projects</span></a></li>
+        <li><a href="experience.html"><span>Resume</span></a></li>
+        <li><a href="about.html"><span>About</span></a></li>
+      </ul>
+      <div class="nav-divider"></div>
+      <button class="nav-dark-mode" title="Toggle dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
   </nav>
 
+  <div class="page-content">
   <main>
 
-    <section id="hero">
-      <h1>Product designer.<br>Systems thinker.</h1>
-      <p class="hero-sub">I design products that scale — from zero-to-one tools to design systems that keep teams consistent.</p>
-    </section>
-
-    <section id="work">
-      <h2>Work</h2>
-      <div class="case-studies">
-
-        <a href="#" class="case-study">
-          <div class="case-study-img placeholder"></div>
-          <div class="case-study-meta">
-            <span class="tag">Design Systems</span>
-            <h3>Bao Editor</h3>
-            <p>A compliance layer that makes design system violations structurally impossible — not just flagged.</p>
-          </div>
-        </a>
-
-        <a href="#" class="case-study">
-          <div class="case-study-img placeholder"></div>
-          <div class="case-study-meta">
-            <span class="tag">Product Design</span>
-            <h3>Case Study 2</h3>
-            <p>Brief description of the project and the problem you solved.</p>
-          </div>
-        </a>
-
-        <a href="#" class="case-study">
-          <div class="case-study-img placeholder"></div>
-          <div class="case-study-meta">
-            <span class="tag">Product Design</span>
-            <h3>Case Study 3</h3>
-            <p>Brief description of the project and the problem you solved.</p>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2>About</h2>
-          <p>I'm a product designer with a systems mindset — I care about the decisions that compound over time, not just how something looks on a single screen.</p>
-          <p>Currently building <a href="#">Bao Editor</a>, a design system governance tool. Previously [your previous role/company].</p>
-          <p>Based in Vancouver, BC.</p>
-        </div>
-        <div class="about-img placeholder"></div>
-      </div>
+    <section id="intro">
+      <p class="greeting">
+        <span class="hello-group" id="greeting-group">
+          <span class="hello-word" id="greeting-word">Hello</span><span class="hello-punct" id="greeting-punct">!</span>
+        </span>
+        <span class="judy">I'm Judy 👋🏻</span>
+      </p>
     </section>
 
   </main>
 
-  <footer>
-    <p>Judy Wu &copy; 2026</p>
-    <ul>
-      <li><a href="mailto:judylhwu.work@gmail.com">Email</a></li>
-      <li><a href="#">LinkedIn</a></li>
-      <li><a href="#">GitHub</a></li>
-    </ul>
-  </footer>
+  </div>
+
+  <script>
+    const greetings = [
+      { word: 'Hello',       punct: '!',  color: '#cc2f00' },
+      { word: '¡Hola',      punct: '!',  color: '#db6600' },
+      { word: '你好',        punct: '!',  color: '#e39e00' },
+      { word: 'Bonjour',    punct: '!',  color: '#76b80d' },
+      { word: 'こんにちは',  punct: '!',  color: '#007668' },
+      { word: 'привет',     punct: '!',  color: '#006486' },
+      { word: 'olá',        punct: '!',  color: '#007cb5' },
+      { word: 'Hallo',      punct: '!',  color: '#465ab2' },
+      { word: 'হ্যালো',     punct: '!',  color: '#6d47b1' },
+      { word: 'مرحبًا!',   punct: '',   color: '#873b9c' },
+    ];
+
+    let current = 0;
+    const wordEl = document.getElementById('greeting-word');
+    const punctEl = document.getElementById('greeting-punct');
+    const groupEl = document.getElementById('greeting-group');
+
+    function nextGreeting() {
+      groupEl.classList.add('greeting-exit');
+      setTimeout(() => {
+        current = (current + 1) % greetings.length;
+        const g = greetings[current];
+        wordEl.textContent = g.word;
+        punctEl.textContent = g.punct;
+        groupEl.style.color = g.color;
+        groupEl.classList.remove('greeting-exit');
+        groupEl.classList.add('greeting-enter');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          groupEl.classList.remove('greeting-enter');
+        }));
+      }, 150);
+    }
+
+    setInterval(nextGreeting, 1000);
+  </script>
 
 </body>
 </html>
