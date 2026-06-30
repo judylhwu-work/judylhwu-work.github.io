@@ -856,6 +856,16 @@ footer ul {
   color: #f4f4f5;
 }
 
+[data-theme="dark"] .nav-dark-mode:hover {
+  background: #3a4150;
+  color: #75ec76;
+}
+
+[data-theme="dark"] .nav-dark-mode:hover .icon-sun {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 /* Home */
 [data-theme="dark"] .greeting {
   color: #f4f4f5;
