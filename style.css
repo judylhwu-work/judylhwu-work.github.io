@@ -159,6 +159,7 @@ nav ul li a.nav-active::after {
   border: 1px solid #222328;
   border-radius: 12px;
   color: #222328;
+  cursor: pointer;
   transition: background 0.15s ease;
   flex-shrink: 0;
 }
@@ -551,6 +552,7 @@ main {
   border: 1px solid #222328;
   border-radius: 12px;
   color: #222328;
+  cursor: pointer;
   transition: background 0.15s ease;
 }
 
