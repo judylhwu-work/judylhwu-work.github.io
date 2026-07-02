@@ -733,7 +733,8 @@ footer ul {
   .project-card { flex-direction: column; height: auto; }
   .project-card-left,
   .project-card-right { padding: 24px; }
-  .project-card-right { height: 180px; }
+  .project-card-right { flex: 0 0 180px; height: 180px; }
+  .project-card-right img { width: 60%; height: auto; }
 
   /* Page card */
   .page-card      { padding: 32px 40px; }
