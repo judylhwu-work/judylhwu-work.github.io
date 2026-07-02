@@ -1,0 +1,87 @@
+/* =============================================================
+   Supernova — Badge
+   Source: Derived from portfolio (.tag) using Supernova tokens.
+
+   Usage:
+     <span class="sn-badge sn-badge-brand">Design</span>
+     <span class="sn-badge sn-badge-success">Shipped</span>
+     <span class="sn-badge sn-badge-neutral">Draft</span>
+
+   Variants: brand | success | warning | error | neutral | dark
+   ============================================================= */
+
+/* ── Base ──────────────────────────────────────────────────── */
+
+.sn-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 var(--sn-spacing-2xs);
+  border-radius: var(--sn-radius-less-rounded);
+  border: var(--sn-border-width-default) solid transparent;
+  box-sizing: border-box;
+  font-family: var(--sn-font-family-body, 'Inter', sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Brand (pink) ──────────────────────────────────────────── */
+
+.sn-badge-brand {
+  background-color: var(--sn-surface-brand-pink-2);
+  border-color: var(--sn-surface-brand-pink-3);
+  color: var(--sn-components-text-brand-pink-dark);
+}
+
+/* ── Brand (green) ─────────────────────────────────────────── */
+
+.sn-badge-brand-green {
+  background-color: var(--sn-surface-brand-green-2);
+  border-color: var(--sn-surface-brand-green-3);
+  color: var(--sn-components-text-brand-green-dark);
+}
+
+/* ── Success (green) ───────────────────────────────────────── */
+
+.sn-badge-success {
+  background-color: var(--sn-surface-state-success-1);
+  border-color: var(--sn-border-color-state-success-action);
+  color: var(--sn-text-black);
+}
+
+/* ── Warning (yellow) ──────────────────────────────────────── */
+
+.sn-badge-warning {
+  background-color: var(--sn-surface-state-warning-1);
+  border-color: var(--sn-border-color-state-warning-action);
+  color: var(--sn-text-black);
+}
+
+/* ── Error (red) ───────────────────────────────────────────── */
+
+.sn-badge-error {
+  background-color: var(--sn-surface-state-error-1);
+  border-color: var(--sn-border-color-state-error-action);
+  color: var(--sn-text-1);
+}
+
+/* ── Neutral (gray) ────────────────────────────────────────── */
+
+.sn-badge-neutral {
+  background-color: var(--sn-surface-4);
+  border-color: var(--sn-border-color-2);
+  color: var(--sn-text-2);
+}
+
+/* ── Dark (inverted) ───────────────────────────────────────── */
+
+.sn-badge-dark {
+  background-color: var(--sn-surface-invert-main);
+  border-color: var(--sn-surface-invert-main);
+  color: var(--sn-text-black);
+}
