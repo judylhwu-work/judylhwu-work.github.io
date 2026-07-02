@@ -1,12 +1,12 @@
 /* ── Project page layout ── */
 #project-detail {
-  background: #f4f4f5;
+  background: var(--sn-surface-3);
   padding: 80px max(40px, calc((100% - 960px) / 2));
 }
 
 /* ── Password gate ── */
 #project-gate {
-  background: #f4f4f5;
+  background: var(--sn-surface-3);
   min-height: calc(100vh - 64px);
   padding: 40px max(40px, calc((100% - 960px) / 2));
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .gate-card {
-  background: white;
+  background: var(--sn-surface-1);
   border-radius: 16px;
   padding: 56px 64px;
   max-width: 480px;
@@ -24,7 +24,7 @@
 }
 
 .gate-lock {
-  color: #278628;
+  color: var(--sn-text-brand-green-dark);
   margin-bottom: 20px;
 }
 
@@ -34,14 +34,14 @@
   font-family: 'Karla', sans-serif;
   font-size: 24px;
   font-weight: 800;
-  color: #1c1c1c;
+  color: var(--sn-text-1);
   margin: 12px 0 12px;
 }
 
 .gate-message {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
-  color: #6e7580;
+  color: var(--sn-text-3);
   line-height: 1.6;
   margin-bottom: 28px;
 }
@@ -55,9 +55,9 @@
 .gate-input {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
-  color: #1c1c1c;
-  background: #f9f9fa;
-  border: 1.5px solid #dfe0e2;
+  color: var(--sn-text-1);
+  background: var(--sn-surface-2);
+  border: 1.5px solid var(--sn-border-color-1);
   border-radius: 8px;
   padding: 11px 14px;
   width: 100%;
@@ -66,34 +66,18 @@
   box-sizing: border-box;
 }
 
-.gate-input:focus { border-color: #278628; }
+.gate-input:focus { border-color: var(--sn-text-brand-green-dark); }
 
 .gate-error {
   font-family: 'Public Sans', sans-serif;
   font-size: 13px;
-  color: #c0392b;
+  color: var(--sn-text-state-error-action);
   display: none;
   margin: 0;
 }
 
 .gate-submit {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  color: #222328;
-  background: #ff8ac3;
-  border: 1px solid #36b237;
-  border-radius: 12px;
-  padding: 6px 8px;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
   align-self: flex-start;
-  white-space: nowrap;
-}
-
-.gate-submit:hover:not(:disabled) {
-  background: #36b237;
 }
 
 .gate-submit:disabled {
@@ -101,25 +85,9 @@
   cursor: not-allowed;
 }
 
-[data-theme="dark"] #project-gate { background: #333d4d; }
-
-[data-theme="dark"] .gate-card {
-  background: #2b303b;
-}
-
-[data-theme="dark"] .gate-card h1 { color: #f4f4f5; }
-
-[data-theme="dark"] .gate-message { color: #9aa3b0; }
-
 [data-theme="dark"] .gate-input {
-  background: #1e2430;
-  border-color: #4d5563;
-  color: #f4f4f5;
+  background: var(--sn-surface-1);
 }
-
-[data-theme="dark"] .gate-input:focus { border-color: #75ec76; }
-
-[data-theme="dark"] .gate-lock { color: #75ec76; }
 
 .back-link,
 .project-website-link {
@@ -137,7 +105,7 @@
   align-self: flex-start;
   margin-bottom: 16px;
   margin-left: -8px;
-  color: #278628;
+  color: var(--sn-text-brand-green-dark);
 }
 
 .back-link:hover {
@@ -145,7 +113,7 @@
 }
 
 .project-website-link {
-  color: #ff459f;
+  color: var(--sn-surface-brand-pink-action-main);
 }
 
 .project-website-link:hover {
@@ -160,7 +128,7 @@
   line-height: 10px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #278628;
+  color: var(--sn-text-brand-green-dark);
 }
 
 .project-header h1 {
@@ -168,7 +136,7 @@
   font-size: 24px;
   font-weight: 800;
   line-height: normal;
-  color: #1c1c1c;
+  color: var(--sn-text-1);
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -177,7 +145,7 @@
   font-family: 'Public Sans', sans-serif;
   font-size: 1.0625rem;
   font-weight: 400;
-  color: #444;
+  color: var(--sn-text-2);
   line-height: 1.6;
 }
 
@@ -200,14 +168,14 @@
   line-height: 10px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #278628;
+  color: var(--sn-text-brand-green-dark);
 }
 
 .meta-item span:last-child {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #444;
+  color: var(--sn-text-2);
   line-height: 1.5;
 }
 
@@ -224,7 +192,7 @@
   font-size: 10px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #278628;
+  color: var(--sn-text-brand-green-dark);
   margin-bottom: 12px;
 }
 
@@ -232,7 +200,7 @@
   font-family: 'Public Sans', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #1c1c1c;
+  color: var(--sn-text-1);
   margin: 1rem 0 0.375rem;
 }
 
@@ -240,7 +208,7 @@
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #444;
+  color: var(--sn-text-2);
   margin-bottom: 0.75rem;
   line-height: 1.7;
 }
@@ -256,7 +224,7 @@
 .project-section ul li {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
-  color: #444;
+  color: var(--sn-text-2);
   padding-left: 1.25rem;
   position: relative;
   line-height: 1.6;
@@ -266,30 +234,12 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: #d0d0d0;
+  color: var(--sn-border-color-2);
 }
 
 /* ── Dark mode ── */
-[data-theme="dark"] .project-cat-label,
-[data-theme="dark"] .meta-label,
-[data-theme="dark"] .project-section h2 {
-  color: #75ec76;
-}
-
-[data-theme="dark"] .project-header h1,
-[data-theme="dark"] .project-section h3 {
-  color: #f4f4f5;
-}
-
-[data-theme="dark"] .project-summary,
-[data-theme="dark"] .meta-item span:last-child,
-[data-theme="dark"] .project-section p,
-[data-theme="dark"] .project-section ul li {
-  color: #c5cdd8;
-}
-
 [data-theme="dark"] .project-section ul li::before {
-  color: #4d5563;
+  color: var(--sn-border-color-1);
 }
 
 /* ── Project images ── */
