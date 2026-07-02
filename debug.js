@@ -194,7 +194,7 @@ Respond with ONLY a css code block. No explanation unless explicitly asked. Keep
     chatInput.value = '';
     addChatBubble('user', msg);
 
-    let ctx = `Page: ${location.pathname.split('/').pop() || 'index.html'}`;
+    let ctx = `Page: ${location.pathname === '/' ? 'home' : location.pathname}`;
     if (selectedEl) {
       const cs = getComputedStyle(selectedEl);
       ctx += `\nSelected: ${elLabel(selectedEl)}, color: ${cs.color}, bg: ${cs.backgroundColor}, font-size: ${cs.fontSize}`;
