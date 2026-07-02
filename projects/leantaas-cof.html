@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../favicon.ico">
-  <title>Nova Design System — Judy Wu</title>
-  <script>if(location.search==='?reset')sessionStorage.removeItem('leantaas-auth');if(sessionStorage.getItem('leantaas-auth')!=='true')location.replace('leantaas-gate.html?return=leantaas.html');</script>
+  <title>Centralized Operations Framework — Judy Wu</title>
+  <script>if(location.search==='?reset')sessionStorage.removeItem('leantaas-auth');if(sessionStorage.getItem('leantaas-auth')!=='true')location.replace('leantaas-gate.html?return=leantaas-cof.html');</script>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../project.css">
   <link rel="stylesheet" href="../../supernova-design-system/dist/tokens.primitives.css">
@@ -45,14 +45,9 @@
         <div class="page-card">
 
           <div class="project-header">
-            <p class="project-cat-label">HealthTech · Design Systems</p>
-            <div class="project-title-row">
-              <h1>Nova Design System</h1>
-              <a href="https://leantaas.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit LeanTaaS website">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-            <p class="project-summary">Transformed LeanTaaS's component library into a scalable, token-based design system with dark mode and responsive foundations — self-initiated at the mid-level, officially adopted as a company initiative, and the foundation for all subsequent AI tooling I built.</p>
+            <p class="project-cat-label">HealthTech · Systems Design</p>
+            <h1>Centralized Operations Framework</h1>
+            <p class="project-summary">Single source of truth for metric definitions across all LeanTaaS surfaces — define a metric once, and it applies everywhere.</p>
           </div>
 
           <div class="page-divider"></div>
@@ -60,19 +55,19 @@
           <div class="project-meta">
             <div class="meta-item">
               <span class="meta-label">Role</span>
-              <span>Senior Product Designer, Platform Team</span>
+              <span>Product Designer, Platform Team</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Duration</span>
-              <span>2022 — Present</span>
+              <span>2024</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Team</span>
-              <span>Frontend Engineers, Infrastructure Engineers, Product Orgs</span>
+              <span>Platform Team, Analytics, Stakeholders</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Tools</span>
-              <span>Figma, Design Tokens, Slack, Confluence</span>
+              <span>Figma, Confluence</span>
             </div>
           </div>
 
@@ -82,29 +77,31 @@
 
             <div class="project-section">
               <h2>Problem</h2>
-              <p>When I joined LeanTaaS, there was no shared design language across the company's 4–5 product orgs. Each team had built their own patterns, resulting in a fragmented suite of products with inconsistent experiences. This created real business pain: the sales team struggled to sell products that didn't look like they belonged together, and LeanTaaS's acquisition strategy demanded a scalable framework for onboarding new products quickly.</p>
-            </div>
-
-            <div class="project-section">
-              <h2>Origin</h2>
-              <p>Nova wasn't assigned to me — I self-initiated it. I recognized the fragmentation problem early and began building the system from the ground up as a side project alongside my core product work. What started as a personal effort eventually became the org-wide source of truth for design.</p>
-              <p>My background in fashion design from UC Davis shaped how I approached this work. I've drawn the analogy that a garment collection is essentially a design system — a coherent set of principles, materials, and patterns that create a unified identity. This framing resonated with LeanTaaS's CTO and helped non-design stakeholders understand the value of systematic design thinking.</p>
+              <p>Metric definitions at LeanTaaS were created separately on each surface. A utilization rate defined in one product had a slightly different formula in another. An occupancy metric meant something different depending on which team built the view. Over time, this inconsistency compounded — stakeholders couldn't trust numbers that looked similar but weren't comparable, and the engineering cost of maintaining divergent definitions grew with every new product line.</p>
+              <p>The root cause was structural: there was no shared place to define what a metric was. Every team started from scratch, and the proliferation of slightly different definitions was a predictable result.</p>
             </div>
 
             <div class="project-section">
               <h2>What I Did</h2>
-              <ul>
-                <li>Built Nova from scratch as LeanTaaS's first company-wide design system, establishing a shared visual language across all product orgs</li>
-                <li>Introduced design tokens to both designers and engineers — bridging a cultural and technical gap that design systems work often fails to cross</li>
-                <li>Earned early buy-in from frontend engineers across three main products, including infrastructure engineer Bruce and frontend lead Casey, who became key collaborators</li>
-                <li>Became the recognized point of contact for all Nova questions across Slack and Figma, publicly introduced by my manager at a company all-hands as "the driving force behind Nova"</li>
-                <li>Currently partnering with Casey to migrate the IPF product into the Nova framework — the first real-world implementation of Nova at scale</li>
-              </ul>
+              <p>The Centralized Operations Framework gives metric definitions a single home. Define a metric once — its formula, its logic, its edge cases — and it applies consistently across every surface that uses it. When a definition needs to change, it changes in one place and propagates everywhere.</p>
+              <p>Building the framework required aligning across teams that had been working independently. I worked closely with analytics leads and platform engineers to audit existing definitions, surface the inconsistencies, and create a governance model for who owns each metric and how changes get made.</p>
             </div>
 
             <div class="project-section">
               <h2>Impact</h2>
-              <p>Nova has since been added to LeanTaaS's official company initiatives list, driven by three converging business needs: sales cohesion across the product suite, experience alignment across product orgs, and a scalable onboarding framework for acquired products. What began as a self-started side project now shapes how a 90+ member tech org builds product. I was promoted to Senior Designer the following year — and Nova became the foundation for the AI tooling I built next.</p>
+              <p>COF is one of the platform team's most successful operational improvements. It's been widely adopted across product orgs — not because it was mandated, but because teams immediately saw the value of not having to re-solve definition problems that had already been solved. Stakeholders now have consistent numbers they can trust, and the engineering overhead of maintaining divergent metric logic has dropped significantly.</p>
+            </div>
+
+            <div class="project-section">
+              <h2>Skills</h2>
+              <ul>
+                <li>Systems thinking</li>
+                <li>Internal tooling</li>
+                <li>Stakeholder alignment</li>
+                <li>Design-engineering collaboration</li>
+                <li>Operational efficiency</li>
+                <li>Information architecture</li>
+              </ul>
             </div>
 
           </div>

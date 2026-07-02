@@ -4,24 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.ico">
-  <title>Projects — Judy Wu</title>
-  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark')</script>
+  <title>Judy Wu — Product Designer</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../supernova-design-system/dist/tokens.primitives.css">
+  <link rel="stylesheet" href="../supernova-design-system/dist/tokens.light.css" id="sn-tokens-light">
+  <link rel="stylesheet" href="../supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
+  <link rel="stylesheet" href="../supernova-design-system/components/button/button.css">
+  <link rel="stylesheet" href="../supernova-design-system/components/badge/badge.css">
+  <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}</script>
   <script src="theme.js"></script>
 </head>
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
+    <a href="work.html" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
     <div class="nav-right">
       <ul>
-        <li><a href="index.html"><span>Home</span></a></li>
-        <li><a href="work.html" class="nav-active"><span>Projects</span></a></li>
+        <li><a href="work.html" class="nav-active"><span>Portfolio</span></a></li>
         <li><a href="experience.html"><span>Resume</span></a></li>
         <li><a href="about.html"><span>About</span></a></li>
       </ul>
       <div class="nav-divider"></div>
-      <button class="nav-dark-mode" title="Toggle dark mode">
+      <button class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Toggle dark mode">
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </button>
@@ -31,128 +35,162 @@
   <div class="page-content">
   <main>
 
+    <section id="hero">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <h1 class="hero-hello" id="hero-hello">Hello!</h1>
+          <p class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> a Senior Product Designer who builds what's missing before anyone even knows to ask for it.</p>
+        </div>
+        <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, translated it to be AI-compatible, and built two internal design tools leveraging it.</p>
+      </div>
+      <a href="#projects" class="hero-chevron" aria-label="Scroll to projects">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </section>
+
     <section id="projects">
       <div class="projects-layout">
 
         <div class="project-grid">
 
-          <a href="projects/leantaas-gate.html" class="project-card">
-            <div class="project-thumb thumb-leantaas">
-              <img src="assets/images/leantaas-device.png" alt="LeanTaaS">
-            </div>
-            <div class="card-title-row">
-              <span class="card-label">LeanTaaS</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">HealthTech</span>
-                <span class="tag tag-secondary">Design Systems</span>
+          <a href="projects/leantaas.html" class="project-card thumb-leantaas">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Nova Design System</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">HealthTech</span>
+                  <span class="sn-badge sn-badge-brand-green">Design Systems</span>
+                </div>
               </div>
+              <p class="card-desc">Transformed LeanTaaS's component library into a scalable, token-based design system adopted across the entire org.</p>
             </div>
-            <p class="card-desc">AI-powered software helping hospitals optimize capacity across operating rooms and infusion centers.</p>
+            <div class="project-card-right">
+              <img src="assets/images/leantaas-device.png" alt="Nova Design System">
+            </div>
           </a>
 
-          <a href="projects/airrobe.html" class="project-card">
-            <div class="project-thumb thumb-airrobe">
+          <a href="projects/leantaas-nova-to-claude.html" class="project-card thumb-nova-to-claude">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Nova to Claude</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">HealthTech</span>
+                  <span class="sn-badge sn-badge-brand-green">AI Tooling</span>
+                </div>
+              </div>
+              <p class="card-desc">AI applications built on Nova — a design system chatbot that scales design expertise, and an HTML editor that closes the design-to-dev gap.</p>
+            </div>
+            <div class="project-card-right"></div>
+          </a>
+
+          <a href="projects/leantaas-smart-huddles.html" class="project-card thumb-smart-huddles">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Smart Huddles</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">HealthTech</span>
+                  <span class="sn-badge sn-badge-brand-green">Product Design</span>
+                </div>
+              </div>
+              <p class="card-desc">External-facing product for healthcare teams to build surveys, collect responses, and run structured huddle processes.</p>
+            </div>
+            <div class="project-card-right"></div>
+          </a>
+
+          <a href="projects/leantaas-cof.html" class="project-card thumb-cof">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Definitions</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">HealthTech</span>
+                  <span class="sn-badge sn-badge-brand-green">Systems Design</span>
+                </div>
+              </div>
+              <p class="card-desc">Single source of truth for metric definitions across all surfaces — define once, apply everywhere.</p>
+            </div>
+            <div class="project-card-right"></div>
+          </a>
+
+          <a href="projects/airrobe.html" class="project-card thumb-airrobe">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">AirRobe</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Re-commerce</span>
+                  <span class="sn-badge sn-badge-brand-green">UX Design</span>
+                </div>
+              </div>
+              <p class="card-desc">Circular fashion marketplace for buying, selling, and renting pre-loved clothing sustainably.</p>
+            </div>
+            <div class="project-card-right">
               <img src="assets/images/airrobe-device.png" alt="AirRobe">
             </div>
-            <div class="card-title-row">
-              <span class="card-label">AirRobe</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">Re-commerce</span>
-                <span class="tag tag-secondary">UX Design</span>
-              </div>
-            </div>
-            <p class="card-desc">Circular fashion marketplace for buying, selling, and renting pre-loved clothing sustainably.</p>
           </a>
 
-          <a href="projects/prenda.html" class="project-card">
-            <div class="project-thumb thumb-prenda">
+          <a href="projects/prenda.html" class="project-card thumb-prenda">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Prenda</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">EdTech</span>
+                  <span class="sn-badge sn-badge-brand-green">UX Design</span>
+                </div>
+              </div>
+              <p class="card-desc">Platform enabling educators to run personalized microschools for K–8 students.</p>
+            </div>
+            <div class="project-card-right">
               <img src="assets/images/prenda-device.png" alt="Prenda">
             </div>
-            <div class="card-title-row">
-              <span class="card-label">Prenda</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">EdTech</span>
-                <span class="tag tag-secondary">UX Design</span>
-              </div>
-            </div>
-            <p class="card-desc">Platform enabling educators to run personalized microschools for K–8 students.</p>
           </a>
 
-          <a href="projects/window.html" class="project-card">
-            <div class="project-thumb thumb-window">
+          <a href="projects/window.html" class="project-card thumb-window">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Window</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">E-commerce</span>
+                  <span class="sn-badge sn-badge-brand-green">Product Design</span>
+                </div>
+              </div>
+              <p class="card-desc">AI-powered search and personalization platform for e-commerce retailers.</p>
+            </div>
+            <div class="project-card-right">
               <img src="assets/images/window-device.png" alt="Window">
             </div>
-            <div class="card-title-row">
-              <span class="card-label">Window</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">E-commerce</span>
-                <span class="tag tag-secondary">Product Design</span>
-              </div>
-            </div>
-            <p class="card-desc">AI-powered search and personalization platform for e-commerce retailers.</p>
           </a>
 
-          <a href="projects/gramcity.html" class="project-card">
-            <div class="project-thumb thumb-gramcity">
+          <a href="projects/gramcity.html" class="project-card thumb-gramcity">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">GramCity</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Social</span>
+                  <span class="sn-badge sn-badge-brand-green">UX Design</span>
+                </div>
+              </div>
+              <p class="card-desc">A 7-day Design Sprint to help users find the most instagrammable photo locations in any city.</p>
+            </div>
+            <div class="project-card-right">
               <img src="assets/images/gramcity-device.png" alt="GramCity">
             </div>
-            <div class="card-title-row">
-              <span class="card-label">GramCity</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">Social</span>
-                <span class="tag tag-secondary">UX Design</span>
-              </div>
-            </div>
-            <p class="card-desc">A 7-day Design Sprint to help users find the most instagrammable photo locations in any city.</p>
           </a>
 
-          <a href="projects/bark-app.html" class="project-card">
-            <div class="project-thumb thumb-bark">
+          <a href="projects/bark-app.html" class="project-card thumb-bark">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">BARK App</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Consumer</span>
+                  <span class="sn-badge sn-badge-brand-green">Product Design</span>
+                </div>
+              </div>
+              <p class="card-desc">A social app connecting pup parents to find compatible playmates for their dogs — think Tinder for dogs.</p>
+            </div>
+            <div class="project-card-right">
               <img src="assets/images/bark-device.png" alt="BARK app">
             </div>
-            <div class="card-title-row">
-              <span class="card-label">BARK App</span>
-              <div class="project-tags">
-                <span class="tag tag-filled">Consumer</span>
-                <span class="tag tag-secondary">Product Design</span>
-              </div>
-            </div>
-            <p class="card-desc">A social app connecting pup parents to find compatible playmates for their dogs — think Tinder for dogs.</p>
           </a>
 
-        </div>
-
-        <div class="sticky-actions">
-          <a href="mailto:judylhwu.work@gmail.com" class="sticky-action-btn" title="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-            <span class="btn-emoji" aria-hidden="true">✉️</span>
-          </a>
-          <a href="https://www.linkedin.com/in/judylhwu/" target="_blank" rel="noopener" class="sticky-action-btn" title="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            <span class="btn-emoji" aria-hidden="true">💼</span>
-          </a>
-          <a href="https://github.com/judylhwu-work" target="_blank" rel="noopener" class="sticky-action-btn" title="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-              <path d="M9 18c-4.51 2-5-2-7-2"/>
-            </svg>
-            <span class="btn-emoji" aria-hidden="true">👩🏻‍💻</span>
-          </a>
-          <a href="https://drive.google.com/file/d/1qI9dp4syne7htC1a6SI94f6l4pAgrGPp/view?usp=sharing" target="_blank" rel="noopener" class="sticky-action-btn" title="Download resume">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            <span class="btn-emoji" aria-hidden="true">📁</span>
-          </a>
         </div>
 
       </div>
@@ -162,6 +200,41 @@
 
   </div>
 
+  <script>
+    const greetings = [
+      { text: 'Hello!',     color: 'var(--sn-text-brand-green-dark)' },
+      { text: '¡Hola!',     color: 'var(--sn-text-brand-pink-dark)' },
+      { text: '你好!',       color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'Bonjour!',   color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'こんにちは!', color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'привет!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'olá!',       color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'Hallo!',     color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'হ্যালো!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'مرحبًا!',    color: 'var(--sn-text-brand-green-dark)' },
+    ];
 
+    let current = 0;
+    const helloEl = document.getElementById('hero-hello');
+
+    function nextGreeting() {
+      helloEl.classList.add('greeting-exit');
+      setTimeout(() => {
+        current = (current + 1) % greetings.length;
+        const g = greetings[current];
+        helloEl.textContent = g.text;
+        helloEl.style.color = g.color;
+        helloEl.classList.remove('greeting-exit');
+        helloEl.classList.add('greeting-enter');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          helloEl.classList.remove('greeting-enter');
+        }));
+      }, 150);
+    }
+
+    setInterval(nextGreeting, 1000);
+  </script>
+
+  <script src="debug.js"></script>
 </body>
 </html>

@@ -2,25 +2,29 @@ document.addEventListener('DOMContentLoaded', function () {
   var btn = document.querySelector('.nav-dark-mode');
   if (!btn) return;
 
-  var label = btn.querySelector('.dark-mode-label');
+  var label    = btn.querySelector('.dark-mode-label');
+  var lightLink = document.getElementById('sn-tokens-light');
+  var darkLink  = document.getElementById('sn-tokens-dark');
 
-  function updateLabel() {
-    if (!label) return;
-    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    label.textContent = isDark ? 'Light mode' : 'Dark mode';
+  function applyTheme(isDark) {
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (darkLink)  darkLink.disabled  = false;
+      if (lightLink) lightLink.disabled = true;
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (darkLink)  darkLink.disabled  = true;
+      if (lightLink) lightLink.disabled = false;
+    }
+    if (label) label.textContent = isDark ? 'Light mode' : 'Dark mode';
   }
 
-  updateLabel();
+  // Sync label with state already applied by the inline FOUC script
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
 
   btn.addEventListener('click', function () {
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    }
-    updateLabel();
+    applyTheme(!isDark);
+    localStorage.setItem('theme', !isDark ? 'dark' : 'light');
   });
 });

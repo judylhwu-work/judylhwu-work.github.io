@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../favicon.ico">
-  <title>Nova Design System — Judy Wu</title>
-  <script>if(location.search==='?reset')sessionStorage.removeItem('leantaas-auth');if(sessionStorage.getItem('leantaas-auth')!=='true')location.replace('leantaas-gate.html?return=leantaas.html');</script>
+  <title>Nova to Claude — Judy Wu</title>
+  <script>if(location.search==='?reset')sessionStorage.removeItem('leantaas-auth');if(sessionStorage.getItem('leantaas-auth')!=='true')location.replace('leantaas-gate.html?return=leantaas-nova-to-claude.html');</script>
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../project.css">
   <link rel="stylesheet" href="../../supernova-design-system/dist/tokens.primitives.css">
@@ -45,14 +45,9 @@
         <div class="page-card">
 
           <div class="project-header">
-            <p class="project-cat-label">HealthTech · Design Systems</p>
-            <div class="project-title-row">
-              <h1>Nova Design System</h1>
-              <a href="https://leantaas.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit LeanTaaS website">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-            <p class="project-summary">Transformed LeanTaaS's component library into a scalable, token-based design system with dark mode and responsive foundations — self-initiated at the mid-level, officially adopted as a company initiative, and the foundation for all subsequent AI tooling I built.</p>
+            <p class="project-cat-label">HealthTech · AI Tooling</p>
+            <h1>Nova to Claude</h1>
+            <p class="project-summary">With Nova as the foundation, I built two AI applications to scale design system expertise and collapse the handoff gap between design and engineering.</p>
           </div>
 
           <div class="page-divider"></div>
@@ -64,15 +59,15 @@
             </div>
             <div class="meta-item">
               <span class="meta-label">Duration</span>
-              <span>2022 — Present</span>
+              <span>2025 — Present</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Team</span>
-              <span>Frontend Engineers, Infrastructure Engineers, Product Orgs</span>
+              <span>Solo (design + build)</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Tools</span>
-              <span>Figma, Design Tokens, Slack, Confluence</span>
+              <span>Claude API, Figma, HTML, CSS, JavaScript</span>
             </div>
           </div>
 
@@ -81,30 +76,40 @@
           <div class="project-body">
 
             <div class="project-section">
-              <h2>Problem</h2>
-              <p>When I joined LeanTaaS, there was no shared design language across the company's 4–5 product orgs. Each team had built their own patterns, resulting in a fragmented suite of products with inconsistent experiences. This created real business pain: the sales team struggled to sell products that didn't look like they belonged together, and LeanTaaS's acquisition strategy demanded a scalable framework for onboarding new products quickly.</p>
+              <h2>Ask Nova</h2>
+              <h3>The problem</h3>
+              <p>I was the single point of contact for all Nova-related questions — in Slack, in Figma comments, in reviews. As the design system matured and more designers and engineers used it, the volume of repeated questions grew. How do I use this token? Which component should I reach for? Where do I find X in the library? My time was getting carved up answering the same questions across different people and contexts.</p>
+              <h3>What I built</h3>
+              <p>Ask Nova is an AI design system chatbot built on Claude, grounded in Nova's documentation, design tokens, and component logic. Designers and engineers can ask it natural language questions and get answers immediately — without waiting for me. Ask Nova knows the system: the tokens, the component rationale, the intended usage patterns.</p>
+              <h3>How it handles edge cases</h3>
+              <p>One of the core design challenges was knowing when the AI shouldn't answer. I built a confidence-score system: Ask Nova evaluates its certainty before responding. High-confidence questions get answered directly. Low-confidence questions — anything ambiguous, highly contextual, or outside Nova's documented scope — escalate to me instead. The system scales my time without replacing my judgment.</p>
+              <h3>Impact</h3>
+              <p>Routine design system questions are now handled without me in the loop. Engineers and designers get answers in seconds instead of waiting for my availability. I spend that recovered time on the work that actually requires my context — designing, reviewing, and evolving the system itself.</p>
             </div>
 
             <div class="project-section">
-              <h2>Origin</h2>
-              <p>Nova wasn't assigned to me — I self-initiated it. I recognized the fragmentation problem early and began building the system from the ground up as a side project alongside my core product work. What started as a personal effort eventually became the org-wide source of truth for design.</p>
-              <p>My background in fashion design from UC Davis shaped how I approached this work. I've drawn the analogy that a garment collection is essentially a design system — a coherent set of principles, materials, and patterns that create a unified identity. This framing resonated with LeanTaaS's CTO and helped non-design stakeholders understand the value of systematic design thinking.</p>
+              <h2>HTML Editor Tool</h2>
+              <h3>The problem</h3>
+              <p>A PM asked me to help fix a UI issue in a table component. As I looked into it, I realized the gap wasn't just about that specific component — designers at LeanTaaS had no direct way to work in HTML. All frontend changes went through engineering, creating a bottleneck where small UI corrections accumulated into a backlog. The design-to-dev handoff was structurally broken for the kind of incremental, precision-heavy work that makes a design system actually land well in production.</p>
+              <h3>What I built</h3>
+              <p>The HTML Editor Tool is an AI-powered editor that lets designers work directly in HTML using natural language. Instead of speccing changes in Figma and hoping they get implemented correctly, a designer can describe what they want and see it update in a live preview. The tool bridges the gap between design intent and frontend implementation — without requiring designers to learn to code.</p>
+              <h3>Reception</h3>
+              <p>When I showed the PM, they flagged resourcing concerns. They hadn't expected design to build this kind of tooling. That reaction told me two things: the problem was real enough that engineering's involvement seemed obvious in hindsight, and design-initiated infrastructure was genuinely unexpected at LeanTaaS.</p>
+              <h3>Status</h3>
+              <p>The HTML Editor Tool is in active development. It's part of a larger effort to give design more direct leverage over how Nova components look and behave in production — closing the loop between the design system and the shipped product.</p>
             </div>
 
             <div class="project-section">
-              <h2>What I Did</h2>
+              <h2>Skills</h2>
               <ul>
-                <li>Built Nova from scratch as LeanTaaS's first company-wide design system, establishing a shared visual language across all product orgs</li>
-                <li>Introduced design tokens to both designers and engineers — bridging a cultural and technical gap that design systems work often fails to cross</li>
-                <li>Earned early buy-in from frontend engineers across three main products, including infrastructure engineer Bruce and frontend lead Casey, who became key collaborators</li>
-                <li>Became the recognized point of contact for all Nova questions across Slack and Figma, publicly introduced by my manager at a company all-hands as "the driving force behind Nova"</li>
-                <li>Currently partnering with Casey to migrate the IPF product into the Nova framework — the first real-world implementation of Nova at scale</li>
+                <li>AI product design</li>
+                <li>Failure state and confidence-score design</li>
+                <li>Design systems</li>
+                <li>AI tooling</li>
+                <li>Design-engineering handoff</li>
+                <li>Frontend literacy</li>
+                <li>Operational problem-solving</li>
               </ul>
-            </div>
-
-            <div class="project-section">
-              <h2>Impact</h2>
-              <p>Nova has since been added to LeanTaaS's official company initiatives list, driven by three converging business needs: sales cohesion across the product suite, experience alignment across product orgs, and a scalable onboarding framework for acquired products. What began as a self-started side project now shapes how a 90+ member tech org builds product. I was promoted to Senior Designer the following year — and Nova became the foundation for the AI tooling I built next.</p>
             </div>
 
           </div>
