@@ -131,6 +131,10 @@
   color: var(--sn-text-brand-green-dark);
 }
 
+.project-status-badge {
+  margin-top: 8px;
+}
+
 .project-header h1 {
   font-family: 'Karla', sans-serif;
   font-size: 24px;
