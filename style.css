@@ -280,6 +280,16 @@ main {
   width: 100%;
 }
 
+/* Stacks a status badge (e.g. "Under Construction") on its own line above
+   the title row — used for in-progress LeanTaaS case studies. */
+.card-badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
 .card-label {
   font-family: 'Public Sans', sans-serif;
   font-size: 14px;
