@@ -796,9 +796,24 @@ footer ul {
   background: var(--sn-surface-2);
 }
 
-/* Projects */
-[data-theme="dark"] .card-desc {
-  color: var(--sn-text-3);
+/* Projects: render cards identically in dark mode ("essentially unchanged").
+   The tinted thumbnail panels composite rgba(--thumb-rgb) over --sn-surface-1,
+   which flips near-black in dark mode and makes the colors muddy. Pin every
+   token the card subtree consumes to its constant (theme-independent) primitive
+   so the panels, label/description text, and badges all keep their bright
+   light-mode appearance. */
+[data-theme="dark"] .project-card {
+  --sn-surface-1: var(--sn-color-gray-0);                        /* panel composite base → white */
+  --sn-text-1: var(--sn-color-gray-100);                         /* card label */
+  --sn-text-3: var(--sn-color-gray-60);                          /* card description */
+  --sn-surface-brand-pink-2: var(--sn-color-pink-20);            /* brand badge bg */
+  --sn-surface-brand-pink-3: var(--sn-color-pink-30);            /* brand badge border */
+  --sn-components-text-brand-pink-dark: var(--sn-color-pink-80); /* brand badge text */
+  --sn-surface-brand-green-2: var(--sn-color-green-1-20);        /* green badge bg */
+  --sn-surface-brand-green-3: var(--sn-color-green-1-30);        /* green badge border */
+  --sn-components-text-brand-green-dark: var(--sn-color-green-1-80); /* green badge text */
+  --sn-surface-state-warning-1: var(--sn-color-yellow-10);       /* "Under Construction" badge bg */
+  --sn-border-color-state-warning-action: var(--sn-color-yellow-70); /* warning badge border */
 }
 
 /* Projects */
