@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var btn = document.querySelector('.nav-dark-mode');
   if (!btn) return;
 
-  var label    = btn.querySelector('.dark-mode-label');
   var lightLink = document.getElementById('sn-tokens-light');
   var darkLink  = document.getElementById('sn-tokens-dark');
 
@@ -16,10 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (darkLink)  darkLink.disabled  = true;
       if (lightLink) lightLink.disabled = false;
     }
-    if (label) label.textContent = isDark ? 'Light mode' : 'Dark mode';
   }
 
-  // Sync label with state already applied by the inline FOUC script
+  // Sync token stylesheets with the state already applied by the inline FOUC script
   applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
 
   btn.addEventListener('click', function () {
