@@ -1,0 +1,6 @@
+# Local-preview symlink to the sibling Supernova design system repo.
+# In production these paths are served by Supernova's own GitHub Pages deploy.
+supernova-design-system
+
+# macOS
+.DS_Store
