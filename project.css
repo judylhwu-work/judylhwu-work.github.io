@@ -365,8 +365,12 @@ img.zoomable:hover { opacity: 0.88; }
   .project-image-grid.cols-3 { grid-template-columns: 1fr 1fr; }
 }
 
+/* Mobile: 16px top/sides, 40px bottom section padding (matches resume/about at <=640px) */
+@media (max-width: 640px) {
+  #project-detail { padding: 16px 16px 40px; }
+}
+
 @media (max-width: 480px) {
-  #project-detail { padding: 48px 16px; }
   .project-image-grid.cols-3,
   .project-image-grid.cols-2 { grid-template-columns: 1fr; }
 }
