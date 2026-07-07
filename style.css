@@ -762,6 +762,32 @@ footer ul {
 @media (max-width: 640px) {
   .resume-body  { flex-direction: column; }
   .resume-right { width: 100%; }
+
+  /* Section top padding is 0 here because the sticky bar carries the 16px above the
+     buttons itself (so it survives scroll); sides 16px, bottom 40px. Project keeps its
+     own 16px top in project.css since it has a back-link, not a sticky bar. */
+  #resume-page, #about-page { padding: 0 16px 40px; }
+
+  /* Action buttons: move above the content as a sticky horizontal bar (was a vertical
+     right-rail). The bar owns its spacing via padding (16px above, 12px below) so the
+     16px/12px persists when the bar is pinned on scroll — the surface-3 bg masks the
+     content scrolling behind it. layout gap is 0 so the 12px isn't doubled. */
+  .resume-layout  { flex-direction: column; align-items: stretch; gap: 0; }
+  .sticky-actions {
+    order: -1;                        /* place above the content card */
+    flex-direction: row;              /* vertical -> horizontal */
+    align-self: stretch;              /* full width so the bg masks content when pinned */
+    width: auto;                      /* reset desktop 32px so stretch applies */
+    top: 64px;                        /* pin directly under the 64px fixed nav (window is the scroller) */
+    padding: 18px 0 12px;             /* 16px visible above buttons (+2px sit behind the nav's
+                                         2px border, since nav is 66px but content starts at 64px)
+                                         + 12px below — both persist when the bar is pinned */
+    background: var(--sn-surface-3);  /* matches every section bg; masks content when pinned */
+  }
+
+  /* Project pages have no action buttons; match the back-link -> content gap (12px)
+     to the button -> content gap on resume/about so the spacing is consistent. */
+  #project-detail .back-link { margin-bottom: 12px; }
 }
 
 /* ─ Mobile: 480px ─
@@ -774,8 +800,7 @@ footer ul {
 
   #hero        { padding: 48px 16px; min-height: auto; }
   #projects    { padding: 48px 16px; }
-  #resume-page { padding: 48px 16px; }
-  #about-page  { padding: 48px 16px; }
+  /* #resume-page / #about-page mobile padding is handled at <=640px (16px all sides) */
 
   .page-card   { padding: 24px; }
 
