@@ -442,6 +442,9 @@ main {
   color: var(--sn-text-1);
   flex: 1 0 0;
   min-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .about-bio-lead {
@@ -540,7 +543,10 @@ main {
   gap: 24px;
 }
 
-.resume-title-line {
+/* Shared page-card heading — used 1:1 by the resume ("Judy Wu | Senior Product
+   Designer") and about ("Hi, it's nice to meet you") headers. Edit here to keep
+   both in sync. */
+.page-title-line {
   font-family: 'Karla', sans-serif;
   font-weight: 800;
   font-size: 24px;
@@ -749,7 +755,7 @@ footer ul {
   /* Page card */
   .page-card      { padding: 32px 40px; }
   .resume-inner   { gap: 16px; }
-  .resume-title-line   { font-size: 16px; }
+  .page-title-line     { font-size: 16px; }
   .resume-section-label { font-size: 14px; }
   .resume-right   { width: 160px; }
 
