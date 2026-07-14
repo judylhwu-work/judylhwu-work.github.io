@@ -40,9 +40,9 @@
       <div class="hero-card">
         <div class="hero-card-top">
           <h1 class="hero-hello" id="hero-hello">Hello!</h1>
-          <p class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> a Senior Product Designer who builds what's missing before anyone even knows to ask for it.</p>
+          <p class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> Senior Product Designer with 5+ years experience. My expertise lies within turning complex problems into creative opportunities.</p>
         </div>
-        <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, translated it to be AI-compatible, and built two internal design tools leveraging it.</p>
+        <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, made it AI-native, and built two internal design tools leveraging it.</p>
       </div>
       <a href="#projects" class="hero-chevron" aria-label="Scroll to projects">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -54,7 +54,7 @@
 
         <div class="project-grid">
 
-          <a href="/projects/leantaas-nova-to-claude/" class="project-card thumb-nova-to-claude">
+          <a href="/projects/leantaas-nova-to-claude/" id="leantaas-nova-to-claude" class="project-card thumb-nova-to-claude">
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <span class="sn-badge sn-badge-warning">Under Construction</span>
@@ -67,14 +67,14 @@
                   </div>
                 </div>
               </div>
-              <p class="card-desc">AI applications built on Nova — a design system chatbot that scales design expertise, and an HTML editor that closes the design-to-dev gap.</p>
+              <p class="card-desc">Nova design system goes AI-native. Built two internal design tools on top of Nova: Ask-Nova, and Html-editor.</p>
             </div>
             <div class="project-card-right">
               <img src="/assets/images/leantaas-device.png" alt="Nova Design System: Figma to Claude Code">
             </div>
           </a>
 
-          <a href="/projects/leantaas-smart-huddles/" class="project-card thumb-smart-huddles">
+          <a href="/projects/leantaas-smart-huddles/" id="leantaas-smart-huddles" class="project-card thumb-smart-huddles">
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <span class="sn-badge sn-badge-warning">Under Construction</span>
@@ -87,14 +87,14 @@
                   </div>
                 </div>
               </div>
-              <p class="card-desc">External-facing product for healthcare teams to build surveys, collect responses, and run structured huddle processes.</p>
+              <p class="card-desc">External-facing product for healthcare teams to build surveys, collect responses, and run structured huddles efficiently.</p>
             </div>
             <div class="project-card-right">
               <img src="/assets/images/leantaas-device.png" alt="Smart Huddles">
             </div>
           </a>
 
-          <a href="/projects/leantaas/" class="project-card thumb-leantaas">
+          <a href="/projects/leantaas/" id="leantaas" class="project-card thumb-leantaas">
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <span class="sn-badge sn-badge-warning">Under Construction</span>
@@ -115,7 +115,7 @@
             </div>
           </a>
 
-          <a href="/projects/leantaas-cof/" class="project-card thumb-cof">
+          <a href="/projects/leantaas-cof/" id="leantaas-cof" class="project-card thumb-cof">
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <span class="sn-badge sn-badge-warning">Under Construction</span>
@@ -127,14 +127,14 @@
                   </div>
                 </div>
               </div>
-              <p class="card-desc">Single source of truth for metric definitions across all surfaces — define once, apply everywhere.</p>
+              <p class="card-desc">Single source of truth for metric definitions across all surfaces. The idea? Define once, apply everywhere.</p>
             </div>
             <div class="project-card-right">
               <img src="/assets/images/leantaas-device.png" alt="Definitions">
             </div>
           </a>
 
-          <a href="/projects/airrobe/" class="project-card thumb-airrobe">
+          <a href="/projects/airrobe/" id="airrobe" class="project-card thumb-airrobe">
             <div class="project-card-left">
               <div class="card-title-row">
                 <span class="card-label">AirRobe</span>
@@ -151,7 +151,7 @@
             </div>
           </a>
 
-          <a href="/projects/prenda/" class="project-card thumb-prenda">
+          <a href="/projects/prenda/" id="prenda" class="project-card thumb-prenda">
             <div class="project-card-left">
               <div class="card-title-row">
                 <span class="card-label">Prenda</span>
@@ -167,7 +167,18 @@
             </div>
           </a>
 
-          <a href="/projects/window/" class="project-card thumb-window">
+          <div class="more-projects-toggle">
+            <button type="button" id="see-more-btn" class="more-projects-btn" aria-expanded="false" aria-controls="more-projects">
+              <span class="more-projects-btn-label">See more</span>
+              <svg class="more-projects-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+
+          <div class="more-projects-divider" hidden></div>
+
+          <div id="more-projects" class="more-projects" hidden>
+
+          <a href="/projects/window/" id="window" class="project-card thumb-window">
             <div class="project-card-left">
               <div class="card-title-row">
                 <span class="card-label">Window</span>
@@ -176,14 +187,14 @@
                   <span class="sn-badge sn-badge-brand-green">Mobile Design</span>
                 </div>
               </div>
-              <p class="card-desc">AI-powered search and personalization platform for e-commerce retailers.</p>
+              <p class="card-desc">Personalized shopping platform for e-commerce retailers.</p>
             </div>
             <div class="project-card-right">
               <img src="/assets/images/window-device.png" alt="Window">
             </div>
           </a>
 
-          <a href="/projects/gramcity/" class="project-card thumb-gramcity">
+          <a href="/projects/gramcity/" id="gramcity" class="project-card thumb-gramcity">
             <div class="project-card-left">
               <div class="card-title-row">
                 <span class="card-label">GramCity</span>
@@ -199,7 +210,7 @@
             </div>
           </a>
 
-          <a href="/projects/bark-app/" class="project-card thumb-bark">
+          <a href="/projects/bark-app/" id="bark-app" class="project-card thumb-bark">
             <div class="project-card-left">
               <div class="card-title-row">
                 <span class="card-label">BARK App</span>
@@ -214,6 +225,8 @@
               <img src="/assets/images/bark-device.png" alt="BARK app">
             </div>
           </a>
+
+          </div>
 
         </div>
 
@@ -257,6 +270,42 @@
     }
 
     setInterval(nextGreeting, 1000);
+
+    // "See more" toggle for lower-emphasis projects (internships / early work)
+    const moreProjects = document.getElementById('more-projects');
+    const moreDivider = document.querySelector('.more-projects-divider');
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    if (moreProjects && seeMoreBtn) {
+      const STORAGE_KEY = 'portfolio-more-projects';
+      const seeMoreLabel = seeMoreBtn.querySelector('.more-projects-btn-label');
+
+      const setExpanded = (expanded, animate) => {
+        if (expanded) {
+          moreProjects.removeAttribute('hidden');
+          if (animate) {
+            // restart the slide-in animation
+            moreProjects.classList.remove('is-animating');
+            void moreProjects.offsetWidth;
+            moreProjects.classList.add('is-animating');
+          }
+        } else {
+          moreProjects.setAttribute('hidden', '');
+          moreProjects.classList.remove('is-animating');
+        }
+        if (moreDivider) moreDivider.toggleAttribute('hidden', !expanded);
+        seeMoreBtn.setAttribute('aria-expanded', String(expanded));
+        seeMoreLabel.textContent = expanded ? 'See less' : 'See more';
+      };
+
+      // Restore persisted state without animating on load
+      setExpanded(localStorage.getItem(STORAGE_KEY) === 'expanded', false);
+
+      seeMoreBtn.addEventListener('click', () => {
+        const expanded = moreProjects.hasAttribute('hidden');
+        setExpanded(expanded, true);
+        localStorage.setItem(STORAGE_KEY, expanded ? 'expanded' : 'collapsed');
+      });
+    }
   </script>
 
   <!-- GoatCounter analytics -->
