@@ -830,7 +830,7 @@ footer ul {
 @media (max-width: 1040px) {
   nav              { padding: 16px 40px; }
   #hero            { padding: 64px 40px; }
-  #projects        { padding: 80px 40px; }
+  #projects        { padding: 80px 40px 120px; }
   #resume-page     { padding: 80px 40px; }
   #about-page      { padding: 80px 40px; }
 }
@@ -870,6 +870,10 @@ footer ul {
      own 16px top in project.css since it has a back-link, not a sticky bar. */
   #resume-page, #about-page { padding: 0 16px 40px; }
 
+  /* Portfolio hero + projects switch to mobile padding (16px sides) at <=640px */
+  #hero     { padding: 48px 16px; min-height: auto; }
+  #projects { padding: 48px 16px 80px; }
+
   /* Action buttons: move above the content as a sticky horizontal bar (was a vertical
      right-rail). The bar owns its spacing via padding (16px above, 12px below) so the
      16px/12px persists when the bar is pinned on scroll — the surface-3 bg masks the
@@ -900,9 +904,8 @@ footer ul {
   nav ul       { gap: 8px; }
   nav ul li a  { font-size: 12px; }
 
-  #hero        { padding: 48px 16px; min-height: auto; }
-  #projects    { padding: 48px 16px; }
-  /* #resume-page / #about-page mobile padding is handled at <=640px (16px all sides) */
+  /* #hero / #projects mobile padding now starts at <=640px (see that block),
+     as do #resume-page / #about-page. */
 
   .page-card   { padding: 24px; }
 
