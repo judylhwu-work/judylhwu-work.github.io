@@ -89,36 +89,8 @@
   background: var(--sn-surface-1);
 }
 
-.back-link,
-.project-website-link {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: background 0.15s;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  margin-bottom: 16px;
-  margin-left: -8px;
-  color: var(--sn-text-brand-green-dark);
-}
-
-.back-link:hover {
-  background: rgba(39, 134, 40, 0.08);
-}
-
-.project-website-link {
-  color: var(--sn-surface-brand-pink-action-main);
-}
-
-.project-website-link:hover {
-  background: rgba(255, 69, 159, 0.08);
-}
+/* .back-link and .project-website-link styles live in style.css (shared, loaded
+   on every page) so there's a single source of truth and no drift. */
 
 /* ── Inside page-card ── */
 .project-cat-label {

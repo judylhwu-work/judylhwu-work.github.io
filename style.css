@@ -216,7 +216,7 @@ main {
 
 /* ── Projects ── */
 #projects {
-  padding: 80px max(40px, calc((100% - 960px) / 2));
+  padding: 80px max(40px, calc((100% - 960px) / 2)) 160px;
   scroll-margin-top: 64px;
 }
 
@@ -234,6 +234,101 @@ main {
   min-width: 0;
 }
 
+.more-projects {
+  /* Cards flow directly in .project-grid so they inherit its uniform 32px gap */
+  display: contents;
+}
+
+.more-projects[hidden] {
+  display: none;
+}
+
+/* Slide-in only when expanded via click (not on persisted restore) */
+.more-projects.is-animating .project-card {
+  animation: more-projects-slide-in 0.35s ease both;
+}
+.more-projects.is-animating .project-card:nth-child(2) { animation-delay: 0.06s; }
+.more-projects.is-animating .project-card:nth-child(3) { animation-delay: 0.12s; }
+
+@keyframes more-projects-slide-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .more-projects.is-animating .project-card { animation: none; }
+}
+
+/* Divider between the toggle and the revealed cards — shown only when expanded */
+.more-projects-divider {
+  height: 1px;
+  background: var(--sn-border-color-1);
+  flex-shrink: 0;
+}
+
+.more-projects-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Shared text links / buttons (single source of truth — prevents drift) ──
+   Used by .back-link and .project-website-link on project pages (which also
+   load this file) and by the portfolio "See more" toggle. */
+.back-link,
+.project-website-link,
+.more-projects-btn {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.back-link,
+.more-projects-btn {
+  color: var(--sn-text-brand-green-dark);
+}
+
+.back-link:hover,
+.more-projects-btn:hover {
+  background: rgba(39, 134, 40, 0.08);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  margin-left: -8px;
+}
+
+.project-website-link {
+  color: var(--sn-surface-brand-pink-action-main);
+}
+
+.project-website-link:hover {
+  background: rgba(255, 69, 159, 0.08);
+}
+
+/* See-more toggle: text link + rotating chevron */
+.more-projects-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.more-projects-chevron {
+  transition: transform 0.2s ease;
+}
+
+.more-projects-btn[aria-expanded="true"] .more-projects-chevron {
+  transform: rotate(180deg);
+}
+
 .project-card {
   display: flex;
   height: 240px;
@@ -241,6 +336,7 @@ main {
   border: 4px solid transparent;
   overflow: hidden;
   transition: border-color 0.2s ease;
+  scroll-margin-top: 80px;
 }
 
 .project-card:hover {
