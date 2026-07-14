@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# Auto-encrypt the NDA case studies before each commit, so you never run a
+# command by hand and plaintext never reaches the repo. Sources live in the
+# git-ignored private/ folder; only the encrypted output is committed.
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+
+# nothing to do if the private sources aren't present (e.g. a fresh clone)
+if [ ! -d "$ROOT/private/projects" ]; then
+  exit 0
+fi
+
+bash "$ROOT/scripts/encrypt.sh"
+git add "$ROOT/.staticrypt.json" \
+        "$ROOT/projects/nova/index.html" \
+        "$ROOT/projects/smart-huddles/index.html" \
+        "$ROOT/projects/definitions/index.html" \
+        "$ROOT/projects/nova-to-claude/index.html"

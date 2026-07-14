@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <title>Judy Wu — Product Designer</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.typography.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.light.css" id="sn-tokens-light">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
+  <link rel="stylesheet" href="/supernova-design-system/components/button/button.css">
+  <link rel="stylesheet" href="/supernova-design-system/components/badge/badge.css">
+  <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}</script>
+  <script src="/theme.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="/portfolio/" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/portfolio/" class="nav-active"><span>Portfolio</span></a></li>
+        <li><a href="/resume/"><span>Resume</span></a></li>
+        <li><a href="/about/"><span>About</span></a></li>
+      </ul>
+      <div class="nav-divider"></div>
+      <button class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Toggle dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+  <main>
+
+    <section id="hero">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <h1 class="hero-hello" id="hero-hello">Hello!</h1>
+          <p class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> Senior Product Designer with 5+ years experience. My expertise lies within turning complex problems into creative opportunities.</p>
+        </div>
+        <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, made it AI-native, and built two internal design tools leveraging it.</p>
+      </div>
+      <a href="#projects" class="hero-chevron" aria-label="Scroll to projects">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </section>
+
+    <section id="projects">
+      <div class="projects-layout">
+
+        <div class="project-grid">
+
+          <a href="/projects/nova-to-claude/" id="nova-to-claude" class="project-card thumb-nova-to-claude">
+            <div class="project-card-left">
+              <div class="card-badge-stack">
+                <span class="sn-badge sn-badge-warning">Under Construction</span>
+                <div class="card-title-row">
+                  <span class="card-label">Nova Design System: Figma to Claude Code</span>
+                  <div class="project-tags">
+                    <span class="sn-badge sn-badge-brand">HealthTech</span>
+                    <span class="sn-badge sn-badge-brand-green">Internal AI Tooling</span>
+                    <span class="sn-badge sn-badge-brand-green">Design Systems</span>
+                  </div>
+                </div>
+              </div>
+              <p class="card-desc">Nova design system goes AI-native. Built two internal design tools on top of Nova: Ask-Nova, and Html-editor.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/leantaas-device.png" alt="Nova Design System: Figma to Claude Code">
+            </div>
+          </a>
+
+          <a href="/projects/smart-huddles/" id="smart-huddles" class="project-card thumb-smart-huddles">
+            <div class="project-card-left">
+              <div class="card-badge-stack">
+                <span class="sn-badge sn-badge-warning">Under Construction</span>
+                <div class="card-title-row">
+                  <span class="card-label">Smart Huddles</span>
+                  <div class="project-tags">
+                    <span class="sn-badge sn-badge-brand">HealthTech</span>
+                    <span class="sn-badge sn-badge-brand-green">AI Summaries</span>
+                    <span class="sn-badge sn-badge-brand-green">AI Suggestions</span>
+                  </div>
+                </div>
+              </div>
+              <p class="card-desc">External-facing product for healthcare teams to build surveys, collect responses, and run structured huddles efficiently.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/leantaas-device.png" alt="Smart Huddles">
+            </div>
+          </a>
+
+          <a href="/projects/nova/" id="nova" class="project-card thumb-nova">
+            <div class="project-card-left">
+              <div class="card-badge-stack">
+                <span class="sn-badge sn-badge-warning">Under Construction</span>
+                <div class="card-title-row">
+                  <span class="card-label">Nova Design System</span>
+                  <div class="project-tags">
+                    <span class="sn-badge sn-badge-brand">HealthTech</span>
+                    <span class="sn-badge sn-badge-brand-green">Design Systems</span>
+                    <span class="sn-badge sn-badge-brand-green">Design Tokens</span>
+                    <span class="sn-badge sn-badge-brand-green">Dark Mode</span>
+                  </div>
+                </div>
+              </div>
+              <p class="card-desc">Transformed LeanTaaS's component library into a scalable, token-based design system adopted across the entire org.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/leantaas-device.png" alt="Nova Design System">
+            </div>
+          </a>
+
+          <a href="/projects/definitions/" id="definitions" class="project-card thumb-definitions">
+            <div class="project-card-left">
+              <div class="card-badge-stack">
+                <span class="sn-badge sn-badge-warning">Under Construction</span>
+                <div class="card-title-row">
+                  <span class="card-label">Definitions</span>
+                  <div class="project-tags">
+                    <span class="sn-badge sn-badge-brand">HealthTech</span>
+                    <span class="sn-badge sn-badge-brand-green">Systems Design</span>
+                  </div>
+                </div>
+              </div>
+              <p class="card-desc">Single source of truth for metric definitions across all surfaces. The idea? Define once, apply everywhere.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/leantaas-device.png" alt="Definitions">
+            </div>
+          </a>
+
+          <a href="/projects/airrobe/" id="airrobe" class="project-card thumb-airrobe">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">AirRobe</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Re-commerce</span>
+                  <span class="sn-badge sn-badge-brand-green">Product Search</span>
+                  <span class="sn-badge sn-badge-brand-green">Design Systems</span>
+                </div>
+              </div>
+              <p class="card-desc">Circular fashion marketplace for buying, selling, and renting pre-loved clothing sustainably.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/airrobe-device.png" alt="AirRobe">
+            </div>
+          </a>
+
+          <a href="/projects/prenda/" id="prenda" class="project-card thumb-prenda">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Prenda</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">EdTech</span>
+                  <span class="sn-badge sn-badge-brand-green">Scheduling</span>
+                </div>
+              </div>
+              <p class="card-desc">Platform enabling educators to run personalized microschools for K–8 students.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/prenda-device.png" alt="Prenda">
+            </div>
+          </a>
+
+          <div class="more-projects-toggle">
+            <button type="button" id="see-more-btn" class="more-projects-btn" aria-expanded="false" aria-controls="more-projects">
+              <span class="more-projects-btn-label">See more</span>
+              <svg class="more-projects-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
+
+          <div class="more-projects-divider" hidden></div>
+
+          <div id="more-projects" class="more-projects" hidden>
+
+          <a href="/projects/window/" id="window" class="project-card thumb-window">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">Window</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">E-commerce</span>
+                  <span class="sn-badge sn-badge-brand-green">Mobile Design</span>
+                </div>
+              </div>
+              <p class="card-desc">Personalized shopping platform for e-commerce retailers.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/window-device.png" alt="Window">
+            </div>
+          </a>
+
+          <a href="/projects/gramcity/" id="gramcity" class="project-card thumb-gramcity">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">GramCity</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Social</span>
+                  <span class="sn-badge sn-badge-brand-green">Mobile Design</span>
+                </div>
+              </div>
+              <p class="card-desc">A 7-day Design Sprint to help users find the most instagrammable photo locations in any city.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/gramcity-device.png" alt="GramCity">
+            </div>
+          </a>
+
+          <a href="/projects/bark-app/" id="bark-app" class="project-card thumb-bark-app">
+            <div class="project-card-left">
+              <div class="card-title-row">
+                <span class="card-label">BARK App</span>
+                <div class="project-tags">
+                  <span class="sn-badge sn-badge-brand">Consumer</span>
+                  <span class="sn-badge sn-badge-brand-green">Mobile Design</span>
+                </div>
+              </div>
+              <p class="card-desc">A social app connecting pup parents to find compatible playmates for their dogs — think Tinder for dogs.</p>
+            </div>
+            <div class="project-card-right">
+              <img src="/assets/images/bark-device.png" alt="BARK app">
+            </div>
+          </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  </div>
+
+  <script>
+    const greetings = [
+      { text: 'Hello!',     color: 'var(--sn-text-brand-green-dark)' },
+      { text: '¡Hola!',     color: 'var(--sn-text-brand-pink-dark)' },
+      { text: '你好!',       color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'Bonjour!',   color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'こんにちは!', color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'привет!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'olá!',       color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'Hallo!',     color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'হ্যালো!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
+      { text: 'مرحبًا!',    color: 'var(--sn-text-brand-green-dark)' },
+    ];
+
+    let current = 0;
+    const helloEl = document.getElementById('hero-hello');
+
+    function nextGreeting() {
+      helloEl.classList.add('greeting-exit');
+      setTimeout(() => {
+        current = (current + 1) % greetings.length;
+        const g = greetings[current];
+        helloEl.textContent = g.text;
+        helloEl.style.color = g.color;
+        helloEl.classList.remove('greeting-exit');
+        helloEl.classList.add('greeting-enter');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          helloEl.classList.remove('greeting-enter');
+        }));
+      }, 150);
+    }
+
+    setInterval(nextGreeting, 1000);
+
+    // "See more" toggle for lower-emphasis projects (internships / early work)
+    const moreProjects = document.getElementById('more-projects');
+    const moreDivider = document.querySelector('.more-projects-divider');
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    if (moreProjects && seeMoreBtn) {
+      const STORAGE_KEY = 'portfolio-more-projects';
+      const seeMoreLabel = seeMoreBtn.querySelector('.more-projects-btn-label');
+
+      const setExpanded = (expanded, animate) => {
+        if (expanded) {
+          moreProjects.removeAttribute('hidden');
+          if (animate) {
+            // restart the slide-in animation
+            moreProjects.classList.remove('is-animating');
+            void moreProjects.offsetWidth;
+            moreProjects.classList.add('is-animating');
+          }
+        } else {
+          moreProjects.setAttribute('hidden', '');
+          moreProjects.classList.remove('is-animating');
+        }
+        if (moreDivider) moreDivider.toggleAttribute('hidden', !expanded);
+        seeMoreBtn.setAttribute('aria-expanded', String(expanded));
+        seeMoreLabel.textContent = expanded ? 'See less' : 'See more';
+      };
+
+      // Restore persisted state without animating on load
+      setExpanded(localStorage.getItem(STORAGE_KEY) === 'expanded', false);
+
+      seeMoreBtn.addEventListener('click', () => {
+        const expanded = moreProjects.hasAttribute('hidden');
+        setExpanded(expanded, true);
+        localStorage.setItem(STORAGE_KEY, expanded ? 'expanded' : 'collapsed');
+      });
+    }
+  </script>
+
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://judylhwu-work.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

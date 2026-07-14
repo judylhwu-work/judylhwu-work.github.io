@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <title>BARK App — Judy Wu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/project.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.typography.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.light.css" id="sn-tokens-light">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
+  <link rel="stylesheet" href="/supernova-design-system/components/button/button.css">
+  <link rel="stylesheet" href="/supernova-design-system/components/badge/badge.css">
+  <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}</script>
+  <script src="/theme.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="/portfolio/" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/portfolio/" class="nav-active"><span>Portfolio</span></a></li>
+        <li><a href="/resume/"><span>Resume</span></a></li>
+        <li><a href="/about/"><span>About</span></a></li>
+      </ul>
+      <div class="nav-divider"></div>
+      <button class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Toggle dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="page-content">
+  <main>
+
+    <section id="project-detail">
+
+      <a href="/portfolio/#bark-app" class="back-link">← Back to all projects</a>
+
+      <div class="resume-layout">
+        <div class="page-card">
+
+          <div class="project-header">
+            <p class="project-cat-label">Consumer · Mobile Design</p>
+            <h1>BARK App</h1>
+            <p class="project-summary">A solo UX project for a mobile app connecting pup parents to find compatible playmates for their dogs — think Tinder for dogs. Led the full process from discovery research and competitive analysis through two rounds of usability testing and iteration.</p>
+          </div>
+
+          <div class="page-divider"></div>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <span class="meta-label">Role</span>
+              <span>UX Designer &amp; Researcher (Solo)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Duration</span>
+              <span>2 months</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Tools</span>
+              <span>Sketch, InVision</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Deliverables</span>
+              <span>Design concept, Journey maps, User personas, Research documentation</span>
+            </div>
+          </div>
+
+          <div class="page-divider"></div>
+
+          <div class="project-body">
+
+            <div class="project-section">
+              <h2>Overview</h2>
+              <p>BARK is an online social app for pup parents to find the perfect playmates for their dogs. Think: Tinder for dogs. Pup parents understand early socialization is important — but also know how hard it can be. Common options (puppy classes, dog parks, daycare) require free time, proximity, and compatibility luck. BARK removes all three barriers.</p>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/7cfca037-367b-47a0-9228-1407198c4022/BARK_app/w=1200,quality=85,fit=scale-down" alt="BARK app overview" loading="lazy">
+            </div>
+
+            <div class="project-section">
+              <h2>Problem</h2>
+              <p>Three compounding issues make dog socialization harder than it should be:</p>
+              <ul>
+                <li>Lack of free time makes it hard to set up and coordinate playdates</li>
+                <li>Some dogs are picky — compatibility matters, and you often don't know until they meet</li>
+                <li>Limited access to dog parks, classes, or daycare depending on location or budget</li>
+              </ul>
+
+              <h3>Design questions</h3>
+              <ul>
+                <li>How might we provide a way for pup parents to easily socialize their dogs in a safe, comfortable environment?</li>
+                <li>How might we help users quickly set up playdates for their pups?</li>
+                <li>How might we allow both pup parents and their pups to enjoy the experience?</li>
+              </ul>
+            </div>
+
+            <div class="project-section">
+              <h2>Phase 1 · Research</h2>
+
+              <h3>Competitive analysis</h3>
+              <p>No existing "doggy Tinder" apps were found — a genuine market gap. I analyzed adjacent apps: Tinder (for the swipe-match mechanic), Kippo (a social-first dating app for gamers), and Dig (a dating app for dog people). Key takeaways informed BARK's core UX patterns.</p>
+              <div class="project-image-grid cols-3">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/348dc021-1054-4b20-aefe-9baa85676dcb/image/w=600,quality=85,fit=scale-down" alt="Competitive analysis: Tinder" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/4a18d82b-308f-4733-b4c2-8ba2cb805985/image/w=600,quality=85,fit=scale-down" alt="Competitive analysis: Kippo" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/454fe1bf-1f2f-49e8-8c4d-7973f1920196/image/w=600,quality=85,fit=scale-down" alt="Competitive analysis: Dig" loading="lazy">
+              </div>
+
+              <h3>Screener survey</h3>
+              <p>~200 responses collected from dog parents at Google. The data surfaced a clear demand gap:</p>
+              <ul>
+                <li>Only 12.2% were completely satisfied with their current socialization methods</li>
+                <li>41.1% were actively wanting something better</li>
+                <li>Top values: simplicity, convenience, accessibility, affordability</li>
+              </ul>
+              <div class="project-image-grid cols-2">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/c8ea4c75-1402-427e-95df-0028b9b48142/image/w=800,quality=85,fit=scale-down" alt="Screener survey results chart" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/25cbf1cb-da84-4239-9035-048427642502/image/w=800,quality=85,fit=scale-down" alt="Satisfaction level breakdown" loading="lazy">
+              </div>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/fed6c00e-4b90-475b-a0bb-9111860ec1c0/image/w=1200,quality=85,fit=scale-down" alt="Dog parent values validation" loading="lazy">
+
+              <h3>Interviews</h3>
+              <ul>
+                <li>Only 30% were content with their current playdate setup process</li>
+                <li>Some had regular "doggy best friends"; others relied on dog parks and hoped for the best</li>
+                <li>80% said they'd want to use a mobile app for this</li>
+                <li>Main concern: what if the dogs don't get along?</li>
+              </ul>
+            </div>
+
+            <div class="project-section">
+              <h2>Phase 2 · Ideation</h2>
+
+              <h3>User personas</h3>
+              <div class="project-image-grid cols-2">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/87294bab-cbef-457f-a709-bea4c95fa8bf/image/w=800,quality=85,fit=scale-down" alt="Persona: Kate — new puppy owner, limited time" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/27bcf354-d42c-49c0-97e3-5c9ba25a1c51/image/w=800,quality=85,fit=scale-down" alt="Persona: Michael — two dogs with different temperaments" loading="lazy">
+              </div>
+
+              <h3>Empathy maps</h3>
+              <div class="project-image-grid cols-2">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/a8719edd-6e6d-450a-acf1-48cbb57ec9d2/image/w=800,quality=85,fit=scale-down" alt="Empathy map 1" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/d135a71b-7897-4f6e-90a5-e4d1b0099d47/image/w=800,quality=85,fit=scale-down" alt="Empathy map 2" loading="lazy">
+              </div>
+
+              <h3>Mood board</h3>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/3553906f-9ed2-4386-abf2-d6c476a430d6/image/w=1200,quality=85,fit=scale-down" alt="BARK mood board" loading="lazy">
+
+              <h3>Wireflows</h3>
+              <p>Wireframes helped determine which screens were most essential and allowed experimentation with different layouts before committing to high-fidelity. The wireflow made the end-to-end user journey tangible early.</p>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/e1c49838-18a8-4269-841e-f639200a8efd/image/w=1200,quality=85,fit=scale-down" alt="BARK wireflows" loading="lazy">
+            </div>
+
+            <div class="project-section">
+              <h2>Phase 3 · Design</h2>
+              <p>Defined the visual language through style guides before moving into high-fidelity screens — establishing typography, color, and component patterns first.</p>
+              <div class="project-image-grid cols-2">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/5d20dfd2-f8ef-4c51-a418-65f28944b87c/image/w=800,quality=85,fit=scale-down" alt="Style guide 1" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/422dbf81-444e-49a1-8d13-a9a4051e7589/image/w=800,quality=85,fit=scale-down" alt="Style guide 2" loading="lazy">
+              </div>
+            </div>
+
+            <div class="project-section">
+              <h2>Phase 4 · Test &amp; Iterate</h2>
+              <p>Two rounds of usability testing — in-person at a Google micro kitchen and remotely via Google Hangouts. Participants recruited via email to Dooglers @ Google: pup parents ages 21–45 interested in dog socialization.</p>
+
+              <h3>Round 1 findings (4 participants)</h3>
+              <ul>
+                <li>50% finished in under 5 minutes with no issues</li>
+                <li>50% wanted more onboarding screens and tutorials</li>
+                <li>100% wanted an "undo" button on the Explore page</li>
+              </ul>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/8e1ed81e-9550-4ad9-bb8c-d9cd4df2318c/image/w=1200,quality=85,fit=scale-down" alt="Usability test findings summary" loading="lazy">
+
+              <h3>Issue 1 · Explore page missing undo button (High severity)</h3>
+              <p>Inconsistent button treatment between pages left users without a way to reverse an accidental swipe. Added an undo button to the Explore page to match user expectations set by other card-swiping apps.</p>
+              <img class="project-image" src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b6e97871-1263-406f-8409-3125419d4594/image/w=1200,quality=85,fit=scale-down" alt="Undo button iteration: before and after" loading="lazy">
+
+              <h3>Issue 2 · Lack of onboarding screens (High severity)</h3>
+              <p>Users unfamiliar with dating apps found the initial flow confusing. Added onboarding tutorials that appear on first use to guide new users through key actions without assuming prior context.</p>
+
+              <h3>Round 2 results (5 participants)</h3>
+              <p>100% of participants successfully created an account and found a match within 7 minutes. No new issues reported.</p>
+            </div>
+
+            <div class="project-section">
+              <h2>Final Designs</h2>
+              <div class="project-image-grid cols-3">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/f25dc5be-fc1f-41a0-908b-f58e722b566c/image/w=600,quality=85,fit=scale-down" alt="BARK final design 1" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/b2825a6e-8ab0-4a1e-9e69-bc0c87c99d8f/image/w=600,quality=85,fit=scale-down" alt="BARK final design 2" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/e1b55d35-6c48-4b44-bb35-23c79af55eba/image/w=600,quality=85,fit=scale-down" alt="BARK final design 3" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/a32134df-952d-4dbd-9b4e-73db43291213/image/w=600,quality=85,fit=scale-down" alt="BARK final design 4" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/798ac943-7d0b-4143-a8f9-4cce43788489/image/w=600,quality=85,fit=scale-down" alt="BARK final design 5" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/56ccebbb-4dd5-46c9-a72e-af99ba607202/image/w=600,quality=85,fit=scale-down" alt="BARK final design 6" loading="lazy">
+                <img src="https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/e7fa44c4-2299-4973-a400-4b255f443db5/image/w=600,quality=85,fit=scale-down" alt="BARK final design 7" loading="lazy">
+              </div>
+            </div>
+
+            <div class="project-section">
+              <h2>Takeaways</h2>
+              <ul>
+                <li>Two rounds of usability testing is the right cadence — round 1 reveals issues, round 2 validates the fixes</li>
+                <li>Participants catch things you can't see yourself because you already know how it works</li>
+                <li>Making yourself relatable helps participants feel comfortable sharing honest feedback</li>
+                <li>Using an existing community (Dooglers @ Google) made recruitment easy, but limited the participant pool's diversity</li>
+                <li>A well-designed screener survey validates assumptions before you even start designing</li>
+              </ul>
+              <p>Next steps: A/B test the chat screen (owner's name vs. dog's name vs. both), design settings screens for preferences and filters, and integrate Google Maps for in-app directions to playdate locations.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+  </div>
+
+  <script src="/lightbox.js"></script>
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://judylhwu-work.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

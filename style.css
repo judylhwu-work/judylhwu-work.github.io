@@ -1,0 +1,954 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Outfit:wght@400;500;600;700&family=Public+Sans:wght@400;600;700&display=swap');
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gray-500: #888;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --space-md: 2rem;
+  --max-width: 960px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--sn-text-1);
+  background: var(--sn-surface-2);
+}
+
+.page-content {
+  margin-top: 64px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px max(40px, calc((100% - 960px) / 2));
+  background: var(--sn-surface-1);
+  border-bottom: 2px solid var(--sn-surface-brand-green-action-main);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.nav-logo {
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  line-height: normal;
+  color: var(--sn-text-1);
+}
+
+.nav-jw {
+  font-weight: 800;
+  color: var(--sn-surface-brand-pink-action-main);
+}
+
+.nav-sep {
+  font-weight: 700;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.nav-name {
+  font-weight: 700;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* All nav links: flex-col with animated bar */
+nav ul li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 6px 4px 0;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--sn-text-1);
+}
+
+/* Inactive links: green bar grows left→right on hover */
+nav ul li a::after {
+  content: '';
+  display: block;
+  height: 6px;
+  width: 100%;
+  background: var(--sn-surface-brand-green-action-main);
+  border-radius: 0 8px 8px 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Active link: full-width pink bar, all corners rounded */
+nav ul li a.nav-active::after {
+  transform: scaleX(1);
+  background: var(--sn-surface-brand-pink-logo);
+  border-radius: 8px;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--sn-border-color-1);
+  flex-shrink: 0;
+}
+
+.nav-dark-mode .icon-sun { display: none; }
+[data-theme="dark"] .nav-dark-mode .icon-moon { display: none; }
+[data-theme="dark"] .nav-dark-mode .icon-sun { display: block; }
+
+/* ── Main Layout ── */
+main {
+  width: 100%;
+}
+
+/* ── Hero ── */
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  min-height: calc(100vh - 64px);
+  padding: 64px max(40px, calc((100% - 960px) / 2));
+  background: var(--sn-surface-brand-pink-to-elevation-1);
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 64px 80px;
+  background: var(--sn-surface-1);
+}
+
+.hero-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-hello {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1.6;
+  color: var(--sn-text-brand-green-dark);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hero-hello.greeting-exit {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.hero-hello.greeting-enter {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: none;
+}
+
+.hero-intro {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--sn-text-1);
+}
+
+.hero-intro-accent {
+  color: var(--sn-surface-brand-pink-action-main);
+}
+
+.hero-success {
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--sn-text-1);
+}
+
+.hero-success-accent {
+  color: var(--sn-text-brand-green-dark);
+}
+
+.hero-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sn-text-1);
+}
+
+/* ── Projects ── */
+#projects {
+  padding: 80px max(40px, calc((100% - 960px) / 2)) 160px;
+  scroll-margin-top: 64px;
+}
+
+.projects-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  min-width: 0;
+}
+
+.more-projects {
+  /* Cards flow directly in .project-grid so they inherit its uniform 32px gap */
+  display: contents;
+}
+
+.more-projects[hidden] {
+  display: none;
+}
+
+/* Slide-in only when expanded via click (not on persisted restore) */
+.more-projects.is-animating .project-card {
+  animation: more-projects-slide-in 0.35s ease both;
+}
+.more-projects.is-animating .project-card:nth-child(2) { animation-delay: 0.06s; }
+.more-projects.is-animating .project-card:nth-child(3) { animation-delay: 0.12s; }
+
+@keyframes more-projects-slide-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .more-projects.is-animating .project-card { animation: none; }
+}
+
+/* Divider between the toggle and the revealed cards — shown only when expanded */
+.more-projects-divider {
+  height: 1px;
+  background: var(--sn-border-color-1);
+  flex-shrink: 0;
+}
+
+.more-projects-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Shared text links / buttons (single source of truth — prevents drift) ──
+   Used by .back-link and .project-website-link on project pages (which also
+   load this file) and by the portfolio "See more" toggle. */
+.back-link,
+.project-website-link,
+.more-projects-btn {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.back-link,
+.more-projects-btn {
+  color: var(--sn-text-brand-green-dark);
+}
+
+.back-link:hover,
+.more-projects-btn:hover {
+  background: rgba(39, 134, 40, 0.08);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  margin-left: -8px;
+}
+
+.project-website-link {
+  color: var(--sn-surface-brand-pink-action-main);
+}
+
+.project-website-link:hover {
+  background: rgba(255, 69, 159, 0.08);
+}
+
+/* See-more toggle: text link + rotating chevron */
+.more-projects-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.more-projects-chevron {
+  transition: transform 0.2s ease;
+}
+
+.more-projects-btn[aria-expanded="true"] .more-projects-chevron {
+  transform: rotate(180deg);
+}
+
+.project-card {
+  display: flex;
+  height: 240px;
+  background: var(--sn-surface-1);
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+  scroll-margin-top: 80px;
+}
+
+.project-card:hover {
+  border-color: var(--sn-surface-brand-green-action-hover);
+}
+
+.project-card:active {
+  border-color: var(--sn-surface-brand-pink-action-main);
+}
+
+.thumb-nova           { --thumb-rgb: 115, 156, 252; }
+.thumb-nova-to-claude { --thumb-rgb: 167, 139, 250; }
+.thumb-smart-huddles  { --thumb-rgb: 52, 211, 153; }
+.thumb-definitions    { --thumb-rgb: 251, 191, 36; }
+.thumb-airrobe        { --thumb-rgb: 255, 149, 121; }
+.thumb-prenda         { --thumb-rgb: 255, 159, 105; }
+.thumb-window         { --thumb-rgb: 242, 202, 82; }
+.thumb-gramcity       { --thumb-rgb: 127, 121, 193; }
+.thumb-bark-app       { --thumb-rgb: 229, 188, 210; }
+
+/* ── Card left: info panel ── */
+.project-card-left {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 40px;
+  background: rgba(var(--thumb-rgb), 0.1);
+}
+
+.card-title-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Stacks a status badge (e.g. "Under Construction") on its own line above
+   the title row — used for in-progress LeanTaaS case studies. */
+.card-badge-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.card-label {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--sn-text-1);
+  white-space: nowrap;
+}
+
+.card-desc {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--sn-text-3);
+  width: 100%;
+}
+
+/* ── Card right: image panel ── */
+.project-card-right {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  background: rgba(var(--thumb-rgb), 0.5);
+  overflow: hidden;
+}
+
+.project-card-right img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover .project-card-right img {
+  transform: scale(1.03);
+}
+
+/* ── Tags ── */
+.project-tags {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+
+/* ── Buttons ── */
+/* Primary: text in pill → bar grows → fill yellow */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--sn-text-1);
+  isolation: isolate;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  background: #ffc700;
+  z-index: -1;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.15s ease, height 0.2s ease 0.1s;
+}
+
+.btn-primary:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Secondary: text → yellow bar grows from left */
+.btn-secondary {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: 8px 2px 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--sn-text-1);
+}
+
+.btn-secondary::after {
+  content: '';
+  display: block;
+  height: 6px;
+  width: 0;
+  background: #ffc700;
+  border-radius: 0 2px 2px 0;
+  transition: width 0.2s ease;
+}
+
+.btn-secondary:hover::after { width: 100%; }
+
+/* ── About ── */
+#about-page {
+  background: var(--sn-surface-3);
+  padding: 80px max(40px, calc((100% - 960px) / 2));
+}
+
+.page-card {
+  background: var(--sn-surface-1);
+  flex: 1;
+  min-width: 0;
+  padding: 56px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-intro {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.about-photos img {
+  width: 224.667px;
+  height: 149.741px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.about-bio {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sn-text-1);
+  flex: 1 0 0;
+  min-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-bio-lead {
+  font-weight: 600;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.page-divider {
+  height: 1px;
+  background: var(--sn-border-color-1);
+  flex-shrink: 0;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-content p {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sn-text-1);
+}
+
+.about-fun-fact {
+  font-weight: 600;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-content p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--sn-text-1);
+}
+
+/* ── Resume ── */
+#resume-page {
+  background: var(--sn-surface-3);
+  padding: 80px max(40px, calc((100% - 960px) / 2));
+}
+
+.resume-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.sticky-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 24px;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.sticky-action-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.btn-emoji { display: none; }
+
+
+.resume-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Shared page-card heading — used 1:1 by the resume ("Judy Wu | Senior Product
+   Designer") and about ("Hi, it's nice to meet you") headers. Edit here to keep
+   both in sync. */
+.page-title-line {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: normal;
+  color: var(--sn-scale-palette-seafoam-90);
+}
+
+.resume-name-sep {
+  font-weight: 700;
+}
+
+.resume-body {
+  display: flex;
+  gap: 40px;
+  flex: 1;
+}
+
+.resume-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.resume-section-label {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--sn-text-brand-green-dark);
+  line-height: normal;
+}
+
+.resume-jobs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.resume-job-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-job-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--sn-text-1);
+  font-style: normal;
+}
+
+.resume-job-block p {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.resume-meta {
+  font-weight: 400;
+}
+
+.resume-job-block ul {
+  list-style: disc;
+  padding-left: 21px;
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+}
+
+.resume-job-block li {
+  line-height: 20px;
+  margin-bottom: 6px;
+}
+
+.resume-job-block li:last-child {
+  margin-bottom: 0;
+}
+
+.resume-right {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resume-sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resume-sidebar-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.889px;
+  font-weight: 400;
+  color: var(--sn-text-1);
+  font-style: normal;
+}
+
+.resume-sidebar-body a {
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  margin-left: -4px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: var(--sn-text-1);
+  transition: background 0.15s;
+}
+
+.resume-sidebar-body a:hover {
+  background: color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 20%, transparent);
+  font-weight: 600;
+}
+
+.resume-sidebar-body p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13.889px;
+  line-height: 1.25;
+  color: var(--sn-text-1);
+}
+
+.resume-list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2.778px;
+}
+
+.resume-list-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 13.889px;
+  text-transform: uppercase;
+  color: var(--sn-text-1);
+  line-height: normal;
+}
+
+.resume-list-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13.889px;
+  line-height: 1.25;
+  color: var(--sn-text-1);
+}
+
+
+/* ── Footer ── */
+footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* ── Responsive ── */
+
+/*
+  Alignment contract (maintained at every breakpoint):
+    nav padding-x  == section padding-x          → "JW" aligns with thumbnail left edge
+    nav-right gap  == projects-layout gap (32px)  → nav divider aligns with content right edge
+    dark-mode btn  == sticky-action btn  (32px)   → buttons align on the right
+*/
+
+/* ─ Tablet: 768px ─
+   calc((100% - 960px) / 2) goes negative below 1040px, so max() already gives 40px.
+   We set it explicitly on both nav and every section to be safe. */
+@media (max-width: 1040px) {
+  nav              { padding: 16px 40px; }
+  #hero            { padding: 64px 40px; }
+  #projects        { padding: 80px 40px 120px; }
+  #resume-page     { padding: 80px 40px; }
+  #about-page      { padding: 80px 40px; }
+}
+
+@media (max-width: 768px) {
+  .nav-sep, .nav-name { display: none; }
+  .hero-hello  { font-size: 36px; }
+  .hero-intro  { font-size: 20px; }
+  .hero-card   { padding: 40px; }
+
+  /* Stack card image below info on narrow screens */
+  .project-card { flex-direction: column; height: auto; }
+  .project-card-left,
+  .project-card-right { padding: 24px; }
+  .project-card-right { flex: 0 0 180px; height: 180px; }
+  .project-card-right img { width: 60%; height: auto; }
+
+  /* Page card */
+  .page-card      { padding: 32px 40px; }
+  .resume-inner   { gap: 16px; }
+  .page-title-line     { font-size: 16px; }
+  .resume-section-label { font-size: 14px; }
+  .resume-right   { width: 160px; }
+
+  /* About card */
+  .about-intro { flex-direction: column; }
+  .about-section { gap: 12px; }
+}
+
+/* ─ Narrow tablet / large phone: stack resume sidebar ─ */
+@media (max-width: 640px) {
+  .resume-body  { flex-direction: column; }
+  .resume-right { width: 100%; }
+
+  /* Section top padding is 0 here because the sticky bar carries the 16px above the
+     buttons itself (so it survives scroll); sides 16px, bottom 40px. Project keeps its
+     own 16px top in project.css since it has a back-link, not a sticky bar. */
+  #resume-page, #about-page { padding: 0 16px 40px; }
+
+  /* Portfolio hero + projects switch to mobile padding (16px sides) at <=640px */
+  #hero     { padding: 48px 16px; min-height: auto; }
+  #projects { padding: 48px 16px 80px; }
+
+  /* Action buttons: move above the content as a sticky horizontal bar (was a vertical
+     right-rail). The bar owns its spacing via padding (16px above, 12px below) so the
+     16px/12px persists when the bar is pinned on scroll — the surface-3 bg masks the
+     content scrolling behind it. layout gap is 0 so the 12px isn't doubled. */
+  .resume-layout  { flex-direction: column; align-items: stretch; gap: 0; }
+  .sticky-actions {
+    order: -1;                        /* place above the content card */
+    flex-direction: row;              /* vertical -> horizontal */
+    align-self: stretch;              /* full width so the bg masks content when pinned */
+    width: auto;                      /* reset desktop 32px so stretch applies */
+    top: 64px;                        /* pin directly under the 64px fixed nav (window is the scroller) */
+    padding: 18px 0 12px;             /* 16px visible above buttons (+2px sit behind the nav's
+                                         2px border, since nav is 66px but content starts at 64px)
+                                         + 12px below — both persist when the bar is pinned */
+    background: var(--sn-surface-3);  /* matches every section bg; masks content when pinned */
+  }
+
+  /* Project pages have no action buttons; match the back-link -> content gap (12px)
+     to the button -> content gap on resume/about so the spacing is consistent. */
+  #project-detail .back-link { margin-bottom: 12px; }
+}
+
+/* ─ Mobile: 480px ─
+   Drop padding to 16px on both nav AND sections to preserve alignment.
+   nav-right gap stays 32px so divider still lines up with content right edge. */
+@media (max-width: 480px) {
+  nav          { padding: 16px; }
+  nav ul       { gap: 8px; }
+  nav ul li a  { font-size: 12px; }
+
+  /* #hero / #projects mobile padding now starts at <=640px (see that block),
+     as do #resume-page / #about-page. */
+
+  .page-card   { padding: 24px; }
+
+  .hero-card   { padding: 24px; }
+  .hero-hello  { font-size: 28px; }
+  .hero-intro  { font-size: 18px; }
+  .hero-success { font-size: 16px; }
+}
+
+/* ── Dark Mode ── */
+[data-theme="dark"] nav {
+  border-bottom-color: var(--sn-surface-brand-green-action-main);
+}
+
+/* Hero: surface-1 and pink-to-elevation-1 resolve to the same near-black in
+   dark mode, so the card needs a lighter tone to stay visible against it. */
+[data-theme="dark"] .hero-card {
+  background: var(--sn-surface-2);
+}
+
+/* Projects: render cards identically in dark mode ("essentially unchanged").
+   The tinted thumbnail panels composite rgba(--thumb-rgb) over --sn-surface-1,
+   which flips near-black in dark mode and makes the colors muddy. Pin every
+   token the card subtree consumes to its constant (theme-independent) primitive
+   so the panels, label/description text, and badges all keep their bright
+   light-mode appearance. */
+[data-theme="dark"] .project-card {
+  --sn-surface-1: var(--sn-color-gray-0);                        /* panel composite base → white */
+  --sn-text-1: var(--sn-color-gray-100);                         /* card label */
+  --sn-text-3: var(--sn-color-gray-60);                          /* card description */
+  --sn-surface-brand-pink-2: var(--sn-color-pink-20);            /* brand badge bg */
+  --sn-surface-brand-pink-3: var(--sn-color-pink-30);            /* brand badge border */
+  --sn-components-text-brand-pink-dark: var(--sn-color-pink-80); /* brand badge text */
+  --sn-surface-brand-green-2: var(--sn-color-green-1-20);        /* green badge bg */
+  --sn-surface-brand-green-3: var(--sn-color-green-1-30);        /* green badge border */
+  --sn-components-text-brand-green-dark: var(--sn-color-green-1-80); /* green badge text */
+  --sn-surface-state-warning-1: var(--sn-color-yellow-10);       /* "Under Construction" badge bg */
+  --sn-border-color-state-warning-action: var(--sn-color-yellow-70); /* warning badge border */
+}
+
+/* Projects */
+[data-theme="dark"] #project-detail { background: var(--sn-surface-3); }
+
+
+/* Footer */
+[data-theme="dark"] footer { color: var(--sn-text-3); }

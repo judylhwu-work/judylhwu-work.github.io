@@ -1,0 +1,12 @@
+# Local-preview symlink to the sibling Supernova design system repo.
+# In production these paths are served by Supernova's own GitHub Pages deploy.
+supernova-design-system
+
+# macOS
+.DS_Store
+
+# Node tooling for the StaticCrypt build step
+node_modules/
+
+# Plaintext source for the encrypted (NDA) case studies — never published
+private/

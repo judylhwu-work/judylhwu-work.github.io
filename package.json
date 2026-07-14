@@ -1,0 +1,24 @@
+{
+  "name": "judylhwu-work.github.io",
+  "version": "1.0.0",
+  "description": "Judy Wu's personal portfolio — live at [judylhwu-work.github.io](https://judylhwu-work.github.io).",
+  "private": true,
+  "scripts": {
+    "encrypt": "bash scripts/encrypt.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judylhwu-work/judylhwu-work.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/judylhwu-work/judylhwu-work.github.io/issues"
+  },
+  "homepage": "https://github.com/judylhwu-work/judylhwu-work.github.io#readme",
+  "devDependencies": {
+    "staticrypt": "^3.5.4"
+  }
+}
