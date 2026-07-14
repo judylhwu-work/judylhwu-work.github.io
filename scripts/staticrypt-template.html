@@ -23,18 +23,6 @@
   <style>
     .hidden { display: none !important; }
     #staticrypt_loading { min-height: 60vh; }
-    .gate-remember {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 8px;
-      margin: 0 0 14px;
-      font-family: 'Public Sans', sans-serif;
-      font-size: 13px;
-      color: var(--sn-text-2);
-      cursor: pointer;
-    }
-    .gate-remember input { transform: scale(1.1); }
   </style>
 </head>
 <body class="staticrypt-body">
@@ -73,7 +61,7 @@
 
           <p class="project-cat-label">HealthTech · Design Systems</p>
           <h1>LeanTaaS</h1>
-          <p class="gate-message">This case study is protected by NDA. Enter the password to continue — or reach out and I'll share it with you directly.</p>
+          <p class="gate-message">This case study is protected under NDA. Enter the password to continue, or reach out and I'll send you the password if you need it.</p>
 
           <form class="gate-form" id="staticrypt-form" action="#" method="post" autocomplete="off">
             <input
@@ -90,13 +78,8 @@
               autofocus
             >
 
-            <label id="staticrypt-remember-label" class="gate-remember hidden">
-              <input id="staticrypt-remember" type="checkbox" name="remember">
-              /*[|template_remember|]*/0
-            </label>
-
             <p class="gate-error hidden" id="gate-error">/*[|template_error|]*/0</p>
-            <input type="submit" class="sn-btn sn-btn-primary gate-submit" value="/*[|template_button|]*/0">
+            <input type="submit" id="gate-submit" class="sn-btn sn-btn-primary gate-submit" value="/*[|template_button|]*/0" disabled>
           </form>
 
         </div>
@@ -111,7 +94,6 @@
     // filled in at encryption time — the token format is '/*[|variable_name|]*/0'
     const staticryptInitiator = /*[|js_staticrypt|]*/ 0;
     const templateError = "/*[|template_error|]*/0",
-        isRememberEnabled = /*[|is_remember_enabled|]*/ 0,
         staticryptConfig = /*[|staticrypt_config|]*/ 0;
 
     const templateConfig = {
@@ -125,30 +107,42 @@
 
     // auto-decrypt on load if a remembered password is stored, else show the prompt
     window.onload = async function () {
+        // "?reset" clears a remembered unlock and forces the password prompt again
+        if (location.search === "?reset") {
+            localStorage.removeItem("staticrypt_passphrase");
+            localStorage.removeItem("staticrypt_expiration");
+            history.replaceState(null, "", location.pathname);
+        }
+
         const { isSuccessful } = await staticrypt.handleDecryptOnLoad();
         if (!isSuccessful) {
             document.getElementById("staticrypt_loading").classList.add("hidden");
             document.getElementById("staticrypt_content").classList.remove("hidden");
             document.getElementById("staticrypt-password").focus();
-            if (isRememberEnabled) {
-                document.getElementById("staticrypt-remember-label").classList.remove("hidden");
-            }
         }
     };
 
     const gateError = document.getElementById("gate-error");
     const passwordInput = document.getElementById("staticrypt-password");
-    passwordInput.addEventListener("input", function () { gateError.classList.add("hidden"); });
+    const submitButton = document.getElementById("gate-submit");
+
+    // keep the button disabled until a password has been typed
+    submitButton.disabled = passwordInput.value.length === 0;
+    passwordInput.addEventListener("input", function () {
+        gateError.classList.add("hidden");
+        submitButton.disabled = passwordInput.value.length === 0;
+    });
 
     document.getElementById("staticrypt-form").addEventListener("submit", async function (e) {
         e.preventDefault();
-        const password = passwordInput.value,
-            isRememberChecked = document.getElementById("staticrypt-remember").checked;
-        const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, isRememberChecked);
+        const password = passwordInput.value;
+        // no checkbox — always remember the unlock (30-day expiry, set at encryption time)
+        const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, true);
         if (!isSuccessful) {
             gateError.classList.remove("hidden");
             passwordInput.value = "";
             passwordInput.focus();
+            submitButton.disabled = true;
         }
     });
   </script>

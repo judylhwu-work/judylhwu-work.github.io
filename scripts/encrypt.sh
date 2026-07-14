@@ -54,7 +54,6 @@ for slug in "${SLUGS[@]}"; do
     --template-instructions "" \
     --template-button "View case study" \
     --template-placeholder "Password" \
-    --template-remember "Keep me unlocked on this device" \
     --template-error "Incorrect password. Try again." \
     --short
   echo "encrypted: $slug"
