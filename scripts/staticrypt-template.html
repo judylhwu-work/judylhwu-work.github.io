@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="staticrypt-html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <title>/*[|template_title|]*/0</title>
+
+  <!-- do not cache the encrypted shell -->
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/project.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.typography.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.light.css" id="sn-tokens-light">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
+  <link rel="stylesheet" href="/supernova-design-system/components/button/button.css">
+  <link rel="stylesheet" href="/supernova-design-system/components/badge/badge.css">
+  <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}</script>
+  <script src="/theme.js"></script>
+  <style>
+    .hidden { display: none !important; }
+    #staticrypt_loading { min-height: 60vh; }
+    .gate-remember {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      margin: 0 0 14px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 13px;
+      color: var(--sn-text-2);
+      cursor: pointer;
+    }
+    .gate-remember input { transform: scale(1.1); }
+  </style>
+</head>
+<body class="staticrypt-body">
+
+  <div id="staticrypt_loading"></div>
+
+  <div id="staticrypt_content" class="hidden">
+
+    <nav>
+      <a href="/portfolio/" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
+      <div class="nav-right">
+        <ul>
+          <li><a href="/portfolio/" class="nav-active"><span>Portfolio</span></a></li>
+          <li><a href="/resume/"><span>Resume</span></a></li>
+          <li><a href="/about/"><span>About</span></a></li>
+        </ul>
+        <div class="nav-divider"></div>
+        <button class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Toggle dark mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="page-content">
+    <main>
+
+      <section id="project-gate">
+        <a href="/portfolio/#projects" class="back-link">← Back to all projects</a>
+        <div class="gate-card">
+
+          <svg class="gate-lock" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="#ff8ac3"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+
+          <p class="project-cat-label">HealthTech · Design Systems</p>
+          <h1>LeanTaaS</h1>
+          <p class="gate-message">This case study is protected by NDA. Enter the password to continue — or reach out and I'll share it with you directly.</p>
+
+          <form class="gate-form" id="staticrypt-form" action="#" method="post" autocomplete="off">
+            <input
+              class="gate-input"
+              id="staticrypt-password"
+              type="password"
+              name="password"
+              placeholder="/*[|template_placeholder|]*/0"
+              autocomplete="off"
+              data-1p-ignore
+              data-lpignore="true"
+              data-bwignore
+              spellcheck="false"
+              autofocus
+            >
+
+            <label id="staticrypt-remember-label" class="gate-remember hidden">
+              <input id="staticrypt-remember" type="checkbox" name="remember">
+              /*[|template_remember|]*/0
+            </label>
+
+            <p class="gate-error hidden" id="gate-error">/*[|template_error|]*/0</p>
+            <input type="submit" class="sn-btn sn-btn-primary gate-submit" value="/*[|template_button|]*/0">
+          </form>
+
+        </div>
+      </section>
+
+    </main>
+    </div>
+
+  </div>
+
+  <script>
+    // filled in at encryption time — the token format is '/*[|variable_name|]*/0'
+    const staticryptInitiator = /*[|js_staticrypt|]*/ 0;
+    const templateError = "/*[|template_error|]*/0",
+        isRememberEnabled = /*[|is_remember_enabled|]*/ 0,
+        staticryptConfig = /*[|staticrypt_config|]*/ 0;
+
+    const templateConfig = {
+        rememberExpirationKey: "staticrypt_expiration",
+        rememberPassphraseKey: "staticrypt_passphrase",
+        replaceHtmlCallback: null,
+        clearLocalStorageCallback: null,
+    };
+
+    const staticrypt = staticryptInitiator.init(staticryptConfig, templateConfig);
+
+    // auto-decrypt on load if a remembered password is stored, else show the prompt
+    window.onload = async function () {
+        const { isSuccessful } = await staticrypt.handleDecryptOnLoad();
+        if (!isSuccessful) {
+            document.getElementById("staticrypt_loading").classList.add("hidden");
+            document.getElementById("staticrypt_content").classList.remove("hidden");
+            document.getElementById("staticrypt-password").focus();
+            if (isRememberEnabled) {
+                document.getElementById("staticrypt-remember-label").classList.remove("hidden");
+            }
+        }
+    };
+
+    const gateError = document.getElementById("gate-error");
+    const passwordInput = document.getElementById("staticrypt-password");
+    passwordInput.addEventListener("input", function () { gateError.classList.add("hidden"); });
+
+    document.getElementById("staticrypt-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const password = passwordInput.value,
+            isRememberChecked = document.getElementById("staticrypt-remember").checked;
+        const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, isRememberChecked);
+        if (!isSuccessful) {
+            gateError.classList.remove("hidden");
+            passwordInput.value = "";
+            passwordInput.focus();
+        }
+    });
+  </script>
+
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://judylhwu-work.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

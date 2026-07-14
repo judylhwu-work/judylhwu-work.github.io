@@ -4,3 +4,9 @@ supernova-design-system
 
 # macOS
 .DS_Store
+
+# Node tooling for the StaticCrypt build step
+node_modules/
+
+# Plaintext source for the encrypted (NDA) case studies — never published
+private/

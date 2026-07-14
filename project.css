@@ -125,6 +125,28 @@
   line-height: 1.6;
 }
 
+/* NDA disclosure note shown at the top of protected case studies */
+.nda-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--sn-border-color-1);
+  border-radius: 6px;
+  background: var(--sn-surface-1);
+  font-family: 'Public Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sn-text-2);
+}
+
+.nda-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--sn-text-2);
+}
+
 .project-meta {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
