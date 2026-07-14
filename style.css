@@ -347,15 +347,15 @@ main {
   border-color: var(--sn-surface-brand-pink-action-main);
 }
 
-.thumb-leantaas       { --thumb-rgb: 115, 156, 252; }
+.thumb-nova           { --thumb-rgb: 115, 156, 252; }
 .thumb-nova-to-claude { --thumb-rgb: 167, 139, 250; }
 .thumb-smart-huddles  { --thumb-rgb: 52, 211, 153; }
-.thumb-cof            { --thumb-rgb: 251, 191, 36; }
+.thumb-definitions    { --thumb-rgb: 251, 191, 36; }
 .thumb-airrobe        { --thumb-rgb: 255, 149, 121; }
 .thumb-prenda         { --thumb-rgb: 255, 159, 105; }
 .thumb-window         { --thumb-rgb: 242, 202, 82; }
 .thumb-gramcity       { --thumb-rgb: 127, 121, 193; }
-.thumb-bark           { --thumb-rgb: 229, 188, 210; }
+.thumb-bark-app       { --thumb-rgb: 229, 188, 210; }
 
 /* ── Card left: info panel ── */
 .project-card-left {
