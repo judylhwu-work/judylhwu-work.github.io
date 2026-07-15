@@ -58,14 +58,18 @@ The four LeanTaaS case studies (`nova`, `smart-huddles`, `definitions`, `nova-to
 
 **How it fits together**
 
-- **Source** (the real, editable pages) lives in `private/projects/<slug>/index.html` — git-ignored, on your machine only. *Back this folder up* — it is the only copy of the readable content.
+- **Source** (the real, editable pages) lives in `private/projects/<slug>/index.html` — git-ignored from *this* repo, but `private/` is its own separate **private** git repo (`portfolio-private-source`) that backs up the readable content. It's auto-pushed there after every commit (see below).
 - **Password** lives in `private/.password` — also git-ignored. Change it there.
 - **Salt** is in `.staticrypt.json` (committed, not secret) — shared across pages so one "Keep me unlocked" tick opens all four.
 - **Prompt styling** is `scripts/staticrypt-template.html` (matches the site's gate design).
 - **Encrypted output** is `projects/<slug>/index.html` (committed, published) — gibberish plus the password prompt.
 
-**Editing a case study:** edit the file in `private/projects/<slug>/`, then commit as usual. A git pre-commit hook (`.githooks/pre-commit`) automatically re-encrypts changed pages and stages them — you never run a command by hand. Manual fallback: `npm run encrypt`.
+**Editing a case study:** edit the file in `private/projects/<slug>/`, then commit as usual. Two hooks run automatically — you never run a command by hand:
+- `.githooks/pre-commit` re-encrypts changed pages into `projects/<slug>/` and stages them (manual fallback: `npm run encrypt`).
+- `.githooks/post-commit` commits + pushes the readable `private/` source to the private repo (`portfolio-private-source`). Best-effort — if you're offline it just backs up on the next commit.
 
-**First-time setup on a new machine** (since `private/` isn't cloned): run `npm install`, recreate the `private/projects/<slug>/index.html` sources and `private/.password`, then `git config core.hooksPath .githooks`.
+So one `git commit` both **publishes** (encrypted, public repo) and **backs up** (readable, private repo).
+
+**First-time setup on a new machine:** `npm install`; clone the private source into place with `git clone git@github.com:judylhwu-work/portfolio-private-source.git private`; then `git config core.hooksPath .githooks`.
 
 **Caveats:** security is bounded by password strength (encrypted files can be brute-forced offline), and once decrypted the content can be re-shared. This stops casual decoding, scraping, and source-on-GitHub exposure — it is not airtight access control.
