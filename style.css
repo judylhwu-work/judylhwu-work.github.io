@@ -218,6 +218,7 @@ main {
 #projects {
   padding: 80px max(40px, calc((100% - 960px) / 2)) 160px;
   scroll-margin-top: 64px;
+  background: var(--sn-surface-1);
 }
 
 .projects-layout {
@@ -229,7 +230,7 @@ main {
 .project-grid {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 0px;
   flex: 1;
   min-width: 0;
 }
@@ -264,11 +265,13 @@ main {
   height: 1px;
   background: var(--sn-border-color-1);
   flex-shrink: 0;
+  margin-bottom: 24px;
 }
 
 .more-projects-toggle {
   display: flex;
   justify-content: center;
+  margin: 24px 0;
 }
 
 /* ── Shared text links / buttons (single source of truth — prevents drift) ──
@@ -319,9 +322,12 @@ main {
   border: none;
   background: transparent;
   cursor: pointer;
+  font-size: 12px;            /* small size */
 }
 
 .more-projects-chevron {
+  width: 14px;
+  height: 14px;
   transition: transform 0.2s ease;
 }
 
@@ -334,6 +340,7 @@ main {
   height: 240px;
   background: var(--sn-surface-1);
   border: 4px solid transparent;
+  background-clip: padding-box;   /* transparent border reveals the section bg, not the card's own bg */
   overflow: hidden;
   transition: border-color 0.2s ease;
   scroll-margin-top: 80px;
@@ -409,12 +416,29 @@ main {
 .project-card-right {
   flex: 1 0 0;
   min-width: 0;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 32px 40px;
   background: rgba(var(--thumb-rgb), 0.5);
   overflow: hidden;
+}
+
+/* "Under Construction" badge overlaid on the thumbnail — centered, doubled,
+   frosted (20%-opacity background + backdrop blur) */
+/* Higher specificity (.project-card-right …) so the size overrides beat .sn-badge. */
+.project-card-right .card-status-badge {
+  position: absolute;
+  inset: 0;
+  margin: auto;               /* center both axes without a transform */
+  width: fit-content;
+  height: 24px;               /* 120% of the 20px base */
+  padding: 0 calc(var(--sn-spacing-2xs) * 1.2);
+  font-size: 12px;            /* 120% of the 10px base */
+  line-height: 24px;
+  border-radius: calc(var(--sn-radius-less-rounded) * 1.2);
+  z-index: 1;
 }
 
 .project-card-right img {
@@ -918,6 +942,13 @@ footer ul {
 /* ── Dark Mode ── */
 [data-theme="dark"] nav {
   border-bottom-color: var(--sn-surface-brand-green-action-main);
+}
+
+/* Keep a pink tint on the hero zone in dark mode — pink-to-elevation-1 flattens
+   to near-black, which made the hero blend into the project list. This keeps the
+   hero and project list visually distinct, like light mode. */
+[data-theme="dark"] #hero {
+  background: color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 15%, var(--sn-surface-1));
 }
 
 /* Hero: surface-1 and pink-to-elevation-1 resolve to the same near-black in

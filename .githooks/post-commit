@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# After every main-repo commit, back up the readable NDA source (the git-ignored
+# private/ folder) to its own private repo. Best-effort by design: a failure here
+# (e.g. no network) never affects the commit you just made — you're simply backed
+# up on the next commit instead.
+#
+# The private/ folder is its own git repo (remote: portfolio-private-source).
+# git -C operates on it directly, so this never recurses into the main repo's hooks.
+
+ROOT="$(git rev-parse --show-toplevel)"
+PRIV="$ROOT/private"
+
+# nothing to do if the private backup repo isn't set up on this machine
+[ -d "$PRIV/.git" ] || exit 0
+
+git -C "$PRIV" add -A
+
+# commit only if the readable source actually changed
+if ! git -C "$PRIV" diff --cached --quiet; then
+  MAIN_MSG="$(git -C "$ROOT" log -1 --format=%s)"
+  git -C "$PRIV" commit -q -m "Backup: ${MAIN_MSG}" || true
+fi
+
+# push is best-effort — swallow errors so an offline commit is never blocked
+if git -C "$PRIV" push -q origin main 2>/dev/null; then
+  echo "private/ source backed up to portfolio-private-source ✓"
+else
+  echo "private/ backup: push deferred (offline?) — will sync on next commit"
+fi
