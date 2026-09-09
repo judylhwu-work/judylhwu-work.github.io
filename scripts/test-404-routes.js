@@ -40,11 +40,8 @@ const cases = [
   ['/projects/smat-huddles/',            '/projects/smart-huddles/'],
   ['/projects/smart-hudles/',            '/projects/smart-huddles/'],
   ['/projects/smarthuddles/',            '/projects/smart-huddles/'],
-  // renamed URLs
-  ['/projects/leantaas/',                '/projects/nova/'],
-  ['/projects/leantaas-cof/',            '/projects/definitions/'],
-  ['/projects/leantaas-smart-huddles/',  '/projects/smart-huddles/'],
-  ['/projects/leantaas-nova-to-claude/', '/projects/nova-to-claude/'],
+  // renamed URLs (the pre-rename NDA case-study aliases were removed on purpose —
+  // they named the client and this repo is public)
   ['/work.html',                         '/portfolio/'],
   ['/experience',                        '/resume/'],
   // ordinary typos

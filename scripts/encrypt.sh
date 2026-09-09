@@ -36,14 +36,17 @@ for slug in "${SLUGS[@]}"; do
     continue
   fi
 
-  # only re-encrypt when the source, the shared template, this script, or the
-  # page meta is newer than the published output (StaticCrypt uses a random IV,
-  # so re-encrypting unchanged pages would needlessly churn the diff)
+  # Decide freshness by DECRYPTING the published page and comparing it to the
+  # source, not by comparing mtimes. mtimes were wrong: apply-meta.py rewrites
+  # $OUT after encryption, which made $OUT newer than $SRC and silently skipped
+  # a needed re-encrypt — leaving stale plaintext published. StaticCrypt uses a
+  # random IV, so we still skip when the content genuinely matches, to avoid
+  # churning the diff.
   if [ -f "$OUT" ] \
-     && [ ! "$SRC" -nt "$OUT" ] \
      && [ ! "$TEMPLATE" -nt "$OUT" ] \
      && [ ! "scripts/encrypt.sh" -nt "$OUT" ] \
-     && [ ! "scripts/page-meta.json" -nt "$OUT" ]; then
+     && [ ! "scripts/page-meta.json" -nt "$OUT" ] \
+     && STATICRYPT_PASSWORD="$PASSWORD" node scripts/verify-gates.js --quiet "$slug" >/dev/null 2>&1; then
     echo "unchanged: $slug"
     continue
   fi

@@ -84,6 +84,15 @@ def apply(rel, info):
                          m.group(0), flags=re.DOTALL),
         html, count=1)
 
+    # The StaticCrypt gate is public — no password needed to read it — so its
+    # heading must not name the client. The template ships a neutral placeholder
+    # and each page gets its own project name here.
+    html = re.sub(
+        r"<h1 data-gate-title>.*?</h1>",
+        '<h1 data-gate-title>%s</h1>' % esc(info["title"].replace(" — Judy Wu", "").strip()),
+        html, count=1, flags=re.DOTALL,
+    )
+
     if BLOCK_RE.search(html):
         new = BLOCK_RE.sub(lambda _: block, html, count=1)
     else:
@@ -178,7 +187,7 @@ def write_site_files():
         "User-agent: *\n"
         "Allow: /\n"
         "\n"
-        "# The LeanTaaS case studies are encrypted; only the unlock page is\n"
+        "# The NDA case studies are encrypted; only the unlock page is\n"
         "# crawlable, which is intended — it carries the title and share card.\n"
         "\n"
         f"Sitemap: {ORIGIN}/sitemap.xml\n"

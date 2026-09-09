@@ -56,7 +56,7 @@ Then visit `http://localhost:8000/portfolio/`. Serve **this** directory (not a p
 
 ## Notes
 
-- The LeanTaaS case studies are NDA-protected with real client-side **encryption** (StaticCrypt) — see [NDA-protected case studies](#nda-protected-case-studies) below.
+- Four case studies are NDA-protected with real client-side **encryption** (StaticCrypt) — see [NDA-protected case studies](#nda-protected-case-studies) below.
 - Dark mode is a `data-theme="dark"` attribute on `<html>`, toggled by `theme.js` and persisted in `localStorage`.
 
 ## SEO & social meta
@@ -79,7 +79,7 @@ Share cards in `assets/og/` are 1200x630 PNGs rendered from an HTML template via
 GitHub Pages has no server-side rewrites, so a renamed or mistyped URL can only be
 recovered on the client. `404.html` carries a small router that, in order:
 
-1. matches an **exact alias** — a URL we know was renamed (`/work.html`, `/projects/leantaas/`)
+1. matches an **exact alias** — a URL we know was renamed (e.g. `/work.html` → `/portfolio/`)
 2. matches an **exact route** differing only in case, trailing slash or `.html`
 3. **fuzzy-matches** the slug (Levenshtein, plus a prefix bonus so a truncated
    `/projects/nova-to/` resolves to `nova-to-claude` rather than `nova`)
@@ -99,7 +99,7 @@ node scripts/test-404-routes.js   # runs the real router from 404.html
 
 ## NDA-protected case studies
 
-The four LeanTaaS case studies (`nova`, `smart-huddles`, `definitions`, `nova-to-claude`) are **encrypted** with [StaticCrypt](https://github.com/robinmoisson/staticrypt), not just visually gated. Only ciphertext is ever served or committed — the readable content never reaches GitHub.
+The four NDA case studies (`nova`, `smart-huddles`, `definitions`, `nova-to-claude`) are **encrypted** with [StaticCrypt](https://github.com/robinmoisson/staticrypt), not just visually gated. Only ciphertext is ever served or committed — the readable content never reaches GitHub.
 
 **How it fits together**
 
@@ -118,5 +118,12 @@ So one `git commit` both **publishes** (encrypted, public repo) and **backs up**
 **Verifying the gate:** `node scripts/verify-gates.js` confirms all four pages still decrypt to their plaintext source and that a wrong password is rejected. Run it after touching the template, `encrypt.sh`, or the meta pipeline.
 
 **First-time setup on a new machine:** `npm install`; clone the private source into place with `git clone git@github.com:judylhwu-work/portfolio-private-source.git private`; then `git config core.hooksPath .githooks`.
+
+**Do not name the client.** This repo is public, and so is the StaticCrypt unlock
+page — its heading, `<title>`, and meta are readable without the password. Keep the
+client's name out of case-study copy, page meta, share cards, asset filenames, code
+comments, and redirect aliases. The résumé is the one intentional exception. When
+adding a protected case study, describe the employer generically ("a health-tech
+product org"), and remember `assets/og/*.png` bakes text into an image.
 
 **Caveats:** security is bounded by password strength (encrypted files can be brute-forced offline), and once decrypted the content can be re-shared. This stops casual decoding, scraping, and source-on-GitHub exposure — it is not airtight access control.
