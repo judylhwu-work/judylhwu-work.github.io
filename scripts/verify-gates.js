@@ -19,7 +19,14 @@ const codec = require(path.join(ROOT, "node_modules/staticrypt/lib/codec.js"));
 const cryptoEngine = require(path.join(ROOT, "node_modules/staticrypt/lib/cryptoEngine.js"));
 const { decode } = codec.init(cryptoEngine);
 
-const SLUGS = ["nova", "smart-huddles", "definitions", "nova-to-claude"];
+const ALL_SLUGS = ["nova", "smart-huddles", "definitions", "nova-to-claude"];
+
+// `--quiet <slug>` makes this usable as a predicate: exit 0 only if that page
+// decrypts to its current source. encrypt.sh uses it to decide re-encryption,
+// which is exact where an mtime comparison was not.
+const QUIET = process.argv.includes("--quiet");
+const ARG_SLUGS = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const SLUGS = ARG_SLUGS.length ? ARG_SLUGS : ALL_SLUGS;
 
 function password() {
   if (process.env.STATICRYPT_PASSWORD) return process.env.STATICRYPT_PASSWORD;
@@ -59,10 +66,12 @@ function extractConfig(html) {
     if (!res.success) { console.log(`  FAIL ${slug}: decrypt failed (${res.message})`); ok = false; continue; }
 
     const matches = fs.existsSync(srcPath) && res.decoded === fs.readFileSync(srcPath, "utf8");
-    console.log(`  ${matches ? "ok  " : "WARN"} ${slug}: decrypts (${res.decoded.length} bytes)` +
+    if (!QUIET) console.log(`  ${matches ? "ok  " : "WARN"} ${slug}: decrypts (${res.decoded.length} bytes)` +
                 (matches ? ", matches private source" : ", but does NOT match private source"));
     if (!matches) ok = false;
   }
+
+  if (QUIET) process.exit(ok ? 0 : 1);
 
   // A wrong password must still be rejected.
   const cfg = extractConfig(fs.readFileSync(path.join(ROOT, "projects/nova/index.html"), "utf8"));

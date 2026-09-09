@@ -2,7 +2,7 @@
   "_comment": "Single source of truth for per-page SEO/social meta. Applied by scripts/apply-meta.py, which encrypt.sh re-runs after StaticCrypt regenerates the protected pages (their shell comes from a shared template and cannot carry per-page meta on its own).",
   "_origin": "https://judylhwu-work.github.io",
   "_redirects": {
-    "_comment": "Exact former URLs -> current URL. Consumed by the 404 router.",
+    "_comment": "Exact former URLs -> current URL. Consumed by the 404 router. Note: aliases for the pre-rename NDA case-study URLs were deliberately removed — they named the client, and this repo and its 404 page are public. Those old URLs were never shared externally.",
     "aliases": {
       "/work": "/portfolio/",
       "/work.html": "/portfolio/",
@@ -12,11 +12,6 @@
       "/about.html": "/about/",
       "/home": "/portfolio/",
       "/index.html": "/portfolio/",
-      "/projects/leantaas": "/projects/nova/",
-      "/projects/leantaas-cof": "/projects/definitions/",
-      "/projects/leantaas-smart-huddles": "/projects/smart-huddles/",
-      "/projects/leantaas-nova-to-claude": "/projects/nova-to-claude/",
-      "/projects/leantaas-gate": "/portfolio/",
       "/projects/bark": "/projects/bark-app/",
       "/projects/bark-app.html": "/projects/bark-app/"
     },
@@ -90,9 +85,9 @@
     "projects/nova/index.html": {
       "url": "/projects/nova/",
       "title": "Nova Design System — Judy Wu",
-      "desc": "Transformed LeanTaaS' component library into a scalable, token-based design system adopted across the entire org. Password-protected case study.",
+      "desc": "Transformed a fragmented component library into a scalable, token-based design system adopted across an entire product org. Password-protected case study.",
       "image": "nova",
-      "alt": "Nova Design System case study — token-based design system at LeanTaaS"
+      "alt": "Nova Design System case study — a token-based design system adopted org-wide"
     },
     "projects/smart-huddles/index.html": {
       "url": "/projects/smart-huddles/",

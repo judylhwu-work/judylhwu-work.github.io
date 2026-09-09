@@ -509,7 +509,7 @@ main {
 }
 
 /* Stacks a status badge (e.g. "Under Construction") on its own line above
-   the title row — used for in-progress LeanTaaS case studies. */
+   the title row — used for in-progress NDA case studies. */
 .card-badge-stack {
   display: flex;
   flex-direction: column;

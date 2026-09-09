@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# The LeanTaaS case studies are encrypted; only the unlock page is
+# The NDA case studies are encrypted; only the unlock page is
 # crawlable, which is intended — it carries the title and share card.
 
 Sitemap: https://judylhwu-work.github.io/sitemap.xml
