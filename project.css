@@ -7,7 +7,7 @@
 /* ── Password gate ── */
 #project-gate {
   background: var(--sn-surface-3);
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - var(--nav-offset));
   padding: 40px max(40px, calc((100% - 960px) / 2));
   display: flex;
   flex-direction: column;
@@ -61,11 +61,13 @@
   border-radius: 8px;
   padding: 11px 14px;
   width: 100%;
-  outline: none;
   transition: border-color 0.15s;
   box-sizing: border-box;
 }
 
+/* Green border on focus is the field's own affordance; the pink keyboard ring
+   from style.css sits outside it. The old `outline: none` here was suppressing
+   that ring — this rule loads after style.css, so it won the cascade. */
 .gate-input:focus { border-color: var(--sn-text-brand-green-dark); }
 
 .gate-error {
@@ -103,6 +105,9 @@
   color: var(--sn-text-brand-green-dark);
 }
 
+/* Used by the decrypted (NDA) case studies only — their markup lives in
+   private/projects/, so a scan of published HTML will report these as unused.
+   They are not. Check private/ before deleting anything in this file. */
 .project-status-badge {
   margin-bottom: 16px;
 }
@@ -126,6 +131,7 @@
 }
 
 /* NDA disclosure note shown at the top of protected case studies */
+/* NDA disclosure note shown at the top of protected case studies (private/ only) */
 .nda-note {
   display: flex;
   align-items: flex-start;

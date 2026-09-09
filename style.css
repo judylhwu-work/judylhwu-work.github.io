@@ -4,10 +4,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gray-500: #888;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --space-md: 2rem;
-  --max-width: 960px;
+
+  /* Fixed-nav geometry. --nav-h is the bar's true height: 12px top + 34px content
+     + 12px bottom + 2px border. --nav-offset is where page content begins, and it
+     sits 4px INSIDE the bar's lower edge — that underlap is pre-existing behaviour
+     carried forward, not a deliberate design choice (the old comment claimed 2px
+     and the old code assumed a 66px bar; it measured 68px).
+
+     Every sticky offset, scroll-margin and full-height calc derives from these, so
+     changing the nav's padding can't silently desync them again. */
+  --nav-h: 60px;
+  --nav-offset: calc(var(--nav-h) - 4px);
 }
 
 html {
@@ -24,12 +32,95 @@ body {
 }
 
 .page-content {
-  margin-top: 64px;
+  margin-top: var(--nav-offset);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* ── Skip link ──
+   First focusable element on every page, so a keyboard or screen-reader visitor
+   can jump the fixed nav (logo + 3 links + theme toggle) instead of tabbing it
+   on every page. Parked off-canvas rather than display:none so it stays
+   focusable; :focus (not :focus-visible) because it is only ever reached by
+   keyboard and must reveal reliably. z-index clears the nav's 100. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 16px;
+  z-index: 200;
+  transform: translateY(-120%);
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+  background: var(--sn-surface-1);
+  color: var(--sn-text-brand-green-dark);
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* <main> is a scroll/focus destination for the skip link, not a control, so it
+   takes no ring of its own — the landmark it jumps to is the feedback. */
+main[tabindex="-1"] {
+  scroll-margin-top: var(--nav-offset);
+}
+
+main[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* ── Focus ──
+   One keyboard focus ring for the whole site, in the same pink as a pressed nav
+   item and an active project card, so focus reads as part of the same gesture
+   family. :focus-visible (not :focus) so a mouse click never leaves a ring behind.
+
+   3px of --sn-surface-brand-pink-action-main is 3.18:1 against the light surface
+   and 5.4:1 against the dark one, clearing WCAG 1.4.11's 3:1 for non-text UI.
+   The lighter pink-logo used by the nav bar itself only reaches 2.1:1, so it is
+   deliberately NOT the ring colour.
+
+   Deliberately no border-radius here — `outline` already follows each element's
+   own radius, and setting one would reshape the element itself. */
+:focus-visible {
+  outline: 3px solid var(--sn-surface-brand-pink-action-main);
+  outline-offset: 2px;
+}
+
+/* Project cards are the one exception to the outline ring: their Figma spec puts
+   the focus stroke INSIDE the card, so they draw it with an inset shadow (see
+   .project-card:focus-visible below) and suppress the outline. Forced-colors
+   mode ignores box-shadow, so a real outline is restored there. */
+.project-card:focus-visible {
+  outline: none;
+}
+
+@media (forced-colors: active) {
+  /* Forced colors overrides border-color, which would paint the rest-state
+     overlay as a permanent frame on every card. Hide it and ring with an
+     outline instead. */
+  .project-card::after {
+    display: none;
+  }
+
+  .project-card:focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: -4px;
+  }
+}
+
+/* The nav sits under a 2px border with content scrolling beneath it; a 2px
+   offset would poke past the bar, so nav links ring tight. */
+nav ul li a:focus-visible,
+.nav-logo:focus-visible {
+  outline-offset: 1px;
 }
 
 /* ── Nav ── */
@@ -42,7 +133,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px max(40px, calc((100% - 960px) / 2));
+  padding: 12px max(40px, calc((100% - 960px) / 2));
   background: var(--sn-surface-1);
   border-bottom: 2px solid var(--sn-surface-brand-green-action-main);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -143,7 +234,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 32px;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - var(--nav-offset));
   padding: 64px max(40px, calc((100% - 960px) / 2));
   background: var(--sn-surface-brand-pink-to-elevation-1);
 }
@@ -216,8 +307,8 @@ main {
 
 /* ── Projects ── */
 #projects {
-  padding: 80px max(40px, calc((100% - 960px) / 2)) 160px;
-  scroll-margin-top: 64px;
+  padding: 120px max(40px, calc((100% - 960px) / 2)) 160px;
+  scroll-margin-top: var(--nav-offset);
   background: var(--sn-surface-1);
 }
 
@@ -236,7 +327,7 @@ main {
 }
 
 .more-projects {
-  /* Cards flow directly in .project-grid so they inherit its uniform 32px gap */
+  /* Cards flow directly in .project-grid so they inherit its uniform 0px gap */
   display: contents;
 }
 
@@ -293,9 +384,13 @@ main {
   color: var(--sn-text-brand-green-dark);
 }
 
+/* Derived from the token rather than a frozen rgba(), so these tints follow the
+   palette into dark mode instead of staying stuck at their light-mode value.
+   color-mix keeps the base colour as the single source of truth — a hand-picked
+   alpha token would be a second copy that can drift. */
 .back-link:hover,
 .more-projects-btn:hover {
-  background: rgba(39, 134, 40, 0.08);
+  background: color-mix(in srgb, var(--sn-text-brand-green-dark) 8%, transparent);
 }
 
 .back-link {
@@ -311,7 +406,7 @@ main {
 }
 
 .project-website-link:hover {
-  background: rgba(255, 69, 159, 0.08);
+  background: color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 8%, transparent);
 }
 
 /* See-more toggle: text link + rotating chevron */
@@ -336,33 +431,62 @@ main {
 }
 
 .project-card {
+  --card-stroke: 4px;             /* Figma border/width/lg */
+  --thumb-alpha-l: 0.1;           /* left panel tint; a few cards override to 0.2 */
+  position: relative;             /* anchors the ::after stroke */
   display: flex;
   height: 240px;
   background: var(--sn-surface-1);
-  border: 4px solid transparent;
-  background-clip: padding-box;   /* transparent border reveals the section bg, not the card's own bg */
   overflow: hidden;
-  transition: border-color 0.2s ease;
-  scroll-margin-top: 80px;
+  scroll-margin-top: calc(var(--nav-offset) + 16px);
 }
 
-.project-card:hover {
+/* Figma draws these as INSIDE strokes: the 4px sits on top of the card's own
+   content, so neither the card's footprint nor its contents move between states.
+   The stroke lives on an overlay because the two obvious alternatives both fail:
+
+     - `border` reserves 4px of layout in every state, so the rest state carried
+       a white frame and the hover green read as sitting outside the tint.
+     - `box-shadow: inset` costs no layout but paints BELOW child content, so the
+       tinted panels washed it out — .project-card-right is rgba(thumb, 0.5), which
+       turned the green stroke olive over the yellow Definitions card.
+
+   An absolutely-positioned ::after paints above both panels, sits inside the card
+   bounds, and costs no layout. pointer-events stay off so the link still works. */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: var(--card-stroke) solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.project-card:hover::after {
   border-color: var(--sn-surface-brand-green-action-hover);
 }
 
-.project-card:active {
+/* Press and keyboard focus are the same pink stroke — per the Figma component,
+   "On click / focus" is a single state. */
+.project-card:active::after,
+.project-card:focus-visible::after {
   border-color: var(--sn-surface-brand-pink-action-main);
 }
 
+/* Thumbnail tints — Figma "_Card content" (363:53415), verified against each
+   card's literal fills. Cards whose Figma fills are rgba(base, α) use that base
+   verbatim; nova-to-claude / smart-huddles / definitions are authored in Figma as
+   a SOLID right panel + 0.2 left, so their base here is derived to make
+   base @ 0.5 reproduce that solid colour (left alpha then resolves to 0.1). */
 .thumb-nova           { --thumb-rgb: 115, 156, 252; }
-.thumb-nova-to-claude { --thumb-rgb: 167, 139, 250; }
-.thumb-smart-huddles  { --thumb-rgb: 52, 211, 153; }
-.thumb-definitions    { --thumb-rgb: 251, 191, 36; }
+.thumb-nova-to-claude { --thumb-rgb: 169, 137, 253; }
+.thumb-smart-huddles  { --thumb-rgb: 77, 211, 151; }
+.thumb-definitions    { --thumb-rgb: 251, 189, 57; }
 .thumb-airrobe        { --thumb-rgb: 255, 149, 121; }
-.thumb-prenda         { --thumb-rgb: 255, 159, 105; }
-.thumb-window         { --thumb-rgb: 242, 202, 82; }
+.thumb-prenda         { --thumb-rgb: 142, 221, 255; --thumb-alpha-l: 0.2; }
+.thumb-window         { --thumb-rgb: 242, 202, 82;  --thumb-alpha-l: 0.2; }
 .thumb-gramcity       { --thumb-rgb: 127, 121, 193; }
-.thumb-bark-app       { --thumb-rgb: 229, 188, 210; }
+.thumb-bark-app       { --thumb-rgb: 229, 188, 210; --thumb-alpha-l: 0.2; }
 
 /* ── Card left: info panel ── */
 .project-card-left {
@@ -373,7 +497,7 @@ main {
   justify-content: center;
   gap: 8px;
   padding: 32px 40px;
-  background: rgba(var(--thumb-rgb), 0.1);
+  background: rgba(var(--thumb-rgb), var(--thumb-alpha-l));
 }
 
 .card-title-row {
@@ -465,68 +589,66 @@ main {
 
 /* ── Buttons ── */
 /* Primary: text in pill → bar grows → fill yellow */
-.btn-primary {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 12px;
-  border-radius: 12px;
-  overflow: hidden;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--sn-text-1);
-  isolation: isolate;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 6px;
-  width: 0;
-  background: #ffc700;
-  z-index: -1;
-  border-radius: 0 2px 2px 0;
-  transition: width 0.15s ease, height 0.2s ease 0.1s;
-}
-
-.btn-primary:hover::before {
-  width: 100%;
-  height: 100%;
-}
-
 /* Secondary: text → yellow bar grows from left */
-.btn-secondary {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
-  padding: 8px 2px 0;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--sn-text-1);
-}
-
-.btn-secondary::after {
-  content: '';
-  display: block;
-  height: 6px;
-  width: 0;
-  background: #ffc700;
-  border-radius: 0 2px 2px 0;
-  transition: width 0.2s ease;
-}
-
-.btn-secondary:hover::after { width: 100%; }
-
 /* ── About ── */
 #about-page {
   background: var(--sn-surface-3);
   padding: 80px max(40px, calc((100% - 960px) / 2));
+}
+
+/* ── 404 ──
+   Served by GitHub Pages for any unmatched path, so it reuses the About page's
+   card shell (same alignment contract, same 960px content width) and marks no
+   nav item active. */
+#notfound-page {
+  background: var(--sn-surface-3);
+  padding: 80px max(40px, calc((100% - 960px) / 2));
+  min-height: calc(100vh - var(--nav-offset));
+}
+
+.notfound-body {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sn-text-3);
+  max-width: 52ch;
+}
+
+.notfound-note {
+  font-family: 'Public Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.notfound-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.notfound-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-left: -12px;
+  border-radius: 8px;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sn-text-brand-green-dark);
+  transition: background 0.15s;
+}
+
+.notfound-link + .notfound-link {
+  margin-left: 0;
+}
+
+.notfound-link:hover {
+  background: color-mix(in srgb, var(--sn-text-brand-green-dark) 8%, transparent);
 }
 
 .page-card {
@@ -729,10 +851,6 @@ main {
   line-height: 20px;
 }
 
-.resume-meta {
-  font-weight: 400;
-}
-
 .resume-job-block ul {
   list-style: disc;
   padding-left: 21px;
@@ -822,23 +940,6 @@ main {
 
 
 /* ── Footer ── */
-footer {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-md);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.875rem;
-  color: var(--gray-500);
-}
-
-footer ul {
-  list-style: none;
-  display: flex;
-  gap: var(--space-md);
-}
-
 /* ── Responsive ── */
 
 /*
@@ -852,7 +953,7 @@ footer ul {
    calc((100% - 960px) / 2) goes negative below 1040px, so max() already gives 40px.
    We set it explicitly on both nav and every section to be safe. */
 @media (max-width: 1040px) {
-  nav              { padding: 16px 40px; }
+  nav              { padding: 12px 40px; }
   #hero            { padding: 64px 40px; }
   #projects        { padding: 80px 40px 120px; }
   #resume-page     { padding: 80px 40px; }
@@ -908,10 +1009,11 @@ footer ul {
     flex-direction: row;              /* vertical -> horizontal */
     align-self: stretch;              /* full width so the bg masks content when pinned */
     width: auto;                      /* reset desktop 32px so stretch applies */
-    top: 64px;                        /* pin directly under the 64px fixed nav (window is the scroller) */
-    padding: 18px 0 12px;             /* 16px visible above buttons (+2px sit behind the nav's
-                                         2px border, since nav is 66px but content starts at 64px)
-                                         + 12px below — both persist when the bar is pinned */
+    top: var(--nav-offset);           /* pin directly under the fixed nav (window is the scroller) */
+    padding: 20px 0 12px;             /* 16px visible above the buttons (+4px sits behind the
+                                         bar's lower edge, since content starts at --nav-offset,
+                                         4px inside --nav-h) + 12px below — both persist when
+                                         the bar is pinned */
     background: var(--sn-surface-3);  /* matches every section bg; masks content when pinned */
   }
 
@@ -924,7 +1026,7 @@ footer ul {
    Drop padding to 16px on both nav AND sections to preserve alignment.
    nav-right gap stays 32px so divider still lines up with content right edge. */
 @media (max-width: 480px) {
-  nav          { padding: 16px; }
+  nav          { padding: 12px 16px; }
   nav ul       { gap: 8px; }
   nav ul li a  { font-size: 12px; }
 
@@ -975,6 +1077,15 @@ footer ul {
   --sn-components-text-brand-green-dark: var(--sn-color-green-1-80); /* green badge text */
   --sn-surface-state-warning-1: var(--sn-color-yellow-10);       /* "Under Construction" badge bg */
   --sn-border-color-state-warning-action: var(--sn-color-yellow-70); /* warning badge border */
+
+  /* The hover/focus strokes have to be pinned for the same reason as everything
+     above: the card stays light in dark mode, but these two tokens flip to their
+     pale dark-mode values (#83D994 / #FF6AB2). On a light card that reads washed
+     out, and the pink focus stroke drops to 2.6:1 — under WCAG 1.4.11's 3:1.
+     Pinned to the constant primitives, hover and focus stay 1:1 with Figma and
+     the focus stroke holds 3.18:1 in both themes. */
+  --sn-surface-brand-green-action-hover: var(--sn-color-green-1-70);  /* #26993E */
+  --sn-surface-brand-pink-action-main: var(--sn-color-pink-60);       /* #FF459F */
 }
 
 /* Projects */

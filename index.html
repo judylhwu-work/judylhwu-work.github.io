@@ -2,12 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/portfolio/">
-  <link rel="canonical" href="/portfolio/">
-  <title>Judy Wu — Product Designer</title>
+  <!-- No-JS fallback. Delayed so it doesn't cancel the analytics beacon below. -->
+  <meta http-equiv="refresh" content="2; url=/portfolio/">
+  <title>Judy Wu — Senior Product Designer</title>
+  <!-- SEO / social — generated from scripts/page-meta.json; edit there, not here -->
+  <meta name="description" content="Portfolio of Judy Wu, a senior product designer with 5+ years in design systems, AI-native tooling, and end-to-end product design.">
+  <link rel="canonical" href="https://judylhwu-work.github.io/portfolio/">
+  <meta name="author" content="Judy Wu">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Judy Wu">
+  <meta property="og:title" content="Judy Wu — Senior Product Designer">
+  <meta property="og:description" content="Portfolio of Judy Wu, a senior product designer with 5+ years in design systems, AI-native tooling, and end-to-end product design.">
+  <meta property="og:url" content="https://judylhwu-work.github.io/portfolio/">
+  <meta property="og:image" content="https://judylhwu-work.github.io/assets/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Judy Wu — Senior Product Designer">
+  <meta name="twitter:description" content="Portfolio of Judy Wu, a senior product designer with 5+ years in design systems, AI-native tooling, and end-to-end product design.">
+  <meta name="twitter:image" content="https://judylhwu-work.github.io/assets/og/default.png">
+  <meta name="twitter:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+  <!-- /SEO -->
 </head>
 <body>
-  <script>location.replace('/portfolio/');</script>
   <p><a href="/portfolio/">Continue to Judy Wu's portfolio</a></p>
+
+  <!--
+    This page is a redirect stub, so the normal GoatCounter script never gets to
+    run before we navigate away. Instead, fire a counting pixel for "/" with the
+    real external referrer, then redirect. Without this, anyone landing on the
+    bare domain was invisible, and /portfolio/ recorded the referrer as this
+    site rather than wherever they actually came from.
+  -->
+  <script>
+    (function () {
+      var next = '/portfolio/' + location.search + location.hash;
+      var done = false;
+      function go() {
+        if (done) return;
+        done = true;
+        location.replace(next);
+      }
+
+      var px = new Image();
+      px.onload = px.onerror = go;
+      px.src = 'https://judylhwu-work.goatcounter.com/count'
+        + '?p=' + encodeURIComponent('/')
+        + '&t=' + encodeURIComponent(document.title)
+        + '&r=' + encodeURIComponent(document.referrer)
+        + '&rnd=' + Math.random().toString(36).slice(2);
+
+      // Don't let a blocked or slow beacon hold the visitor here.
+      setTimeout(go, 500);
+    })();
+  </script>
 </body>
 </html>
