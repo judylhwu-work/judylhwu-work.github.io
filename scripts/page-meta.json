@@ -1,0 +1,119 @@
+{
+  "_comment": "Single source of truth for per-page SEO/social meta. Applied by scripts/apply-meta.py, which encrypt.sh re-runs after StaticCrypt regenerates the protected pages (their shell comes from a shared template and cannot carry per-page meta on its own).",
+  "_origin": "https://judylhwu-work.github.io",
+  "_redirects": {
+    "_comment": "Exact former URLs -> current URL. Consumed by the 404 router.",
+    "aliases": {
+      "/work": "/portfolio/",
+      "/work.html": "/portfolio/",
+      "/projects": "/portfolio/",
+      "/experience": "/resume/",
+      "/experience.html": "/resume/",
+      "/about.html": "/about/",
+      "/home": "/portfolio/",
+      "/index.html": "/portfolio/",
+      "/projects/leantaas": "/projects/nova/",
+      "/projects/leantaas-cof": "/projects/definitions/",
+      "/projects/leantaas-smart-huddles": "/projects/smart-huddles/",
+      "/projects/leantaas-nova-to-claude": "/projects/nova-to-claude/",
+      "/projects/leantaas-gate": "/portfolio/",
+      "/projects/bark": "/projects/bark-app/",
+      "/projects/bark-app.html": "/projects/bark-app/"
+    },
+    "fallback": "/portfolio/"
+  },
+  "pages": {
+    "index.html": {
+      "url": "/",
+      "canonical": "/portfolio/",
+      "title": "Judy Wu — Senior Product Designer",
+      "desc": "Portfolio of Judy Wu, a senior product designer with 5+ years in design systems, AI-native tooling, and end-to-end product design.",
+      "image": "default",
+      "alt": "Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design"
+    },
+    "portfolio/index.html": {
+      "url": "/portfolio/",
+      "title": "Judy Wu — Senior Product Designer",
+      "desc": "Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.",
+      "image": "default",
+      "alt": "Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design"
+    },
+    "about/index.html": {
+      "url": "/about/",
+      "title": "About — Judy Wu",
+      "desc": "A human-centered UX designer who leads with empathy — from Accenture and Google to early-stage startups like Prenda, AirRobe, and Window.",
+      "image": "about",
+      "alt": "About Judy Wu — a human-centered UX designer who leads with empathy"
+    },
+    "resume/index.html": {
+      "url": "/resume/",
+      "title": "Resume — Judy Wu",
+      "desc": "Senior Product Designer with 5+ years across design systems, AI product design, and user research. Experience, skills, education, and tools.",
+      "image": "resume",
+      "alt": "Judy Wu resume — Senior Product Designer, design systems and AI product design"
+    },
+    "projects/airrobe/index.html": {
+      "url": "/projects/airrobe/",
+      "title": "AirRobe — Judy Wu",
+      "desc": "Circular fashion marketplace for buying, selling, and renting pre-loved clothing sustainably. A product design case study by Judy Wu.",
+      "image": "airrobe",
+      "alt": "AirRobe case study — circular fashion marketplace"
+    },
+    "projects/prenda/index.html": {
+      "url": "/projects/prenda/",
+      "title": "Prenda — Judy Wu",
+      "desc": "Platform enabling educators to run personalized microschools for K-8 students. A product design case study by Judy Wu.",
+      "image": "prenda",
+      "alt": "Prenda case study — microschool platform for K-8 educators"
+    },
+    "projects/window/index.html": {
+      "url": "/projects/window/",
+      "title": "Window. — Judy Wu",
+      "desc": "Personalized shopping platform for e-commerce retailers. A product design case study by Judy Wu.",
+      "image": "window",
+      "alt": "Window case study — personalized shopping platform"
+    },
+    "projects/gramcity/index.html": {
+      "url": "/projects/gramcity/",
+      "title": "GramCity — Judy Wu",
+      "desc": "A 7-day design sprint to help users find the most instagrammable locations in any city. A product design case study by Judy Wu.",
+      "image": "gramcity",
+      "alt": "GramCity case study — a 7-day design sprint"
+    },
+    "projects/bark-app/index.html": {
+      "url": "/projects/bark-app/",
+      "title": "BARK App — Judy Wu",
+      "desc": "A social app connecting pup parents to find compatible playmates for their dogs. A product design case study by Judy Wu.",
+      "image": "bark-app",
+      "alt": "BARK app case study — a social app for dog parents"
+    },
+    "projects/nova/index.html": {
+      "url": "/projects/nova/",
+      "title": "Nova Design System — Judy Wu",
+      "desc": "Transformed LeanTaaS' component library into a scalable, token-based design system adopted across the entire org. Password-protected case study.",
+      "image": "nova",
+      "alt": "Nova Design System case study — token-based design system at LeanTaaS"
+    },
+    "projects/smart-huddles/index.html": {
+      "url": "/projects/smart-huddles/",
+      "title": "Smart Huddles — Judy Wu",
+      "desc": "External-facing product for healthcare teams to build surveys, collect responses, and run structured huddles efficiently. Password-protected case study.",
+      "image": "smart-huddles",
+      "alt": "Smart Huddles case study — survey and huddle product for healthcare teams"
+    },
+    "projects/definitions/index.html": {
+      "url": "/projects/definitions/",
+      "title": "Definitions — Judy Wu",
+      "desc": "A single source of truth for metric definitions across every surface. Define once, apply everywhere. Password-protected case study.",
+      "image": "definitions",
+      "alt": "Definitions case study — a single source of truth for metric definitions"
+    },
+    "projects/nova-to-claude/index.html": {
+      "url": "/projects/nova-to-claude/",
+      "title": "Nova Design System: Figma to Claude Code — Judy Wu",
+      "desc": "Nova design system goes AI-native — plus two internal design tools built on top of it: Ask-Nova and HTML Editor. Password-protected case study.",
+      "image": "nova-to-claude",
+      "alt": "Nova: Figma to Claude Code case study — an AI-native design system"
+    }
+  }
+}

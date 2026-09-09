@@ -4,7 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.ico">
-  <title>Judy Wu — Product Designer</title>
+  <title>Judy Wu — Senior Product Designer</title>
+  <!-- SEO / social — generated from scripts/page-meta.json; edit there, not here -->
+  <meta name="description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <link rel="canonical" href="https://judylhwu-work.github.io/portfolio/">
+  <meta name="author" content="Judy Wu">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Judy Wu">
+  <meta property="og:title" content="Judy Wu — Senior Product Designer">
+  <meta property="og:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <meta property="og:url" content="https://judylhwu-work.github.io/portfolio/">
+  <meta property="og:image" content="https://judylhwu-work.github.io/assets/og/default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Judy Wu — Senior Product Designer">
+  <meta name="twitter:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <meta name="twitter:image" content="https://judylhwu-work.github.io/assets/og/default.png">
+  <meta name="twitter:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+  <!-- /SEO -->
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.typography.css">
@@ -12,10 +33,12 @@
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
   <link rel="stylesheet" href="/supernova-design-system/components/button/button.css">
   <link rel="stylesheet" href="/supernova-design-system/components/badge/badge.css">
-  <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}</script>
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='dark'||(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}})();</script>
   <script src="/theme.js"></script>
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <nav>
     <a href="/portfolio/" class="nav-logo"><span class="nav-jw">JW</span><span class="nav-sep"> | </span><span class="nav-name">Judy Wu</span></a>
@@ -26,26 +49,26 @@
         <li><a href="/about/"><span>About</span></a></li>
       </ul>
       <div class="nav-divider"></div>
-      <button class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Toggle dark mode">
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <button type="button" class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm nav-dark-mode" title="Switch to dark mode" aria-label="Switch to dark mode" aria-pressed="false">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </button>
     </div>
   </nav>
 
   <div class="page-content">
-  <main>
+  <main id="main" tabindex="-1">
 
     <section id="hero">
       <div class="hero-card">
         <div class="hero-card-top">
-          <h1 class="hero-hello" id="hero-hello">Hello!</h1>
-          <p class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> Senior Product Designer with 5+ years experience. My expertise lies within turning complex problems into creative opportunities.</p>
+          <p class="hero-hello" id="hero-hello">Hello!</p>
+          <h1 class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> Senior Product Designer with 5+ years experience. My expertise lies within turning complex problems into creative opportunities.</h1>
         </div>
         <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, made it AI-native, and built two internal design tools leveraging it.</p>
       </div>
       <a href="#projects" class="hero-chevron" aria-label="Scroll to projects">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </a>
     </section>
 
@@ -58,7 +81,7 @@
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <div class="card-title-row">
-                  <span class="card-label">Nova Design System: Figma to Claude Code</span>
+                  <h2 class="card-label">Nova Design System: Figma to Claude Code</h2>
                   <div class="project-tags">
                     <span class="sn-badge sn-badge-brand">AI-Native Design Systems</span>
                     <span class="sn-badge sn-badge-brand-green">Internal AI Tooling</span>
@@ -69,7 +92,7 @@
             </div>
             <div class="project-card-right">
               <span class="sn-badge sn-badge-warning card-status-badge">Under Construction</span>
-              <img src="/assets/images/leantaas-device.png" alt="Nova Design System: Figma to Claude Code">
+              <img src="/assets/images/leantaas-device.png" alt="">
             </div>
           </a>
 
@@ -77,7 +100,7 @@
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <div class="card-title-row">
-                  <span class="card-label">Smart Huddles</span>
+                  <h2 class="card-label">Smart Huddles</h2>
                   <div class="project-tags">
                     <span class="sn-badge sn-badge-brand">AI Product Design</span>
                     <span class="sn-badge sn-badge-brand-green">Real-Time Task Creation</span>
@@ -89,7 +112,7 @@
             </div>
             <div class="project-card-right">
               <span class="sn-badge sn-badge-warning card-status-badge">Under Construction</span>
-              <img src="/assets/images/leantaas-device.png" alt="Smart Huddles">
+              <img src="/assets/images/leantaas-device.png" alt="">
             </div>
           </a>
 
@@ -97,7 +120,7 @@
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <div class="card-title-row">
-                  <span class="card-label">Nova Design System</span>
+                  <h2 class="card-label">Nova Design System</h2>
                   <div class="project-tags">
                     <span class="sn-badge sn-badge-brand">Design Systems</span>
                     <span class="sn-badge sn-badge-brand-green">Design Tokens</span>
@@ -109,7 +132,7 @@
             </div>
             <div class="project-card-right">
               <span class="sn-badge sn-badge-warning card-status-badge">Under Construction</span>
-              <img src="/assets/images/leantaas-device.png" alt="Nova Design System">
+              <img src="/assets/images/leantaas-device.png" alt="">
             </div>
           </a>
 
@@ -117,7 +140,7 @@
             <div class="project-card-left">
               <div class="card-badge-stack">
                 <div class="card-title-row">
-                  <span class="card-label">Definitions</span>
+                  <h2 class="card-label">Definitions</h2>
                   <div class="project-tags">
                     <span class="sn-badge sn-badge-brand">Systems Design</span>
                     <span class="sn-badge sn-badge-brand-green">Platform Design</span>
@@ -129,14 +152,14 @@
             </div>
             <div class="project-card-right">
               <span class="sn-badge sn-badge-warning card-status-badge">Under Construction</span>
-              <img src="/assets/images/leantaas-device.png" alt="Definitions">
+              <img src="/assets/images/leantaas-device.png" alt="">
             </div>
           </a>
 
           <a href="/projects/airrobe/" id="airrobe" class="project-card thumb-airrobe">
             <div class="project-card-left">
               <div class="card-title-row">
-                <span class="card-label">AirRobe</span>
+                <h2 class="card-label">AirRobe</h2>
                 <div class="project-tags">
                   <span class="sn-badge sn-badge-brand">Design Systems</span>
                   <span class="sn-badge sn-badge-brand-green">Product Search</span>
@@ -145,14 +168,14 @@
               <p class="card-desc">Circular fashion marketplace for buying, selling, and renting pre-loved clothing sustainably.</p>
             </div>
             <div class="project-card-right">
-              <img src="/assets/images/airrobe-device.png" alt="AirRobe">
+              <img src="/assets/images/airrobe-device.png" alt="">
             </div>
           </a>
 
           <a href="/projects/prenda/" id="prenda" class="project-card thumb-prenda">
             <div class="project-card-left">
               <div class="card-title-row">
-                <span class="card-label">Prenda</span>
+                <h2 class="card-label">Prenda</h2>
                 <div class="project-tags">
                   <span class="sn-badge sn-badge-brand">Internal Tooling</span>
                   <span class="sn-badge sn-badge-brand-green">Side Nav Redesign</span>
@@ -161,7 +184,7 @@
               <p class="card-desc">Platform enabling educators to run personalized microschools for K-8 students.</p>
             </div>
             <div class="project-card-right">
-              <img src="/assets/images/prenda-device.png" alt="Prenda">
+              <img src="/assets/images/prenda-device.png" alt="">
             </div>
           </a>
 
@@ -179,7 +202,7 @@
           <a href="/projects/window/" id="window" class="project-card thumb-window">
             <div class="project-card-left">
               <div class="card-title-row">
-                <span class="card-label">Window</span>
+                <h2 class="card-label">Window</h2>
                 <div class="project-tags">
                   <span class="sn-badge sn-badge-brand">Mobile Design</span>
                   <span class="sn-badge sn-badge-brand-green">Internship</span>
@@ -188,14 +211,14 @@
               <p class="card-desc">Personalized shopping platform for e-commerce retailers.</p>
             </div>
             <div class="project-card-right">
-              <img src="/assets/images/window-device.png" alt="Window">
+              <img src="/assets/images/window-device.png" alt="">
             </div>
           </a>
 
           <a href="/projects/gramcity/" id="gramcity" class="project-card thumb-gramcity">
             <div class="project-card-left">
               <div class="card-title-row">
-                <span class="card-label">GramCity</span>
+                <h2 class="card-label">GramCity</h2>
                 <div class="project-tags">
                   <span class="sn-badge sn-badge-brand">Mobile Design</span>
                   <span class="sn-badge sn-badge-brand-green">Student Project</span>
@@ -204,14 +227,14 @@
               <p class="card-desc">A 7-day design sprint to help users find the most instagrammable locations in any city.</p>
             </div>
             <div class="project-card-right">
-              <img src="/assets/images/gramcity-device.png" alt="GramCity">
+              <img src="/assets/images/gramcity-device.png" alt="">
             </div>
           </a>
 
           <a href="/projects/bark-app/" id="bark-app" class="project-card thumb-bark-app">
             <div class="project-card-left">
               <div class="card-title-row">
-                <span class="card-label">BARK App</span>
+                <h2 class="card-label">BARK App</h2>
                 <div class="project-tags">
                   <span class="sn-badge sn-badge-brand">Mobile Design</span>
                   <span class="sn-badge sn-badge-brand-green">Student Project</span>
@@ -220,7 +243,7 @@
               <p class="card-desc">A social app connecting pup parents to find compatible playmates for their dogs.</p>
             </div>
             <div class="project-card-right">
-              <img src="/assets/images/bark-device.png" alt="BARK app">
+              <img src="/assets/images/bark-device.png" alt="">
             </div>
           </a>
 
