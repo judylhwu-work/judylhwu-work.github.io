@@ -6,25 +6,25 @@
   <link rel="icon" href="/favicon.ico">
   <title>Judy Wu — Senior Product Designer</title>
   <!-- SEO / social — generated from scripts/page-meta.json; edit there, not here -->
-  <meta name="description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <meta name="description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, and internal tools for design and engineering.">
   <link rel="canonical" href="https://judylhwu-work.github.io/portfolio/">
   <meta name="author" content="Judy Wu">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Judy Wu">
   <meta property="og:title" content="Judy Wu — Senior Product Designer">
-  <meta property="og:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <meta property="og:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, and internal tools for design and engineering.">
   <meta property="og:url" content="https://judylhwu-work.github.io/portfolio/">
   <meta property="og:image" content="https://judylhwu-work.github.io/assets/og/default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+  <meta property="og:image:alt" content="Judy Wu, Senior Product Designer — systems that scale, tools that bridge design and engineering">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Judy Wu — Senior Product Designer">
-  <meta name="twitter:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.">
+  <meta name="twitter:description" content="Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, and internal tools for design and engineering.">
   <meta name="twitter:image" content="https://judylhwu-work.github.io/assets/og/default.png">
-  <meta name="twitter:image:alt" content="Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design">
+  <meta name="twitter:image:alt" content="Judy Wu, Senior Product Designer — systems that scale, tools that bridge design and engineering">
   <!-- /SEO -->
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
@@ -62,10 +62,16 @@
     <section id="hero">
       <div class="hero-card">
         <div class="hero-card-top">
-          <p class="hero-hello" id="hero-hello">Hello!</p>
-          <h1 class="hero-intro"><span class="hero-intro-accent">I'm Judy,</span> Senior Product Designer with 5+ years experience. My expertise lies within turning complex problems into creative opportunities.</h1>
+          <div class="hero-greeting-row">
+            <button type="button" class="sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm hero-greeting-toggle" id="greeting-toggle" title="Pause greeting animation" aria-label="Pause greeting animation">
+              <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+              <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2a1 1 0 0 1 1.5-.87l10 6.8a1 1 0 0 1 0 1.74l-10 6.8A1 1 0 0 1 8 18.8z"/></svg>
+            </button>
+            <p class="hero-hello" id="hero-hello" lang="en">Hello!</p>
+          </div>
+          <h1 class="hero-intro"><span class="hero-intro-accent">I’m Judy,</span> <span class="hero-intro-role">a Senior Product Designer and Creative Technologist</span> who builds systems that scale and tools that bridge design and engineering.</h1>
         </div>
-        <p class="hero-success"><span class="hero-success-accent">Recent success:</span> built a design system, made it AI-native, and built two internal design tools leveraging it.</p>
+        <p class="hero-success"><span class="hero-success-accent">Recent success</span><span class="hero-success-colon">:</span> built a design system, translated it to be AI-compatible, and built two internal design tools leveraging it.</p>
       </div>
       <a href="#projects" class="hero-chevron" aria-label="Scroll to projects">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
@@ -259,29 +265,42 @@
   </div>
 
   <script>
+    /* Greeting atom — Figma 437:38691. Ten language variants; the colour cycles
+       green-dark / pink-dark / action-main in that order. `lang` is not decorative:
+       without it a screen reader voices every non-English greeting with English
+       phonemes (WCAG 3.1.2 Language of Parts). */
     const greetings = [
-      { text: 'Hello!',     color: 'var(--sn-text-brand-green-dark)' },
-      { text: '¡Hola!',     color: 'var(--sn-text-brand-pink-dark)' },
-      { text: '你好!',       color: 'var(--sn-surface-brand-pink-action-hover)' },
-      { text: 'Bonjour!',   color: 'var(--sn-text-brand-green-dark)' },
-      { text: 'こんにちは!', color: 'var(--sn-text-brand-pink-dark)' },
-      { text: 'привет!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
-      { text: 'olá!',       color: 'var(--sn-text-brand-green-dark)' },
-      { text: 'Hallo!',     color: 'var(--sn-text-brand-pink-dark)' },
-      { text: 'হ্যালো!',    color: 'var(--sn-surface-brand-pink-action-hover)' },
-      { text: 'مرحبًا!',    color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'Hello!',     lang: 'en', color: 'var(--sn-text-brand-green-dark)' },
+      { text: '¡Hola!',     lang: 'es', color: 'var(--sn-text-brand-pink-dark)' },
+      { text: '你好!',       lang: 'zh', color: 'var(--sn-text-brand-action-main)' },
+      { text: 'Bonjour!',   lang: 'fr', color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'こんにちは!', lang: 'ja', color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'привет!',    lang: 'ru', color: 'var(--sn-text-brand-action-main)' },
+      { text: 'olá!',       lang: 'pt', color: 'var(--sn-text-brand-green-dark)' },
+      { text: 'Hallo!',     lang: 'de', color: 'var(--sn-text-brand-pink-dark)' },
+      { text: 'হ্যালো!',      lang: 'bn', color: 'var(--sn-text-brand-action-main)' },
+      { text: 'مرحبًا!', lang: 'ar', dir: 'rtl', color: 'var(--sn-text-brand-green-dark)' },
     ];
 
     let current = 0;
+    let greetingTimer = null;
     const helloEl = document.getElementById('hero-hello');
+    const toggleEl = document.getElementById('greeting-toggle');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function renderGreeting(g) {
+      helloEl.textContent = g.text;
+      helloEl.style.color = g.color;
+      helloEl.setAttribute('lang', g.lang);
+      if (g.dir) helloEl.setAttribute('dir', g.dir);
+      else helloEl.removeAttribute('dir');
+    }
 
     function nextGreeting() {
       helloEl.classList.add('greeting-exit');
       setTimeout(() => {
         current = (current + 1) % greetings.length;
-        const g = greetings[current];
-        helloEl.textContent = g.text;
-        helloEl.style.color = g.color;
+        renderGreeting(greetings[current]);
         helloEl.classList.remove('greeting-exit');
         helloEl.classList.add('greeting-enter');
         requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -290,7 +309,39 @@
       }, 150);
     }
 
-    setInterval(nextGreeting, 1000);
+    /* Deliberately no aria-live on the greeting: announcing a swap once a second
+       would be unusable. The label flips rather than using aria-pressed, which is
+       the APG pattern for a play/pause toggle. */
+    function playGreetings() {
+      if (greetingTimer) return;
+      greetingTimer = setInterval(nextGreeting, 1000);
+      toggleEl.classList.remove('is-paused');
+      toggleEl.setAttribute('aria-label', 'Pause greeting animation');
+      toggleEl.title = 'Pause greeting animation';
+    }
+
+    function pauseGreetings() {
+      clearInterval(greetingTimer);
+      greetingTimer = null;
+      toggleEl.classList.add('is-paused');
+      toggleEl.setAttribute('aria-label', 'Play greeting animation');
+      toggleEl.title = 'Play greeting animation';
+    }
+
+    toggleEl.addEventListener('click', () => {
+      if (greetingTimer) pauseGreetings();
+      else playGreetings();
+    });
+
+    /* The button above is what satisfies WCAG 2.2.2 — an OS preference is not a
+       "mechanism" in the content. Reduced motion only picks the starting state,
+       and a CSS media query could not stop a setInterval anyway. */
+    if (reduceMotion.matches) pauseGreetings();
+    else playGreetings();
+    reduceMotion.addEventListener('change', (e) => {
+      if (e.matches) pauseGreetings();
+      else playGreetings();
+    });
 
     // "See more" toggle for lower-emphasis projects (internships / early work)
     const moreProjects = document.getElementById('more-projects');
