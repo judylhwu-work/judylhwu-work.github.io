@@ -829,17 +829,17 @@ main {
 
 /* Figma "Action bar" (441:104117). The 32px box, full radius and green icon all
    come from .sn-btn-icon(-secondary/-sm), which already match the component; only
-   the icon size differs. LinkedIn is 15px there because the Font Awesome brand
-   glyph reads smaller than the solid icons at the same size. */
+   the icon size differs. LinkedIn is a point larger there because the Font
+   Awesome brand glyph reads smaller than the solid icons at the same size. */
 .sticky-action-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
 .sticky-action-btn-linkedin svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
 }
 
 
