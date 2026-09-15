@@ -25,14 +25,17 @@
   let images = [];
   let current = 0;
 
-  function fullSrc(src) {
-    return src.replace(/w=\d+/, 'w=1920').replace(/quality=\d+/, 'quality=90');
+  // Case-study images ship in two sizes: the page loads the display file, and
+  // data-full names the 1920px file the lightbox swaps in. An image without the
+  // attribute just reuses whatever is already on the page.
+  function fullSrc(img) {
+    return img.getAttribute('data-full') || img.src;
   }
 
   function show(index) {
     current = (index + images.length) % images.length;
     lbImg.style.opacity = '0';
-    var src = fullSrc(images[current].src);
+    var src = fullSrc(images[current]);
     var next = new Image();
     next.onload = function () {
       lbImg.src = src;
