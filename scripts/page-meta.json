@@ -22,30 +22,30 @@
       "url": "/",
       "canonical": "/portfolio/",
       "title": "Judy Wu — Senior Product Designer",
-      "desc": "Portfolio of Judy Wu, a senior product designer with 5+ years in design systems, AI-native tooling, and end-to-end product design.",
+      "desc": "Portfolio of Judy Wu, a senior product designer who builds systems that scale and tools that bridge design and engineering.",
       "image": "default",
-      "alt": "Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design"
+      "alt": "Judy Wu, Senior Product Designer — systems that scale, tools that bridge design and engineering"
     },
     "portfolio/index.html": {
       "url": "/portfolio/",
       "title": "Judy Wu — Senior Product Designer",
-      "desc": "Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, healthcare, marketplace, and edtech product design.",
+      "desc": "Selected work by Judy Wu, senior product designer: design systems, AI-native tooling, and internal tools for design and engineering.",
       "image": "default",
-      "alt": "Judy Wu, Senior Product Designer — design systems, AI-native tooling, product design"
+      "alt": "Judy Wu, Senior Product Designer — systems that scale, tools that bridge design and engineering"
     },
     "about/index.html": {
       "url": "/about/",
       "title": "About — Judy Wu",
-      "desc": "A human-centered UX designer who leads with empathy — from Accenture and Google to early-stage startups like Prenda, AirRobe, and Window.",
+      "desc": "A human-centered product designer who leads with empathy — from Accenture and Google to early-stage startups like Prenda, AirRobe, and Window.",
       "image": "about",
-      "alt": "About Judy Wu — a human-centered UX designer who leads with empathy"
+      "alt": "About Judy Wu — a human-centered product designer who leads with empathy"
     },
     "resume/index.html": {
       "url": "/resume/",
       "title": "Resume — Judy Wu",
-      "desc": "Senior Product Designer with 5+ years across design systems, AI product design, and user research. Experience, skills, education, and tools.",
+      "desc": "Senior Product Designer building systems that scale and tools that bridge design and engineering. Experience, skills, education, and tools.",
       "image": "resume",
-      "alt": "Judy Wu resume — Senior Product Designer, design systems and AI product design"
+      "alt": "Judy Wu resume — Senior Product Designer, design systems and AI-native tooling"
     },
     "projects/airrobe/index.html": {
       "url": "/projects/airrobe/",

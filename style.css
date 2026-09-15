@@ -254,7 +254,39 @@ main {
   gap: 8px;
 }
 
+/* Figma 437:94115 — the toggle leads the greeting on one centred row. */
+.hero-greeting-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;                      /* Figma spacing/sm-(12) */
+  width: 100%;
+}
+
+/* Supernova's icon button is borderless and pill-round; Figma's greeting toggle
+   keeps its 32px box, green icon and focus ring but adds a 1px inverted border
+   at the rounded-(12) radius. Only those two properties are overridden.
+
+   button.css loads AFTER style.css, so `.sn-btn-icon { border: none }` beats a
+   single-class override on source order at equal specificity — hence the parent
+   selector. Without it the toggle renders as a borderless circle floating in
+   front of the greeting. */
+.hero-greeting-row .hero-greeting-toggle {
+  flex: 0 0 auto;
+  border: 1px solid var(--sn-border-color-invert);
+  border-radius: var(--sn-radius-rounded);
+}
+
+.hero-greeting-toggle .icon-play { display: none; }
+.hero-greeting-toggle.is-paused .icon-pause { display: none; }
+.hero-greeting-toggle.is-paused .icon-play { display: block; }
+
+/* dir="rtl" on the Arabic greeting keeps its "!" on the correct side, but that
+   would also right-align the block. Pinning text-align keeps every language
+   starting at the same left edge so the eye never darts across the card. */
 .hero-hello {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
   font-family: 'Karla', sans-serif;
   font-weight: 800;
   font-size: 48px;
@@ -274,16 +306,24 @@ main {
   transition: none;
 }
 
+/* Figma "Greeting / V3" (435:14636): the sentence body is SemiBold text/2; the
+   name and the role clause are the only ExtraBold runs. */
 .hero-intro {
   font-family: 'Karla', sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 24px;
   line-height: 1.6;
-  color: var(--sn-text-1);
+  color: var(--sn-text-2);
 }
 
 .hero-intro-accent {
+  font-weight: 800;
   color: var(--sn-surface-brand-pink-action-main);
+}
+
+/* ExtraBold but not pink — the emphasis carries, the colour does not. */
+.hero-intro-role {
+  font-weight: 800;
 }
 
 .hero-success {
@@ -291,10 +331,17 @@ main {
   font-weight: 600;
   font-size: 18px;
   line-height: 1.6;
-  color: var(--sn-text-1);
+  color: var(--sn-text-2);
 }
 
 .hero-success-accent {
+  font-weight: 800;
+  color: var(--sn-text-brand-green-dark);
+}
+
+/* Figma keeps the colon green but drops it to the body's SemiBold, so it sits
+   outside the ExtraBold label run. */
+.hero-success-colon {
   color: var(--sn-text-brand-green-dark);
 }
 
@@ -432,6 +479,7 @@ main {
 
 .project-card {
   --card-stroke: 4px;             /* Figma border/width/lg */
+  --card-ring: 2px;               /* Figma border/width/focus */
   --thumb-alpha-l: 0.1;           /* left panel tint; a few cards override to 0.2 */
   position: relative;             /* anchors the ::after stroke */
   display: flex;
@@ -459,11 +507,19 @@ main {
   inset: 0;
   pointer-events: none;
   border: var(--card-stroke) solid transparent;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Figma "State=Hover" (363:159930) is a 4px green stroke with a 2px ring of the
+   card surface inside it, separating the stroke from the tinted panels — measured
+   4px #26993E + 2px #FFFFFF on all four edges. The ring is an inset shadow on the
+   same overlay: it lands exactly inside the 4px border, needs no extra element,
+   and costs no layout. Rest has no stroke and no ring, so both are hover-only.
+   --sn-surface-1 is pinned to white for .project-card in dark mode (see below),
+   so the ring tracks the card surface rather than the page. */
 .project-card:hover::after {
   border-color: var(--sn-surface-brand-green-action-hover);
+  box-shadow: inset 0 0 0 var(--card-ring) var(--sn-surface-1);
 }
 
 /* Press and keyboard focus are the same pink stroke — per the Figma component,
@@ -471,6 +527,7 @@ main {
 .project-card:active::after,
 .project-card:focus-visible::after {
   border-color: var(--sn-surface-brand-pink-action-main);
+  box-shadow: inset 0 0 0 var(--card-ring) var(--sn-surface-1);
 }
 
 /* Thumbnail tints — Figma "_Card content" (363:53415), verified against each
@@ -770,13 +827,20 @@ main {
   width: 32px;
 }
 
+/* Figma "Action bar" (441:104117). The 32px box, full radius and green icon all
+   come from .sn-btn-icon(-secondary/-sm), which already match the component; only
+   the icon size differs. LinkedIn is a point larger there because the Font
+   Awesome brand glyph reads smaller than the solid icons at the same size. */
 .sticky-action-btn svg {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.btn-emoji { display: none; }
+.sticky-action-btn-linkedin svg {
+  width: 17px;
+  height: 17px;
+}
 
 
 .resume-inner {

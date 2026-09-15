@@ -2,7 +2,9 @@
 
 Judy Wu's personal portfolio — live at [judylhwu-work.github.io](https://judylhwu-work.github.io).
 
-Plain HTML/CSS/JS, no build step, no framework. Deployed via GitHub Pages (legacy Jekyll build) directly from `main`.
+This portfolio is hand-directed and Claude Code-assisted — every architectural decision is intentional. I built it in plain HTML/CSS/JS deliberately: no framework overhead, no build step, just fast, portable, and something I can fully reason about.
+
+Deployed via GitHub Pages (legacy Jekyll build) directly from `main`.
 
 ## Structure
 
@@ -17,7 +19,6 @@ style.css              Shared site styles
 project.css            Project detail page styles
 theme.js               Dark mode toggle
 lightbox.js            Image lightbox on project pages
-debug.js               Dev-only inspector overlay — never reference this from a page
 assets/images/         Static image assets
 assets/og/             Generated 1200x630 social share cards, one per page
 scripts/page-meta.json Per-page SEO/social copy (single source of truth)
