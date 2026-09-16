@@ -20,14 +20,45 @@ project.css            Project detail page styles
 theme.js               Dark mode toggle
 lightbox.js            Image lightbox on project pages
 assets/images/         Static image assets
+assets/images/projects/<slug>/  Case-study images — two WebP sizes each (see below)
 assets/og/             Generated 1200x630 social share cards, one per page
 scripts/page-meta.json Per-page SEO/social copy (single source of truth)
 scripts/apply-meta.py  Injects that meta into each page
 scripts/encrypt.sh     StaticCrypt build for the NDA case studies
 scripts/verify-gates.js Checks the encrypted pages still decrypt
+scripts/check-pages.js Loads every page in a real browser and checks it works
 ```
 
 Every page lives at `<name>/index.html` rather than `<name>.html`, so GitHub Pages serves it without the `.html` extension (`/portfolio/`, `/resume/`, `/about/`, `/projects/nova/`, etc.). All internal links and asset references use root-relative paths (e.g. `/style.css`), not relative ones — this matters if you add a new page, since a relative path will break depending on how deep the new page is nested.
+
+## Case-study images
+
+Case-study images are **self-hosted WebP** in `assets/images/projects/<slug>/`, numbered in
+the order they appear on the page. Each image exists twice:
+
+```
+07-side-navigation-bar-redesign.webp        the page loads this (600, 800 or 1200px wide,
+                                            matching the slot it renders into)
+07-side-navigation-bar-redesign-full.webp   1920px — the lightbox swaps this in
+```
+
+The `<img>` carries the display file in `src` and the large one in `data-full`; `lightbox.js`
+reads that attribute. An image without `data-full` just reopens its own `src`, so a new image
+works before you generate a full size for it.
+
+These were previously hotlinked from `images.spr.so`, the image CDN behind the old Super.so
+site, and the lightbox faked a large version by rewriting that CDN's `w=`/`quality=` URL
+parameters. That made five case studies depend on an account this site no longer uses — if it
+lapsed, the images went with it. They are now in the repo.
+
+Encoded at **quality 82**, which was pixel-indistinguishable from the source PNGs on the
+densest screenshot tested, at roughly 40% of the bytes. The 15 images carrying partial
+transparency are **composited onto white** during conversion, matching the
+`--sn-color-gray-0` backing that `.project-image` already paints — these are screenshots of
+light product UI, so they must stay white in dark mode.
+
+To add one: drop the display and `-full` files into the project's folder using the next
+number, and point `src`/`data-full` at them.
 
 ## Design tokens
 
@@ -54,6 +85,12 @@ python3 -m http.server 8000
 ```
 
 Then visit `http://localhost:8000/portfolio/`. Serve **this** directory (not a parent), so `/style.css` and `/supernova-design-system/...` resolve the same way GitHub Pages resolves them. The `supernova-design-system` symlink in this folder is what supplies the tokens locally.
+
+With that server running, `npm run check` loads every page in headless Chrome and fails if an
+image is broken, the console logs an error, a request fails, or a case-study lightbox stops
+opening its full-size file. It drives the Chrome already installed on the machine, so there is
+no browser download, and it takes its page list from `scripts/page-meta.json` — add a page
+there and it gets checked automatically.
 
 ## Notes
 

@@ -4,7 +4,8 @@
   "description": "Judy Wu's personal portfolio — live at [judylhwu-work.github.io](https://judylhwu-work.github.io).",
   "private": true,
   "scripts": {
-    "encrypt": "bash scripts/encrypt.sh"
+    "encrypt": "bash scripts/encrypt.sh",
+    "check": "node scripts/check-pages.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/judylhwu-work/judylhwu-work.github.io#readme",
   "devDependencies": {
+    "playwright-core": "^1.63.0",
     "staticrypt": "^3.5.4"
   }
 }
