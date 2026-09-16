@@ -39,9 +39,11 @@ const urls = Object.entries(meta.pages)
   .filter(([file]) => file !== 'index.html')
   .map(([, info]) => info.url);
 
-// The readable NDA sources are git-ignored, so they only exist on a machine
-// that has them. They are served from the repo root like any other file.
-const ndaSources = fs.existsSync(path.join(ROOT, 'private/projects'))
+// The readable NDA sources are git-ignored and never published, so they exist
+// only on a machine that has them, behind a local server. Checking them against
+// a deployed BASE would just collect 404s.
+const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:|\/|$)/.test(BASE);
+const ndaSources = isLocal && fs.existsSync(path.join(ROOT, 'private/projects'))
   ? fs.readdirSync(path.join(ROOT, 'private/projects'))
       .map(slug => `/private/projects/${slug}/index.html`)
   : [];
