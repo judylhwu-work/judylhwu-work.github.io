@@ -74,6 +74,12 @@ jobs:
           python3 scripts/apply-meta.py
           git diff --exit-code -- '*.html' robots.txt
 
+      - name: Supernova tokens still exist
+        # The site links Supernova live, with no pinned version, so a rename or
+        # removal upstream would otherwise reach the live site untested. Runs
+        # against Supernova's main, which is what production serves.
+        run: npm run check:tokens
+
       - name: Every page loads and works
         # Loads each page in a real browser: no broken images, no console errors, no
         # failed requests, and every case-study lightbox still opens its full-size
