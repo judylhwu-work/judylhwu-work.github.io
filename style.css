@@ -849,7 +849,7 @@ main {
 .resume-inner {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;              /* Figma spacing/md (16) */
 }
 
 /* Shared page-card heading — used 1:1 by the resume ("Judy Wu | Senior Product
@@ -869,7 +869,7 @@ main {
 
 .resume-body {
   display: flex;
-  gap: 40px;
+  gap: 32px;              /* Figma spacing/xl (32) */
   flex: 1;
 }
 
@@ -945,40 +945,68 @@ main {
 .resume-sidebar-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;               /* Figma spacing/xs (8), label to body */
 }
 
+/* Education stacks its two entries on spacing/3xs (4) in Figma, where Experience
+   and Skills use 2.778px. Matching the design rather than averaging them. */
+.resume-sidebar-section-education .resume-list-item {
+  gap: 4px;
+}
+
+/* Figma text/md/regular — font/size/14 on font/line-height/20. The stacked
+   entries sit on spacing/3xs (4), so the list owns the rhythm rather than each
+   link carrying a bottom margin. */
 .resume-sidebar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-family: 'Inter', sans-serif;
-  font-size: 13.889px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   color: var(--sn-text-1);
   font-style: normal;
 }
 
+/* Figma text/md/semibold in text/brand/action/main. The token carries its own
+   dark-mode value (#FF8FC5), so the link stays legible in both themes. */
 .resume-sidebar-body a {
   display: inline-block;
+  /* Only the links shrink-wrap — the hover pill should end at the text, not run
+     the full column. List items stay full width so their text wraps normally. */
+  align-self: flex-start;
   text-decoration: underline;
   text-decoration-skip-ink: none;
-  line-height: 1.25;
-  margin-bottom: 2px;
+  font-weight: 600;
+  line-height: 20px;
+  /* Horizontal padding only, so each link's box is exactly one 20px line. The
+     hover pill gets its vertical breathing room from a box-shadow spread below,
+     which paints without taking up space — otherwise the padding put the contact
+     list on a 28px rhythm instead of the design's 24px. */
   margin-left: -4px;
-  padding: 2px 4px;
+  padding: 0 4px;
   border-radius: 4px;
-  color: var(--sn-text-1);
+  color: var(--sn-text-brand-action-main);
   transition: background 0.15s;
 }
 
+/* The 2px spread grows the pill past the text box without affecting layout, so
+   the list keeps its 4px rhythm. Same colour as the background, so they read as
+   one shape. (No font-weight here — these links are already semibold.) */
 .resume-sidebar-body a:hover {
   background: color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 20%, transparent);
-  font-weight: 600;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 20%, transparent);
 }
 
-.resume-sidebar-body p {
+/* Direct children only. The list sections nest their text in .resume-list-item,
+   and this selector would otherwise outrank .resume-list-label (same one class,
+   plus an element) and flatten every label back to regular weight. */
+.resume-sidebar-body > p {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 13.889px;
-  line-height: 1.25;
+  font-size: 14px;
+  line-height: 20px;
   color: var(--sn-text-1);
 }
 
@@ -991,7 +1019,7 @@ main {
 .resume-list-label {
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  font-size: 13.889px;
+  font-size: 14px;
   text-transform: uppercase;
   color: var(--sn-text-1);
   line-height: normal;
@@ -1000,8 +1028,8 @@ main {
 .resume-list-value {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 13.889px;
-  line-height: 1.25;
+  font-size: 14px;
+  line-height: 20px;
   color: var(--sn-text-1);
 }
 
