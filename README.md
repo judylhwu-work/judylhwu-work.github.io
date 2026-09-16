@@ -27,6 +27,7 @@ scripts/apply-meta.py  Injects that meta into each page
 scripts/encrypt.sh     StaticCrypt build for the NDA case studies
 scripts/verify-gates.js Checks the encrypted pages still decrypt
 scripts/check-pages.js Loads every page in a real browser and checks it works
+.github/workflows/checks.yml  Runs those checks on every push and PR
 ```
 
 Every page lives at `<name>/index.html` rather than `<name>.html`, so GitHub Pages serves it without the `.html` extension (`/portfolio/`, `/resume/`, `/about/`, `/projects/nova/`, etc.). All internal links and asset references use root-relative paths (e.g. `/style.css`), not relative ones — this matters if you add a new page, since a relative path will break depending on how deep the new page is nested.
@@ -91,6 +92,24 @@ image is broken, the console logs an error, a request fails, or a case-study lig
 opening its full-size file. It drives the Chrome already installed on the machine, so there is
 no browser download, and it takes its page list from `scripts/page-meta.json` — add a page
 there and it gets checked automatically.
+
+Every push and PR runs the same checks in GitHub Actions (`.github/workflows/checks.yml`):
+the 404 router test, a meta drift check, and the browser check above. CI clones Supernova
+into place first, so root-relative token paths resolve there exactly as they do locally and
+in production.
+
+The drift check re-runs `apply-meta.py` and fails if it rewrites anything — that means a
+page's meta was hand-edited instead of `page-meta.json`, and the next run would overwrite the
+edit. `sitemap.xml` is excluded from it, because its `<lastmod>` comes from file mtimes and a
+fresh checkout resets those.
+
+`verify-gates.js` is deliberately **not** in CI: it needs the plaintext sources in `private/`
+and the password, neither of which exists on a runner. Keep running it locally after touching
+the template, `encrypt.sh`, or the meta pipeline.
+
+Optionally, set a `CLIENT_NAME` repository secret and CI will also fail if that name appears
+in any committed file. The name never enters the repo — it lives only in the secret, and the
+job prints matching paths, never the match itself, since the logs are public too.
 
 ## Notes
 
