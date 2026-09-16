@@ -1,0 +1,101 @@
+name: checks
+
+# Runs the repo's own check scripts on every push and PR, so a change that
+# breaks a page is caught here rather than on the live site. Everything below
+# can also be run by hand — see the README.
+#
+# Not run here: scripts/verify-gates.js, which needs the plaintext sources in
+# private/ and the password. Neither exists on a runner, by design. That check
+# stays local.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Job-level so the step's `if` can read it: a step `if` can see the env
+    # context but not secrets, and job-level env is unambiguously in scope.
+    env:
+      CLIENT_NAME: ${{ secrets.CLIENT_NAME }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pages link Supernova with root-relative paths (/supernova-design-system/…),
+      # which only resolve when it sits inside the served directory — locally that
+      # is a git-ignored symlink, in production it is Supernova's own Pages deploy.
+      # Clone it in so the pages render the way a visitor actually sees them.
+      - name: Check out Supernova
+        uses: actions/checkout@v4
+        with:
+          repository: judylhwu-work/supernova-design-system
+          path: supernova-design-system
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Serve the site
+        # Same server the README tells you to use locally, so CI and local runs
+        # resolve root-relative paths identically. Backgrounded; later steps use it.
+        run: |
+          python3 -m http.server 8000 &
+          for i in $(seq 1 30); do
+            if curl -sf -o /dev/null http://localhost:8000/portfolio/; then
+              echo "serving on :8000"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "server never came up"
+          exit 1
+
+      - name: 404 router
+        run: node scripts/test-404-routes.js
+
+      - name: Page meta is up to date
+        # apply-meta.py must be a no-op on a clean tree. If it rewrites a page, the
+        # HTML was hand-edited instead of scripts/page-meta.json — and the next run
+        # would silently overwrite that edit.
+        #
+        # sitemap.xml is excluded deliberately: its <lastmod> comes from each file's
+        # mtime, and a fresh checkout sets every mtime to the time of this run, so it
+        # would always differ here for a reason unrelated to the change.
+        run: |
+          python3 scripts/apply-meta.py
+          git diff --exit-code -- '*.html' robots.txt
+
+      - name: Every page loads and works
+        # Loads each page in a real browser: no broken images, no console errors, no
+        # failed requests, and every case-study lightbox still opens its full-size
+        # image. The script falls back Chrome -> Chromium, or honours CHROME_PATH.
+        run: npm run check
+
+      # Skipped automatically unless the CLIENT_NAME secret is set. This repo is
+      # public and so is the StaticCrypt unlock page, so the NDA client's name must
+      # not appear in any committed file. Only paths are printed, never the match,
+      # since these logs are public too.
+      - name: No client name in public files
+        env:
+          CLIENT_NAME: ${{ secrets.CLIENT_NAME }}
+        if: env.CLIENT_NAME != ''
+        run: |
+          hits=$(grep -ril --exclude-dir=node_modules \
+                           --exclude-dir=supernova-design-system \
+                           --exclude-dir=.git \
+                           -e "$CLIENT_NAME" . || true)
+          if [ -n "$hits" ]; then
+            echo "::error::client name appears in committed files:"
+            echo "$hits"
+            exit 1
+          fi
+          echo "no client name in committed files"

@@ -110,8 +110,28 @@ async function checkPage(browser, url, { nda = false } = {}) {
   return { url, problems, note };
 }
 
+// Locally this is the Chrome already on the machine. CI images vary in which
+// browser they ship and under what name, so fall back rather than assume:
+// CHROME_PATH wins if set, then Chrome, then Chromium.
+async function launchBrowser() {
+  if (process.env.CHROME_PATH) {
+    return chromium.launch({ executablePath: process.env.CHROME_PATH });
+  }
+  for (const channel of ['chrome', 'chromium']) {
+    try {
+      return await chromium.launch({ channel });
+    } catch (e) {
+      if (channel === 'chromium') {
+        throw new Error(
+          'no Chrome or Chromium found. Set CHROME_PATH to a browser binary.\n' + e.message
+        );
+      }
+    }
+  }
+}
+
 (async () => {
-  const browser = await chromium.launch({ channel: 'chrome' });
+  const browser = await launchBrowser();
   const results = [];
 
   try {
