@@ -23,7 +23,9 @@ assets/images/         Static image assets
 assets/images/projects/<slug>/  Case-study images — two WebP sizes each (see below)
 assets/og/             Generated 1200x630 social share cards, one per page
 scripts/page-meta.json Per-page SEO/social copy (single source of truth)
-scripts/apply-meta.py  Injects that meta into each page
+scripts/apply-meta.py  Injects that meta, plus the shared nav and head, into each page
+scripts/partials/      The shared nav and head markup, injected into every page
+scripts/check-tokens.js Fails if a --sn-* token the site uses no longer exists
 scripts/encrypt.sh     StaticCrypt build for the NDA case studies
 scripts/verify-gates.js Checks the encrypted pages still decrypt
 scripts/check-pages.js Loads every page in a real browser and checks it works
@@ -60,6 +62,39 @@ light product UI, so they must stay white in dark mode.
 
 To add one: drop the display and `-full` files into the project's folder using the next
 number, and point `src`/`data-full` at them.
+
+## Shared nav and head
+
+The nav and the `<head>` stylesheet/script tail are **generated into every page**, the same
+way the SEO block is. Edit `scripts/partials/nav.html` or `scripts/partials/head.html` and run
+`python3 scripts/apply-meta.py`; never edit the markup inside a page, because the next run
+overwrites it.
+
+```html
+  <!-- NAV — generated from scripts/partials/nav.html; edit there, not here -->
+  …
+  <!-- /NAV -->
+```
+
+Both blocks are delimited by marker pairs, and `apply-meta.py` finds them by **scanning for the
+markers** rather than by consulting `page-meta.json`. That matters: the nav also lives in
+`404.html`, in the readable sources under `private/projects/`, and in
+`scripts/staticrypt-template.html`, none of which the meta list covers. Before this, those were
+hand-copied — 18 copies of the same markup, where a missed copy drifted silently.
+
+Two things vary per page and are filled in, so the partials stay plain markup:
+
+- **`nav-active`** goes on the link matching the page's section. Every case study — published,
+  private source, or gate template — counts as Portfolio; `404.html` gets none.
+- **`{{PROJECT_CSS}}`** in the head partial becomes `/project.css` on project pages and is
+  dropped elsewhere. It sits between `style.css` and the Supernova tokens deliberately: that is
+  where it was before, and moving it would change the cascade.
+
+Anything one page needs on top of the shared head — the 404 route table, StaticCrypt's
+no-cache meta — goes *after* the closing marker.
+
+Note that `encrypt.sh` treats the partials as staleness inputs, so editing one re-encrypts the
+protected pages on the next commit and their gates pick the change up too.
 
 ## Design tokens
 

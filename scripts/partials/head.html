@@ -1,0 +1,30 @@
+<!-- Shared <head> tail: fonts, stylesheets, and the theme scripts every page loads.
+     Injected by scripts/apply-meta.py between the HEAD markers. Edit here, never
+     in a page.
+
+     Order matters and matches what the pages carried before this was extracted:
+     style.css, then project.css where it applies, then Supernova tokens, then the
+     components. {{PROJECT_CSS}} is filled in on project pages and removed
+     elsewhere — it sits here, not after the tokens, so the cascade is unchanged.
+
+     Anything a single page needs on top of this (the 404 route table, StaticCrypt's
+     no-cache meta) goes after the closing marker, not in here.
+
+     Fonts load as a <link> rather than an @import inside style.css: an @import
+     cannot start until style.css has been fetched and parsed, so the fonts queued
+     behind it. Inter and Karla are not optional — Supernova's type tokens name them
+     via --sn-font-family-*, and Supernova ships no @font-face of its own, so this is
+     what loads them for the whole system. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="/style.css">
+{{PROJECT_CSS}}
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.typography.css">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.light.css" id="sn-tokens-light">
+  <link rel="stylesheet" href="/supernova-design-system/dist/tokens.dark.css" id="sn-tokens-dark" disabled>
+  <link rel="stylesheet" href="/supernova-design-system/components/button/button.css">
+  <link rel="stylesheet" href="/supernova-design-system/components/badge/badge.css">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t==='dark'||(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.setAttribute('data-theme','dark');document.getElementById('sn-tokens-dark').disabled=false;document.getElementById('sn-tokens-light').disabled=true;}})();</script>
+  <script src="/theme.js"></script>

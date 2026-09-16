@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Outfit:wght@400;500;600;700&family=Public+Sans:wght@400;600;700&display=swap');
+/* Fonts are loaded by a <link> in scripts/partials/head.html, not from here. An
+   @import cannot start downloading until this file has been fetched and parsed,
+   so the fonts used to queue behind it. Outfit was dropped in the same change —
+   it was imported but never used in a single declaration. */
 
 /* ── Reset & Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

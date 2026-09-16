@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 """
-Inject (or refresh) the SEO/social meta block in each page, from scripts/page-meta.json.
+Inject (or refresh) the generated blocks in each page.
 
-Idempotent: the block is delimited by MARK_START/MARK_END, so re-running replaces
-it rather than stacking duplicates. encrypt.sh calls this for the protected pages
-after StaticCrypt regenerates them from the shared template.
+Three things are generated here, each delimited by its own marker pair so that
+re-running replaces the block rather than stacking duplicates:
+
+  SEO   the social/meta block, from scripts/page-meta.json
+  NAV   the site nav, from scripts/partials/nav.html
+  HEAD  the shared stylesheet/script tail, from scripts/partials/head.html
+
+encrypt.sh calls this for the protected pages after StaticCrypt regenerates them
+from the shared template.
+
+The nav and head blocks reach more files than the meta does: page-meta.json lists
+published pages, but 404.html, the readable sources in private/projects/, and
+scripts/staticrypt-template.html carry the same shell. Those are found by scanning
+for the markers, so a new page is covered the moment it has them.
 
 Usage:
-  scripts/apply-meta.py              # all pages listed in page-meta.json
+  scripts/apply-meta.py              # all pages listed in page-meta.json, plus
+                                     # every other file carrying shell markers
   scripts/apply-meta.py a/index.html # only these paths (repo-relative)
 """
 import datetime
@@ -34,6 +46,113 @@ TITLE_RE = re.compile(r"^[ \t]*<title>.*?</title>[ \t]*\n", re.MULTILINE | re.DO
 
 def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+# --- shared shell: nav + head ------------------------------------------------
+#
+# These blocks used to be hand-copied into all 18 pages, so a nav change meant 18
+# edits and any missed copy drifted silently.
+
+PARTIALS = ROOT / "scripts" / "partials"
+
+NAV_START = "  <!-- NAV — generated from scripts/partials/nav.html; edit there, not here -->"
+NAV_END = "  <!-- /NAV -->"
+HEAD_START = "  <!-- HEAD — generated from scripts/partials/head.html; edit there, not here -->"
+HEAD_END = "  <!-- /HEAD -->"
+
+
+def _block_re(start, end):
+    return re.compile(re.escape(start) + r".*?" + re.escape(end) + r"\n", re.DOTALL)
+
+
+NAV_RE = _block_re(NAV_START, NAV_END)
+HEAD_RE = _block_re(HEAD_START, HEAD_END)
+
+# The partials open with a comment explaining how to edit them. That is guidance
+# for whoever opens the file, not markup for 18 pages to carry.
+LEADING_COMMENT_RE = re.compile(r"\A\s*<!--.*?-->\n", re.DOTALL)
+
+PROJECT_CSS_LINE = '  <link rel="stylesheet" href="/project.css">'
+
+
+def partial(name):
+    text = (PARTIALS / name).read_text()
+    return LEADING_COMMENT_RE.sub("", text).rstrip("\n")
+
+
+def active_link(rel):
+    """Which nav link is marked current, decided by where the page lives.
+
+    Every case study — published, private source, or the gate template — sits
+    under Portfolio. 404 belongs to no section, so nothing is marked.
+    """
+    if rel.startswith("about/"):
+        return "/about/"
+    if rel.startswith("resume/"):
+        return "/resume/"
+    if rel == "404.html":
+        return None
+    return "/portfolio/"
+
+
+def wants_project_css(rel):
+    return (
+        rel.startswith("projects/")
+        or rel.startswith("private/projects/")
+        or rel == "scripts/staticrypt-template.html"
+    )
+
+
+def nav_block(rel):
+    nav = partial("nav.html")
+    active = active_link(rel)
+    if active:
+        # Only the list links look like this; the logo carries a class already,
+        # so it is never the one marked.
+        nav = nav.replace(
+            f'<a href="{active}"><span>',
+            f'<a href="{active}" class="nav-active"><span>',
+            1,
+        )
+    return f"{NAV_START}\n{nav}\n{NAV_END}\n"
+
+
+def head_block(rel):
+    head = partial("head.html")
+    if wants_project_css(rel):
+        head = head.replace("{{PROJECT_CSS}}", PROJECT_CSS_LINE)
+    else:
+        head = re.sub(r"[ \t]*\{\{PROJECT_CSS\}\}\n", "", head)
+    return f"{HEAD_START}\n{head}\n{HEAD_END}\n"
+
+
+def apply_shell(rel):
+    """Refresh the NAV and HEAD blocks in one page. A page without the markers is
+    left alone — index.html is a redirect stub with no nav and no stylesheets."""
+    path = ROOT / rel
+    if not path.exists():
+        return
+    original = html = path.read_text()
+    if NAV_RE.search(html):
+        html = NAV_RE.sub(lambda _: nav_block(rel), html, count=1)
+    if HEAD_RE.search(html):
+        html = HEAD_RE.sub(lambda _: head_block(rel), html, count=1)
+    if html != original:
+        path.write_text(html)
+        print(f"  shell applied: {rel}")
+
+
+def shell_targets():
+    """Every file carrying shell markers, including those page-meta.json omits."""
+    out = []
+    for path in sorted(ROOT.rglob("*.html")):
+        rel = path.relative_to(ROOT).as_posix()
+        if rel.startswith(("node_modules/", "supernova-design-system/")):
+            continue
+        text = path.read_text()
+        if NAV_START in text or HEAD_START in text:
+            out.append(rel)
+    return out
 
 
 def build(info):
@@ -205,10 +324,16 @@ def main():
             ok = False
             continue
         ok = apply(rel, info) and ok
+        apply_shell(rel)
 
     # Only on a full run — encrypt.sh calls this per-file and shouldn't rewrite
     # the sitemap four times mid-build.
     if not sys.argv[1:]:
+        # The shell reaches files the meta list does not cover: 404.html, the
+        # readable NDA sources, and the StaticCrypt template.
+        for rel in shell_targets():
+            if rel not in META["pages"]:
+                apply_shell(rel)
         write_site_files()
         write_404_routes()
     return 0 if ok else 1
