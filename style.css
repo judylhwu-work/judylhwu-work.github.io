@@ -23,6 +23,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Always show the track, not just reserve its width: without this a page
+     shorter than the window has no scrollbar at all, so /about/ and /resume/
+     looked different from each other depending on window height. */
+  overflow-y: scroll;
   scrollbar-gutter: stable;
 }
 
@@ -651,6 +655,7 @@ main {
 #about-page {
   background: var(--sn-surface-3);
   padding: 80px max(40px, calc((100% - 960px) / 2));
+  min-height: calc(100vh - var(--nav-offset));
 }
 
 /* ── 404 ──
@@ -809,6 +814,7 @@ main {
 #resume-page {
   background: var(--sn-surface-3);
   padding: 80px max(40px, calc((100% - 960px) / 2));
+  min-height: calc(100vh - var(--nav-offset));
 }
 
 .resume-layout {
