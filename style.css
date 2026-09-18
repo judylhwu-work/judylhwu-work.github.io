@@ -609,28 +609,25 @@ main {
   overflow: hidden;
 }
 
-/* "Under Construction" badge overlaid on the thumbnail — centered, doubled,
-   frosted (20%-opacity background + backdrop blur) */
-/* Higher specificity (.project-card-right …) so the size overrides beat .sn-badge. */
-.project-card-right .card-status-badge {
-  position: absolute;
-  inset: 0;
-  margin: auto;               /* center both axes without a transform */
-  width: fit-content;
-  height: 24px;               /* 120% of the 20px base */
-  padding: 0 calc(var(--sn-spacing-2xs) * 1.2);
-  font-size: 12px;            /* 120% of the 10px base */
-  line-height: 24px;
-  border-radius: calc(var(--sn-radius-less-rounded) * 1.2);
-  z-index: 1;
-}
+/* The "Under Construction" badge used to be overlaid on the thumbnail at 120%
+   size. Figma puts it at the top of the left column instead, above the title and
+   at the base .sn-badge size, so it now lives in .card-badge-stack and needs no
+   overrides here. */
 
+/* Figma sizes the artwork deliberately rather than letting it fill the panel:
+   the desktop mockups sit at ~54% of the card's height and the phone mockups at
+   ~44%. Capping by height keeps the nine cards consistent — with max-height:100%
+   each PNG grew to its own intrinsic size, ranging from 64% to 80%. */
 .project-card-right img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 130px;
   object-fit: contain;
   display: block;
   transition: transform 0.35s ease;
+}
+
+.card-art-phone .project-card-right img {
+  max-height: 106px;
 }
 
 .project-card:hover .project-card-right img {
@@ -1066,7 +1063,11 @@ main {
   .project-card-left,
   .project-card-right { padding: 24px; }
   .project-card-right { flex: 0 0 180px; height: 180px; }
-  .project-card-right img { width: 60%; height: auto; }
+  /* Sized by width here, so clear the desktop height caps — but back to 100%,
+     not none: height is auto at this width, so without a cap the artwork grows
+     past the 180px panel and gets clipped. */
+  .project-card-right img,
+  .card-art-phone .project-card-right img { width: 60%; height: auto; max-height: 100%; }
 
   /* Page card */
   .page-card      { padding: 32px 40px; }
