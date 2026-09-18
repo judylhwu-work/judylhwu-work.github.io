@@ -13,7 +13,9 @@
       "/home": "/portfolio/",
       "/index.html": "/portfolio/",
       "/projects/bark": "/projects/bark-app/",
-      "/projects/bark-app.html": "/projects/bark-app/"
+      "/projects/bark-app.html": "/projects/bark-app/",
+      "/projects/nova-to-claude/": "/projects/nova/",
+      "/projects/nova-to-claude": "/projects/nova/"
     },
     "fallback": "/portfolio/"
   },
@@ -85,9 +87,9 @@
     "projects/nova/index.html": {
       "url": "/projects/nova/",
       "title": "Nova Design System — Judy Wu",
-      "desc": "Transformed a fragmented component library into a scalable, token-based design system adopted across an entire product org. Password-protected case study.",
+      "desc": "Transformed a fragmented component library into a scalable, token-based design system adopted across an entire product org, then made it AI-native with two internal design tools built on top. Password-protected case study.",
       "image": "nova",
-      "alt": "Nova Design System case study — a token-based design system adopted org-wide"
+      "alt": "Nova Design System case study — a token-based design system adopted org-wide, and the AI tools built on it"
     },
     "projects/smart-huddles/index.html": {
       "url": "/projects/smart-huddles/",
@@ -102,13 +104,6 @@
       "desc": "A single source of truth for metric definitions across every surface. Define once, apply everywhere. Password-protected case study.",
       "image": "definitions",
       "alt": "Definitions case study — a single source of truth for metric definitions"
-    },
-    "projects/nova-to-claude/index.html": {
-      "url": "/projects/nova-to-claude/",
-      "title": "Nova Design System: Figma to Claude Code — Judy Wu",
-      "desc": "Nova design system goes AI-native — plus two internal design tools built on top of it: Ask-Nova and HTML Editor. Password-protected case study.",
-      "image": "nova-to-claude",
-      "alt": "Nova: Figma to Claude Code case study — an AI-native design system"
     }
   }
 }

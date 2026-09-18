@@ -539,11 +539,10 @@ main {
 
 /* Thumbnail tints — Figma "_Card content" (363:53415), verified against each
    card's literal fills. Cards whose Figma fills are rgba(base, α) use that base
-   verbatim; nova-to-claude / smart-huddles / definitions are authored in Figma as
+   verbatim; smart-huddles / definitions are authored in Figma as
    a SOLID right panel + 0.2 left, so their base here is derived to make
    base @ 0.5 reproduce that solid colour (left alpha then resolves to 0.1). */
 .thumb-nova           { --thumb-rgb: 115, 156, 252; }
-.thumb-nova-to-claude { --thumb-rgb: 169, 137, 253; }
 .thumb-smart-huddles  { --thumb-rgb: 77, 211, 151; }
 .thumb-definitions    { --thumb-rgb: 251, 189, 57; }
 .thumb-airrobe        { --thumb-rgb: 255, 149, 121; }
@@ -760,6 +759,18 @@ main {
   height: 1px;
   background: var(--sn-border-color-1);
   flex-shrink: 0;
+}
+
+/* TEMPORARY. Marks the seam where two case studies were merged into one page,
+   so the join is obvious while the halves are still being rewritten. Heavier
+   than .page-divider on purpose — delete this rule and its markup once the page
+   reads as a single piece. */
+.part-divider {
+  height: 4px;
+  background: var(--sn-border-color-brand-action);
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin: 16px 0;
 }
 
 .about-section {

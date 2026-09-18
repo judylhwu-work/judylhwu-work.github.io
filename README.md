@@ -174,7 +174,7 @@ recovered on the client. `404.html` carries a small router that, in order:
 1. matches an **exact alias** — a URL we know was renamed (e.g. `/work.html` → `/portfolio/`)
 2. matches an **exact route** differing only in case, trailing slash or `.html`
 3. **fuzzy-matches** the slug (Levenshtein, plus a prefix bonus so a truncated
-   `/projects/nova-to/` resolves to `nova-to-claude` rather than `nova`)
+   `/projects/smart-hud/` resolves to `smart-huddles` rather than a shorter name)
 4. falls back to `/portfolio/`
 
 Requests for missing *assets* (`.png`, `.css`, …) are left alone — bouncing those
@@ -191,7 +191,7 @@ node scripts/test-404-routes.js   # runs the real router from 404.html
 
 ## NDA-protected case studies
 
-The four NDA case studies (`nova`, `smart-huddles`, `definitions`, `nova-to-claude`) are **encrypted** with [StaticCrypt](https://github.com/robinmoisson/staticrypt), not just visually gated. Only ciphertext is ever served or committed — the readable content never reaches GitHub.
+The three NDA case studies (`nova`, `smart-huddles`, `definitions`) are **encrypted** with [StaticCrypt](https://github.com/robinmoisson/staticrypt), not just visually gated. (`nova-to-claude` was merged into `nova`; its URL redirects there via `_redirects.aliases`.) Only ciphertext is ever served or committed — the readable content never reaches GitHub.
 
 **How it fits together**
 

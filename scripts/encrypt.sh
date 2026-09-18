@@ -14,7 +14,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-SLUGS=(nova smart-huddles definitions nova-to-claude)
+SLUGS=(nova smart-huddles definitions)
 TEMPLATE="scripts/staticrypt-template.html"
 
 # resolve the password without committing it
