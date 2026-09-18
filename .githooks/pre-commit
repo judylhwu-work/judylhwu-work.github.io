@@ -12,8 +12,14 @@ if [ ! -d "$ROOT/private/projects" ]; then
 fi
 
 bash "$ROOT/scripts/encrypt.sh"
-git add "$ROOT/.staticrypt.json" \
-        "$ROOT/projects/nova/index.html" \
-        "$ROOT/projects/smart-huddles/index.html" \
-        "$ROOT/projects/definitions/index.html" \
-        "$ROOT/projects/nova-to-claude/index.html"
+
+# Stage exactly the pages encrypt.sh just wrote. The slug list is read from
+# encrypt.sh rather than repeated here: when nova-to-claude was merged away, a
+# second copy of the list still named it and aborted every commit. Staging all of
+# projects/ would avoid that too, but would sweep in edits to the public case
+# studies, which this hook has no business touching.
+SLUGS="$(sed -n 's/^SLUGS=(\(.*\))/\1/p' "$ROOT/scripts/encrypt.sh")"
+git add "$ROOT/.staticrypt.json"
+for slug in $SLUGS; do
+  [ -f "$ROOT/projects/$slug/index.html" ] && git add "$ROOT/projects/$slug/index.html"
+done

@@ -19,7 +19,7 @@ const codec = require(path.join(ROOT, "node_modules/staticrypt/lib/codec.js"));
 const cryptoEngine = require(path.join(ROOT, "node_modules/staticrypt/lib/cryptoEngine.js"));
 const { decode } = codec.init(cryptoEngine);
 
-const ALL_SLUGS = ["nova", "smart-huddles", "definitions", "nova-to-claude"];
+const ALL_SLUGS = ["nova", "smart-huddles", "definitions"];
 
 // `--quiet <slug>` makes this usable as a predicate: exit 0 only if that page
 // decrypts to its current source. encrypt.sh uses it to decide re-encryption,

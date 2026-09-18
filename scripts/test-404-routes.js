@@ -51,10 +51,16 @@ const cases = [
   ['/projects/gramcty/',                 '/projects/gramcity/'],
   ['/projects/windo/',                   '/projects/window/'],
   ['/projects/prendaa/',                 '/projects/prenda/'],
-  ['/projects/nova-to-clade/',           '/projects/nova-to-claude/'],
   ['/projects/definition/',              '/projects/definitions/'],
-  // truncation should prefer the longer name it prefixes
-  ['/projects/nova-to/',                 '/projects/nova-to-claude/'],
+  // the Figma-to-Claude case study was merged into /projects/nova/, so its URL
+  // and typos of it now land there
+  ['/projects/nova-to-claude/',          '/projects/nova/'],
+  ['/projects/nova-to/',                 '/projects/nova/'],
+  // A typo of the retired slug falls back to the landing page rather than to
+  // /projects/nova/: fuzzy matching runs against the live route table, and
+  // "nova-to-clade" is too far from "nova" to guess. The exact URL still
+  // redirects via the alias, which is the case that matters for shared links.
+  ['/projects/nova-to-clade/',           '/portfolio/'],
   ['/projects/bark/',                    '/projects/bark-app/'],
   // normalisation-only differences
   ['/PROJECTS/SMART-HUDDLES/',           '/projects/smart-huddles/'],
