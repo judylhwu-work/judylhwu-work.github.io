@@ -652,7 +652,7 @@ main {
 /* Secondary: text → yellow bar grows from left */
 /* ── About ── */
 #about-page {
-  background: var(--sn-surface-3);
+  background: var(--sn-surface-brand-pink-to-elevation-1);
   padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
@@ -662,7 +662,7 @@ main {
    card shell (same alignment contract, same 960px content width) and marks no
    nav item active. */
 #notfound-page {
-  background: var(--sn-surface-3);
+  background: var(--sn-surface-brand-pink-to-elevation-1);
   padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
@@ -823,7 +823,7 @@ main {
 
 /* ── Resume ── */
 #resume-page {
-  background: var(--sn-surface-3);
+  background: var(--sn-surface-brand-pink-to-elevation-1);
   padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
@@ -1133,7 +1133,7 @@ main {
                                          bar's lower edge, since content starts at --nav-offset,
                                          4px inside --nav-h) + 12px below — both persist when
                                          the bar is pinned */
-    background: var(--sn-surface-3);  /* matches every section bg; masks content when pinned */
+    background: var(--sn-surface-brand-pink-to-elevation-1);  /* matches every section bg; masks content when pinned */
   }
 
   /* Project pages have no action buttons; match the back-link -> content gap (12px)
@@ -1218,8 +1218,9 @@ main {
   --sn-surface-brand-pink-action-main: var(--sn-color-pink-60);       /* #FF459F */
 }
 
-/* Projects */
-[data-theme="dark"] #project-detail { background: var(--sn-surface-3); }
+/* Projects: no dark override. The page sits on the brand pink surface, which
+   resolves to elevation-none (#222328) in dark, and .page-card sits on surface-1
+   (#2B303B) — distinct, so the card keeps its edge without help. */
 
 
 /* Footer */

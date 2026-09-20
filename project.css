@@ -1,12 +1,12 @@
 /* ── Project page layout ── */
 #project-detail {
-  background: var(--sn-surface-3);
+  background: var(--sn-surface-brand-pink-to-elevation-1);
   padding: 24px max(40px, calc((100% - 960px) / 2));
 }
 
 /* ── Password gate ── */
 #project-gate {
-  background: var(--sn-surface-3);
+  background: var(--sn-surface-brand-pink-to-elevation-1);
   min-height: calc(100vh - var(--nav-offset));
   padding: 40px max(40px, calc((100% - 960px) / 2));
   display: flex;
@@ -586,21 +586,12 @@ img.zoomable:hover { opacity: 0.88; }
 }
 
 
-/* Figma puts the V2 project page on the pale pink elevation, not the grey V1
-   uses. Scoped to .case-v2 so the five older case studies keep their grey until
-   they are migrated — #project-detail sits outside .case-blocks, so the class
-   goes on the section itself. */
-#project-detail.case-v2 {
-  background: var(--sn-surface-brand-pink-to-elevation-1);
-}
-
-/* Dark mode: the pink token is "pink -> elevation-1", so in dark it resolves to
-   #222328 — the exact colour of .page-card. Page and card would merge and the
-   card would lose its edge. Figma only specifies the light page, so dark falls
-   back to the same surface the V1 case studies use. */
-[data-theme="dark"] #project-detail.case-v2 {
-  background: var(--sn-surface-3);
-}
+/* The pale pink elevation now backs every page, not just V2, so it lives on
+   #project-detail at the top of this file rather than on .case-v2 here. The
+   dark-mode override that used to sit alongside it is gone too: it existed only
+   because Supernova's dark surface-1 was #222328, identical to what the pink
+   token resolves to in dark, so page and card merged. Supernova now carries
+   Figma's #2B303B for surface-1 and the two separate on their own. */
 
 /* Mobile stacks the image pairs — Figma "Project page / V1 / mobile" (491:48696)
    is 436px wide and draws them 1-up. The shared V1 rule only stacks at <=480px,
