@@ -1,7 +1,7 @@
 /* ── Project page layout ── */
 #project-detail {
   background: var(--sn-surface-3);
-  padding: 80px max(40px, calc((100% - 960px) / 2));
+  padding: 24px max(40px, calc((100% - 960px) / 2));
 }
 
 /* ── Password gate ── */
@@ -288,6 +288,10 @@ img.zoomable:hover { opacity: 0.88; }
   border-radius: 8px;
   display: block;
   background: var(--sn-color-gray-0);   /* transparent PNGs must not reveal the scrim */
+  /* Screenshots of light UI end in white, so the image's own edge disappears into
+     its white backing and the border baked into the shot looks cut off. An invert
+     border draws the boundary the artwork can't. */
+  border: 1px solid var(--sn-border-color-invert);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
   transition: opacity 0.15s ease;
 }
@@ -367,7 +371,7 @@ img.zoomable:hover { opacity: 0.88; }
 
 /* ── Responsive ── */
 @media (max-width: 1040px) {
-  #project-detail { padding: 80px 40px; }
+  #project-detail { padding: 24px 40px; }
 }
 
 @media (max-width: 768px) {
@@ -375,9 +379,10 @@ img.zoomable:hover { opacity: 0.88; }
   .project-image-grid.cols-3 { grid-template-columns: 1fr 1fr; }
 }
 
-/* Mobile: 16px top/sides, 40px bottom section padding (matches resume/about at <=640px) */
+/* Mobile: Figma "Project page / V1 / mobile" (491:48696) puts the page frame at
+   16px top and 24px sides; bottom stays 40px to match resume/about at <=640px. */
 @media (max-width: 640px) {
-  #project-detail { padding: 16px 16px 40px; }
+  #project-detail { padding: 16px 24px 40px; }
 }
 
 @media (max-width: 480px) {
@@ -595,4 +600,12 @@ img.zoomable:hover { opacity: 0.88; }
    back to the same surface the V1 case studies use. */
 [data-theme="dark"] #project-detail.case-v2 {
   background: var(--sn-surface-3);
+}
+
+/* Mobile stacks the image pairs — Figma "Project page / V1 / mobile" (491:48696)
+   is 436px wide and draws them 1-up. The shared V1 rule only stacks at <=480px,
+   which would leave pairs side by side across 481-640. Scoped to .case-blocks so
+   the five V1 case studies keep their current threshold until they migrate. */
+@media (max-width: 640px) {
+  .case-blocks .project-image-grid.cols-2 { grid-template-columns: 1fr; }
 }
