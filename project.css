@@ -384,3 +384,215 @@ img.zoomable:hover { opacity: 0.88; }
   .project-image-grid.cols-3,
   .project-image-grid.cols-2 { grid-template-columns: 1fr; }
 }
+
+
+/* ── Case-study template V2 (Figma "Project page / V1", 403:13840) ──
+   Introduced on the Nova page. The older case studies still use the V1 rules
+   above; these are deliberately separate class names so restyling Nova does not
+   reflow five long pages before we have looked at them. Fold the V1 rules into
+   these once every case study is migrated. */
+
+/* Tag row: status pill, hairline divider, then category pills. */
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;                      /* Figma spacing/xs */
+}
+
+.case-tags .case-tag-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--sn-border-color-1);
+  flex-shrink: 0;
+}
+
+/* Meta callouts — Figma boxes these where V1 left them as bare label + value. */
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;                     /* Figma spacing/md */
+}
+
+.case-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;                      /* Figma spacing/minimal */
+  padding: 12px 16px 8px;        /* Figma pt-sm / px-md / pb-xs */
+  border: 1px solid var(--sn-border-color-invert);
+  border-radius: var(--sn-radius-less-rounded);
+  background: var(--sn-surface-brand-green-1);
+}
+
+.case-meta-label {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--sn-text-brand-green-dark);
+}
+
+.case-meta-value {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sn-text-2);
+}
+
+/* Section = small label over body copy. Note the label green is seafoam/90,
+   a shade darker than the callout label's green — that difference is in the
+   design, not a slip. */
+.case-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.case-section-label {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--sn-scale-palette-seafoam-90);
+}
+
+/* :not(.case-section-label) because the label is a <p> too — without it this
+   rule ties on specificity, comes later, and quietly flattens every section
+   label back to 14px body text. */
+.case-section p:not(.case-section-label) {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sn-text-1);
+}
+
+.case-section p + p {
+  margin-top: 8px;
+}
+
+/* The page splits into parts, each with its own heading and a rule above it. */
+.case-part-heading {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--sn-scale-palette-seafoam-90);
+}
+
+.case-part {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Figma sets the page's own rhythm at 32px between blocks inside a part. */
+.case-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (max-width: 640px) {
+  .case-meta { gap: 8px; }
+  .case-meta-item { flex: 1 1 140px; }
+}
+
+
+/* Header type for the V2 template. Figma puts the title in seafoam green and
+   the summary at 16/24 semibold in body colour — V1 had a near-black title and
+   a lighter, larger regular summary. Scoped to .case-blocks so the five V1
+   case studies keep their current header until they are migrated. */
+.case-blocks .project-header h1 {
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--sn-scale-palette-seafoam-90);
+  margin: 0;
+}
+
+.case-blocks .project-summary {
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sn-text-1);
+}
+
+/* Figma stacks title and summary with no gap, then 16px to the next block. */
+.case-blocks .project-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* The NDA line is plain 12/18 text in the design, not the bordered callout V1
+   uses. The lock is a glyph inline with the sentence. */
+.case-blocks .nda-note {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-family: 'Public Sans', sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sn-text-1);
+}
+
+.case-blocks .nda-note svg {
+  width: 12px;
+  height: 12px;
+  align-self: center;
+}
+
+/* Card padding and rhythm: 56/64 inside, 32px between parts, 16px within. */
+.case-blocks .project-image-grid {
+  gap: 8px;
+}
+
+/* Square corners. V1 rounds case-study images (8px on .project-image, 6px in
+   the grid); the Figma template draws them with none, so V2 squares both. */
+.case-blocks .project-image,
+.case-blocks .project-image-grid img {
+  border-radius: 0;
+}
+
+/* The Ask-nova pair carries a 1px border in the design — border/color/2. The
+   pair above it deliberately has none, so this is opt-in per grid. */
+.case-blocks .project-image-grid.bordered img {
+  border: 1px solid var(--sn-border-color-2);
+}
+
+
+/* Figma puts the V2 project page on the pale pink elevation, not the grey V1
+   uses. Scoped to .case-v2 so the five older case studies keep their grey until
+   they are migrated — #project-detail sits outside .case-blocks, so the class
+   goes on the section itself. */
+#project-detail.case-v2 {
+  background: var(--sn-surface-brand-pink-to-elevation-1);
+}
+
+/* Dark mode: the pink token is "pink -> elevation-1", so in dark it resolves to
+   #222328 — the exact colour of .page-card. Page and card would merge and the
+   card would lose its edge. Figma only specifies the light page, so dark falls
+   back to the same surface the V1 case studies use. */
+[data-theme="dark"] #project-detail.case-v2 {
+  background: var(--sn-surface-3);
+}
