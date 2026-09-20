@@ -652,8 +652,8 @@ main {
 /* Secondary: text → yellow bar grows from left */
 /* ── About ── */
 #about-page {
-  background: var(--sn-surface-3);
-  padding: 80px max(40px, calc((100% - 960px) / 2));
+  background: var(--sn-surface-brand-pink-to-elevation-1);
+  padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
 
@@ -662,8 +662,8 @@ main {
    card shell (same alignment contract, same 960px content width) and marks no
    nav item active. */
 #notfound-page {
-  background: var(--sn-surface-3);
-  padding: 80px max(40px, calc((100% - 960px) / 2));
+  background: var(--sn-surface-brand-pink-to-elevation-1);
+  padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
 
@@ -823,8 +823,8 @@ main {
 
 /* ── Resume ── */
 #resume-page {
-  background: var(--sn-surface-3);
-  padding: 80px max(40px, calc((100% - 960px) / 2));
+  background: var(--sn-surface-brand-pink-to-elevation-1);
+  padding: 56px max(40px, calc((100% - 960px) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
 
@@ -1064,13 +1064,20 @@ main {
 @media (max-width: 1040px) {
   nav              { padding: 12px 40px; }
   #hero            { padding: 64px 40px; }
+  /* #projects keeps its larger top: the landing page is deliberately airier than
+     the content pages, which sit at 56px (project pages at 24px). */
   #projects        { padding: 80px 40px 120px; }
-  #resume-page     { padding: 80px 40px; }
-  #about-page      { padding: 80px 40px; }
+  #resume-page     { padding: 56px 40px; }
+  #about-page      { padding: 56px 40px; }
+
+  /* Card padding for the tablet design — Figma "Project page / V1 / tablet"
+     (489:48330) is 804px wide, so this has to live in the 1040px block rather
+     than the 768px one below, or the frame's own width would miss it and render
+     the desktop 56/64. The <=640px rule still wins on mobile, being later. */
+  .page-card       { padding: 40px 48px; }
 }
 
 @media (max-width: 768px) {
-  .nav-sep, .nav-name { display: none; }
   .hero-hello  { font-size: 36px; }
   .hero-intro  { font-size: 20px; }
   .hero-card   { padding: 40px; }
@@ -1087,7 +1094,6 @@ main {
   .card-art-phone .project-card-right img { width: 60%; height: auto; max-height: 100%; }
 
   /* Page card */
-  .page-card      { padding: 32px 40px; }
   .resume-inner   { gap: 16px; }
   .page-title-line     { font-size: 16px; }
   .resume-section-label { font-size: 14px; }
@@ -1127,12 +1133,22 @@ main {
                                          bar's lower edge, since content starts at --nav-offset,
                                          4px inside --nav-h) + 12px below — both persist when
                                          the bar is pinned */
-    background: var(--sn-surface-3);  /* matches every section bg; masks content when pinned */
+    background: var(--sn-surface-brand-pink-to-elevation-1);  /* matches every section bg; masks content when pinned */
   }
 
   /* Project pages have no action buttons; match the back-link -> content gap (12px)
      to the button -> content gap on resume/about so the spacing is consistent. */
   #project-detail .back-link { margin-bottom: 12px; }
+}
+
+/* ─ Nav name: hidden only once it genuinely stops fitting ─
+   Measured, not guessed. With "| Judy Wu" shown, the logo keeps a full 24px
+   gutter (one nav gap unit) from the links down to 572px; below that the gutter
+   closes steadily and the two halves touch around 546px. The previous cutoff was
+   768px, which dropped the name ~200px early — the 804px tablet frame has room
+   for it several times over. */
+@media (max-width: 571px) {
+  .nav-sep, .nav-name { display: none; }
 }
 
 /* ─ Mobile: 480px ─
@@ -1146,7 +1162,8 @@ main {
   /* #hero / #projects mobile padding now starts at <=640px (see that block),
      as do #resume-page / #about-page. */
 
-  .page-card   { padding: 24px; }
+  /* Figma "Project page / V1 / mobile" (491:48696): card padding 16px / 24px. */
+  .page-card   { padding: 16px 24px; }
 
   .hero-card   { padding: 24px; }
   .hero-hello  { font-size: 28px; }
@@ -1201,8 +1218,9 @@ main {
   --sn-surface-brand-pink-action-main: var(--sn-color-pink-60);       /* #FF459F */
 }
 
-/* Projects */
-[data-theme="dark"] #project-detail { background: var(--sn-surface-3); }
+/* Projects: no dark override. The page sits on the brand pink surface, which
+   resolves to elevation-none (#222328) in dark, and .page-card sits on surface-1
+   (#2B303B) — distinct, so the card keeps its edge without help. */
 
 
 /* Footer */
