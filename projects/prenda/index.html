@@ -29,7 +29,7 @@
   <!-- HEAD — generated from scripts/partials/head.html; edit there, not here -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&family=DM+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/project.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
@@ -67,123 +67,161 @@
   <div class="page-content">
   <main id="main" tabindex="-1">
 
-    <section id="project-detail">
+    <section id="project-detail" class="case-v2">
 
-      <a href="/portfolio/#prenda" class="back-link">← Back to all projects</a>
+      <div class="project-nav">
+        <a href="/portfolio/#prenda" class="back-link"><span class="back-link-arrow" aria-hidden="true">←</span>Back to all projects</a>
+        <div class="project-pager" role="group" aria-label="More projects">
+          <a href="/projects/airrobe/" class="project-pager-link" aria-label="Previous project: AirRobe"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg><span class="project-pager-label">Previous project</span></a>
+          <span class="project-pager-divider" aria-hidden="true"></span>
+          <a href="/projects/window/" class="project-pager-link" aria-label="Next project: Window"><span class="project-pager-label">Next project</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
 
       <div class="resume-layout">
         <div class="page-card">
 
-          <div class="project-header">
-            <p class="project-cat-label">EdTech · Scheduling</p>
-            <div class="project-title-row">
-              <h1>Prenda</h1>
-              <a href="https://www.prenda.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit Prenda website">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-            <p class="project-summary">As one of Prenda's first UX design hires, I managed the entire Guides experience from sign-up to running their own microschools — leading two major projects that saved guides 4 hours per week and helped restructure how they were paid.</p>
-          </div>
+          <div class="case-blocks">
 
-          <div class="page-divider"></div>
+            <div class="case-header">
+              <div class="project-header">
+                <p class="case-eyebrow">
+                  <span>EdTech</span><span class="case-eyebrow-divider" aria-hidden="true"></span><span>Scheduling</span>
+                </p>
+                <div class="project-title-row">
+                  <h1>Prenda</h1>
+                  <a href="https://www.prenda.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit Prenda website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+                <p class="project-summary">As one of Prenda's first UX design hires, I managed the entire Guides experience from sign-up to running their own microschools — leading two major projects that saved guides 4 hours per week and helped restructure how they were paid.</p>
+              </div>
 
-          <div class="project-meta">
-            <div class="meta-item">
-              <span class="meta-label">Role</span>
-              <span>User Experience Designer (4th hire)</span>
+              <div class="case-meta-scroll" role="region" aria-label="Project details" tabindex="0">
+              <dl class="case-meta">
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Role</dt>
+                  <dd class="case-meta-value">Design lead</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Duration</dt>
+                  <dd class="case-meta-value">Apr - Aug ‘21</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Team</dt>
+                  <dd class="case-meta-value">Product, Tech leads</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Tools</dt>
+                  <dd class="case-meta-value">Figma, Dscout, Optimal Workshop, Fullstory</dd>
+                </div>
+              </dl>
+              </div>
             </div>
-            <div class="meta-item">
-              <span class="meta-label">Duration</span>
-              <span>4 months (2021)</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Team</span>
-              <span>Product Manager, Lead &amp; Senior Software Engineers</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Tools</span>
-              <span>Figma, Dscout, Optimal Workshop, Fullstory, Asana</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Deliverables</span>
-              <span>Hi-fi prototypes, Design documents, Wireframes, Card sorts</span>
-            </div>
-          </div>
 
-          <div class="page-divider"></div>
+            <div class="page-divider"></div>
 
-          <div class="project-body">
+            <div class="case-part">
+              <div class="case-section">
+                <h2 class="case-section-label">Overview</h2>
+                <p>Prenda is a tuition-free learning experience that empowers community members — called Guides — to lead world-class learning pods for K–8 students. Prenda provides support, tools, funds, and training to Guides who run microschools, typically from their own homes or local community centers. Certified teaching professionals from Prenda monitor student progress and help Guides respond to student educational needs.</p>
+                <p>As one of Prenda's first UX design hires, I managed the entire Guides experience from signing up to running their own microschools, overseeing all Guides' projects from start to finish. My two main projects were Global Navigation and Attendance.</p>
+              </div>
 
-            <div class="project-section">
-              <h2>Overview</h2>
-              <p>Prenda is a tuition-free learning experience that empowers community members — called Guides — to lead world-class learning pods for K–8 students. Prenda provides support, tools, funds, and training to Guides who run microschools, typically from their own homes or local community centers. Certified teaching professionals from Prenda monitor student progress and help Guides respond to student educational needs.</p>
-              <p>As one of Prenda's first UX design hires, I managed the entire Guides experience from signing up to running their own microschools, overseeing all Guides' projects from start to finish. My two main projects were Global Navigation and Attendance.</p>
               <img class="project-image" src="/assets/images/projects/prenda/01-prenda-dashboard-overview.webp" data-full="/assets/images/projects/prenda/01-prenda-dashboard-overview-full.webp" alt="Prenda dashboard overview" loading="lazy">
             </div>
 
-            <div class="project-section">
-              <h2>Project Global Navigation</h2>
-              <p>When I joined Prenda, the first iteration of Prenda World had already shipped — with two different navigation bars that users could choose between. The issue: these bars were structured differently. Some pages were available in the side navigation but not the top navigation, creating daily friction for Guides. This was a solo research study focused on restructuring Prenda World's global navigation with an emphasis on good information architecture.</p>
+            <div class="page-divider"></div>
 
-              <h3>Research plan</h3>
-              <ul>
-                <li>Identify strengths and weaknesses of each navigation type (side vs. top)</li>
-                <li>Gather insights via user survey</li>
-                <li>Run open and hybrid card sorts via Optimal Workshop to understand users' mental models</li>
-                <li>Conduct five rounds of usability testing with Guides</li>
-                <li>Launch a Diary Study on Dscout</li>
-                <li>Synthesize all data and present final recommendation to leadership</li>
-              </ul>
+            <div class="case-part">
+              <h2 class="case-part-heading">Project Global Navigation</h2>
 
-              <h3>Findings</h3>
-              <ul>
-                <li>Guides slightly preferred the side navigation bar over the top navigation bar in the initial survey</li>
-                <li>Through A/B testing, the side navigation bar enabled Guides to complete tasks more quickly than the top navigation bar</li>
-              </ul>
+              <div class="case-section">
+                <p>When I joined Prenda, the first iteration of Prenda World had already shipped — with two different navigation bars that users could choose between. The issue: these bars were structured differently. Some pages were available in the side navigation but not the top navigation, creating daily friction for Guides. This was a solo research study focused on restructuring Prenda World's global navigation with an emphasis on good information architecture.</p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Research plan</h3>
+                <ul>
+                  <li>Identify strengths and weaknesses of each navigation type (side vs. top)</li>
+                  <li>Gather insights via user survey</li>
+                  <li>Run open and hybrid card sorts via Optimal Workshop to understand users' mental models</li>
+                  <li>Conduct five rounds of usability testing with Guides</li>
+                  <li>Launch a Diary Study on Dscout</li>
+                  <li>Synthesize all data and present final recommendation to leadership</li>
+                </ul>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Findings</h3>
+                <ul>
+                  <li>Guides slightly preferred the side navigation bar over the top navigation bar in the initial survey</li>
+                  <li>Through A/B testing, the side navigation bar enabled Guides to complete tasks more quickly than the top navigation bar</li>
+                </ul>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/prenda/02-guide-navigation-preference-survey-results.webp" data-full="/assets/images/projects/prenda/02-guide-navigation-preference-survey-results-full.webp" alt="Guide navigation preference survey results" loading="lazy">
                 <img src="/assets/images/projects/prenda/03-a-b-testing-task-success-breakdown.webp" data-full="/assets/images/projects/prenda/03-a-b-testing-task-success-breakdown-full.webp" alt="A/B testing task success breakdown by navigation type" loading="lazy">
               </div>
 
-              <h3>Outcome</h3>
-              <p>Restructured Prenda World's information architecture and standardized the side navigation bar based on user preference and task completion data — reducing the confusion caused by two competing navigation structures.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Outcome</h3>
+                <p>Restructured Prenda World's information architecture and standardized the side navigation bar based on user preference and task completion data — reducing the confusion caused by two competing navigation structures.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/prenda/04-side-navigation-bar-redesign-before-and.webp" data-full="/assets/images/projects/prenda/04-side-navigation-bar-redesign-before-and-full.webp" alt="Side navigation bar redesign — before and after" loading="lazy">
             </div>
 
-            <div class="project-section">
-              <h2>Project Attendance</h2>
-              <p>This was a critical business need. Through initial user research — surveys and interviews — my PM and I discovered that the biggest driver of low Guide retention was how they were being paid: on a per-student-hours basis. If a student called in sick, the Guide wasn't paid for that day.</p>
+            <div class="page-divider"></div>
 
-              <h3>Pain point</h3>
-              <p>"When one of my students calls out sick, I don't get paid for those hours. This doesn't feel fair!"</p>
+            <div class="case-part">
+              <h2 class="case-part-heading">Project Attendance</h2>
 
-              <h3>Solution</h3>
-              <p>Redesigned the entire Attendance flow so Guides could log attendance quickly and accurately — marking students present, absent, late, or with early dismissal, and flagging absences as excused or unexcused. This enabled a structural shift: converting Guides from per-student-hours pay to per-student-enrollment pay. Retention rates improved.</p>
+              <div class="case-section">
+                <p>This was a critical business need. Through initial user research — surveys and interviews — my PM and I discovered that the biggest driver of low Guide retention was how they were being paid: on a per-student-hours basis. If a student called in sick, the Guide wasn't paid for that day.</p>
+              </div>
 
-              <h3>Business impact</h3>
-              <ul>
-                <li>Attendance reporting is no longer a manual process — Guide Pay Specialists can redirect their time and no longer work late nights processing attendance</li>
-                <li>Reporting is more accurate, with a detailed breakdown per student that the old Excel-based flow couldn't capture</li>
-              </ul>
+              <div class="case-section">
+                <h3 class="case-section-label">Pain point</h3>
+                <p>"When one of my students calls out sick, I don't get paid for those hours. This doesn't feel fair!"</p>
+              </div>
 
-              <h3>Outcomes</h3>
-              <ul>
-                <li>Guides saved ~4 hours per week in manual data entry</li>
-                <li>Internal employees saved up to 10 hours per week on attendance processing</li>
-                <li>Guide retention rates improved following the pay structure change</li>
-                <li>Guide sentiment increased significantly</li>
-              </ul>
+              <div class="case-section">
+                <h3 class="case-section-label">Solution</h3>
+                <p>Redesigned the entire Attendance flow so Guides could log attendance quickly and accurately — marking students present, absent, late, or with early dismissal, and flagging absences as excused or unexcused. This enabled a structural shift: converting Guides from per-student-hours pay to per-student-enrollment pay. Retention rates improved.</p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Business impact</h3>
+                <ul>
+                  <li>Attendance reporting is no longer a manual process — Guide Pay Specialists can redirect their time and no longer work late nights processing attendance</li>
+                  <li>Reporting is more accurate, with a detailed breakdown per student that the old Excel-based flow couldn't capture</li>
+                </ul>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Outcomes</h3>
+                <ul>
+                  <li>Guides saved ~4 hours per week in manual data entry</li>
+                  <li>Internal employees saved up to 10 hours per week on attendance processing</li>
+                  <li>Guide retention rates improved following the pay structure change</li>
+                  <li>Guide sentiment increased significantly</li>
+                </ul>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/prenda/05-attendance-feature-overview-showing-time-sav.webp" data-full="/assets/images/projects/prenda/05-attendance-feature-overview-showing-time-sav-full.webp" alt="Attendance feature overview showing time savings metrics" loading="lazy">
                 <img src="/assets/images/projects/prenda/06-attendance-feature-with-guide-sentiment-and.webp" data-full="/assets/images/projects/prenda/06-attendance-feature-with-guide-sentiment-and-full.webp" alt="Attendance feature with guide sentiment and testimonials" loading="lazy">
               </div>
 
-              <h3>Guide feedback</h3>
-              <p>"Love this new feature that the Prenda product team has built! I no longer have to keep a notepad on the side, or print out my own attendance sheets. Everything is also much more accurate now as well. Good job Prenda team!"</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Guide feedback</h3>
+                <p>"Love this new feature that the Prenda product team has built! I no longer have to keep a notepad on the side, or print out my own attendance sheets. Everything is also much more accurate now as well. Good job Prenda team!"</p>
+              </div>
             </div>
 
           </div>
-
         </div>
 
       </div>
