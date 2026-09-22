@@ -86,6 +86,7 @@ async function checkPage(browser, url, { nda = false } = {}) {
       const img = document.querySelector('.project-image, .project-image-grid img');
       img.scrollIntoView({ block: 'center' });
       img.click();
+      window.__expectedFull = img.getAttribute('data-full') || '';
     });
     await page.waitForTimeout(1200);
     const lb = await page.evaluate(() => {
@@ -93,11 +94,16 @@ async function checkPage(browser, url, { nda = false } = {}) {
       return {
         open: document.getElementById('lightbox').classList.contains('active'),
         src: img.getAttribute('src') || '',
+        expected: window.__expectedFull,
         naturalWidth: img.naturalWidth,
       };
     });
     if (!lb.open) problems.push('lightbox did not open');
-    if (!lb.src.endsWith('-full.webp')) problems.push('lightbox did not load the -full file: ' + lb.src);
+    // Public pages name the file (-full.webp). The NDA pages embed their images
+    // as data: URIs so they are encrypted with the page — there is no file name,
+    // so check the lightbox loaded exactly what the clicked image's data-full holds.
+    const loadedFull = lb.src.startsWith('data:') ? lb.src === lb.expected : lb.src.endsWith('-full.webp');
+    if (!loadedFull) problems.push('lightbox did not load the full-size image: ' + lb.src.slice(0, 80));
     if (lb.naturalWidth < 1000) problems.push(`lightbox image is only ${lb.naturalWidth}px wide`);
     note += ` lightbox=${lb.naturalWidth}px`;
   } else if (nda) {
