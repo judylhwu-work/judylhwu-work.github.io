@@ -18,6 +18,13 @@
      Every sticky offset, scroll-margin and full-height calc derives from these, so
      changing the nav's padding can't silently desync them again. */
   --nav-h: 60px;
+
+  /* Content column: Figma frames are 1280 wide with a 912px column (184px each
+     side). Every section's side padding is max(40px, (100% - this) / 2). */
+  --content-max: 912px;
+  /* Resume / About centre card + 8px + 56px action bar as one 936px group
+     (Figma: card at x172, bar at x1052 in a 1280 frame). */
+  --page-group-max: 936px;
   --nav-offset: calc(var(--nav-h) - 4px);
 }
 
@@ -140,9 +147,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px max(40px, calc((100% - 960px) / 2));
+  padding: 12px max(40px, calc((100% - var(--content-max)) / 2));
   background: var(--sn-surface-1);
-  border-bottom: 2px solid var(--sn-surface-brand-green-action-main);
+  border-bottom: 2px solid var(--sn-scale-palette-seafoam-80);   /* Figma Nav / V3: #1D732E light, #ACE5B8 dark */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 }
 
@@ -235,14 +242,18 @@ main {
 }
 
 /* ── Hero ── */
+/* Figma "Homepage / V3" desktop (441:104972), tablet (562:33016) and mobile
+   (562:36858): the hero fills the screen, the card hugs its content and sits
+   80px under the nav (24px on mobile), the chevron 40px below it, and 160px
+   of the brand surface below that. */
 #hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 32px;
+  justify-content: flex-start;
+  gap: 40px;
   min-height: calc(100vh - var(--nav-offset));
-  padding: 64px max(40px, calc((100% - 960px) / 2));
+  padding: 80px max(40px, calc((100% - var(--content-max)) / 2)) 160px;
   background: var(--sn-surface-brand-pink-to-elevation-1);
 }
 
@@ -251,7 +262,7 @@ main {
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  padding: 64px 80px;
+  padding: 64px 80px 80px;       /* Figma: 80 bottom, 64 top */
   background: var(--sn-surface-1);
 }
 
@@ -361,7 +372,8 @@ main {
 
 /* ── Projects ── */
 #projects {
-  padding: 120px max(40px, calc((100% - 960px) / 2)) 160px;
+  --projects-pad-top: 80px;       /* also the space above a card linked to by #id */
+  padding: var(--projects-pad-top) max(40px, calc((100% - var(--content-max)) / 2)) 240px;
   scroll-margin-top: var(--nav-offset);
   background: var(--sn-surface-1);
 }
@@ -375,13 +387,13 @@ main {
 .project-grid {
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 16px;                      /* Figma "Project list" item spacing */
   flex: 1;
   min-width: 0;
 }
 
 .more-projects {
-  /* Cards flow directly in .project-grid so they inherit its uniform 0px gap */
+  /* Cards flow directly in .project-grid so they inherit its uniform 16px gap */
   display: contents;
 }
 
@@ -406,34 +418,55 @@ main {
 }
 
 /* Divider between the toggle and the revealed cards — shown only when expanded */
+/* Figma "homepage / see more" (388:19059): the button sits 24px under the list,
+   then a divider and the extra cards, each 24px apart. The column already puts
+   16px between items, so these margins add the other 8. The toggle gets none
+   below it, so while collapsed it ends exactly 240px above the section end. */
 .more-projects-divider {
   height: 1px;
   background: var(--sn-border-color-1);
   flex-shrink: 0;
-  margin-bottom: 24px;
+  margin: 8px 0;
 }
 
 .more-projects-toggle {
   display: flex;
   justify-content: center;
-  margin: 24px 0;
+  margin-top: 8px;
 }
 
 /* ── Shared text links / buttons (single source of truth — prevents drift) ──
-   Used by .back-link and .project-website-link on project pages (which also
-   load this file) and by the portfolio "See more" toggle. */
+   Figma "Button" (text, green): label/sm-semibold at 24px tall for the project
+   page's back / previous / next row, label/lg-semibold at 48px for "See more".
+   .project-website-link is the icon-only external link in a project title. */
 .back-link,
-.project-website-link,
-.more-projects-btn {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 4px 8px;
-  border-radius: 6px;
+.project-pager-link,
+.more-projects-btn,
+.project-website-link {
+  font-family: var(--sn-font-family-body), sans-serif;
+  font-weight: 600;
   transition: background 0.15s;
 }
 
 .back-link,
+.project-pager-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 4px 6px;
+  border-radius: var(--sn-radius-less-rounded);
+  font-size: var(--sn-font-size-12);
+  line-height: 12px;
+}
+
+.project-website-link {
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.back-link,
+.project-pager-link,
 .more-projects-btn {
   color: var(--sn-text-brand-green-dark);
 }
@@ -443,16 +476,50 @@ main {
    color-mix keeps the base colour as the single source of truth — a hand-picked
    alpha token would be a second copy that can drift. */
 .back-link:hover,
+.project-pager-link:hover,
 .more-projects-btn:hover {
   background: color-mix(in srgb, var(--sn-text-brand-green-dark) 8%, transparent);
 }
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
+/* The arrow is a light-weight text glyph in Figma (Inter Light ←). */
+.back-link-arrow {
+  font-weight: 300;
+}
+
+/* Project page top row: back link left, previous | next right, wrapping on
+   narrow screens (Figma "Frame 3919"). 16px down to the banner / card. */
+.project-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  row-gap: 12px;
   margin-bottom: 16px;
-  margin-left: -8px;
+}
+
+.project-pager {
+  flex: 1 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* First / last project: the list doesn't wrap around, so that end of the pager
+   is a plain span marked aria-disabled — no link, no hover, disabled text. */
+.project-pager-link[aria-disabled="true"] {
+  color: var(--sn-text-disabled-main);
+  cursor: default;
+}
+
+.project-pager-link[aria-disabled="true"]:hover {
+  background: none;
+}
+
+.project-pager-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--sn-border-color-1);
 }
 
 .project-website-link {
@@ -467,33 +534,31 @@ main {
 .more-projects-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  height: 48px;
+  padding: 16px;
   border: none;
+  border-radius: var(--sn-radius-rounded);
   background: transparent;
   cursor: pointer;
-  font-size: 12px;            /* small size */
-}
-
-.more-projects-chevron {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.2s ease;
-}
-
-.more-projects-btn[aria-expanded="true"] .more-projects-chevron {
-  transform: rotate(180deg);
+  font-size: var(--sn-font-size-16);
+  line-height: 16px;
 }
 
 .project-card {
   --card-stroke: 4px;             /* Figma border/width/lg */
   --card-ring: 2px;               /* Figma border/width/focus */
   --thumb-alpha-l: 0.1;           /* left panel tint; a few cards override to 0.2 */
+  --thumb-alpha-r: 0.5;           /* right panel tint; smart-huddles / definitions are solid */
   position: relative;             /* anchors the ::after stroke */
   display: flex;
   height: 240px;
   background: var(--sn-surface-1);
   overflow: hidden;
-  scroll-margin-top: calc(var(--nav-offset) + 16px);
+  /* "Back to all projects" links to /portfolio/#<card>. Land the card with the
+     same space above it that the list has at its top, so the first card sits
+     exactly where the list begins and the rest match it. */
+  scroll-margin-top: calc(var(--nav-h) + var(--projects-pad-top));
 }
 
 /* Figma draws these as INSIDE strokes: the 4px sits on top of the card's own
@@ -538,13 +603,14 @@ main {
 }
 
 /* Thumbnail tints — Figma "_Card content" (363:53415), verified against each
-   card's literal fills. Cards whose Figma fills are rgba(base, α) use that base
-   verbatim; smart-huddles / definitions are authored in Figma as
-   a SOLID right panel + 0.2 left, so their base here is derived to make
-   base @ 0.5 reproduce that solid colour (left alpha then resolves to 0.1). */
+   card's literal fills, the same in both themes. Every panel composites over
+   --sn-surface-1, so dark mode tints the card dark on its own. smart-huddles and
+   definitions are a SOLID right panel + 0.2 left in Figma (593:89736 / 593:93578)
+   — use those bases verbatim rather than a darker base at 0.5, which only
+   matched over white and went muddy over the dark card. */
 .thumb-nova           { --thumb-rgb: 115, 156, 252; }
-.thumb-smart-huddles  { --thumb-rgb: 77, 211, 151; }
-.thumb-definitions    { --thumb-rgb: 251, 189, 57; }
+.thumb-smart-huddles  { --thumb-rgb: 166, 233, 203; --thumb-alpha-l: 0.2; --thumb-alpha-r: 1; }
+.thumb-definitions    { --thumb-rgb: 253, 222, 156; --thumb-alpha-l: 0.2; --thumb-alpha-r: 1; }
 .thumb-airrobe        { --thumb-rgb: 255, 149, 121; }
 .thumb-prenda         { --thumb-rgb: 142, 221, 255; --thumb-alpha-l: 0.2; }
 .thumb-window         { --thumb-rgb: 242, 202, 82;  --thumb-alpha-l: 0.2; }
@@ -559,7 +625,7 @@ main {
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  padding: 32px 40px;
+  padding: 32px 40px 32px 46px;   /* Figma "Left": text 46px in from the card edge */
   background: rgba(var(--thumb-rgb), var(--thumb-alpha-l));
 }
 
@@ -571,14 +637,22 @@ main {
   width: 100%;
 }
 
-/* Stacks a status badge (e.g. "Under Construction") on its own line above
-   the title row — used for in-progress NDA case studies. */
-.card-badge-stack {
+/* The card's status tag is Figma "Tag / V3" warning: warning/2 fill and text/1,
+   where Supernova's .sn-badge-warning uses warning/1 and text/black. Text/1
+   flips light in dark mode (#F4F4F5 on #958201), which text/black would not.
+   Two-class selector so it outranks the component CSS loaded after this file. */
+.project-card .card-status-badge {
+  background-color: var(--sn-surface-state-warning-2);
+  color: var(--sn-text-1);
+}
+
+/* Title with the status tag beside it (Figma "Frame 3915"): one row that wraps,
+   8px apart, vertically centred — used for in-progress NDA case studies. */
+.card-heading {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  width: 100%;
 }
 
 .card-label {
@@ -595,7 +669,7 @@ main {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--sn-text-3);
+  color: var(--sn-text-2);          /* Figma "_Card content" (363:53415) */
   width: 100%;
 }
 
@@ -608,14 +682,9 @@ main {
   align-items: center;
   justify-content: center;
   padding: 32px 40px;
-  background: rgba(var(--thumb-rgb), 0.5);
+  background: rgba(var(--thumb-rgb), var(--thumb-alpha-r));
   overflow: hidden;
 }
-
-/* The "Under Construction" badge used to be overlaid on the thumbnail at 120%
-   size. Figma puts it at the top of the left column instead, above the title and
-   at the base .sn-badge size, so it now lives in .card-badge-stack and needs no
-   overrides here. */
 
 /* Figma sizes the artwork deliberately rather than letting it fill the panel:
    the desktop mockups sit at ~54% of the card's height and the phone mockups at
@@ -653,17 +722,17 @@ main {
 /* ── About ── */
 #about-page {
   background: var(--sn-surface-brand-pink-to-elevation-1);
-  padding: 56px max(40px, calc((100% - 960px) / 2));
+  padding: 56px max(40px, calc((100% - var(--page-group-max)) / 2)) 80px;
   min-height: calc(100vh - var(--nav-offset));
 }
 
 /* ── 404 ──
    Served by GitHub Pages for any unmatched path, so it reuses the About page's
-   card shell (same alignment contract, same 960px content width) and marks no
+   card shell (same alignment contract, same content width) and marks no
    nav item active. */
 #notfound-page {
   background: var(--sn-surface-brand-pink-to-elevation-1);
-  padding: 56px max(40px, calc((100% - 960px) / 2));
+  padding: 56px max(40px, calc((100% - var(--content-max)) / 2));
   min-height: calc(100vh - var(--nav-offset));
 }
 
@@ -716,7 +785,7 @@ main {
   background: var(--sn-surface-1);
   flex: 1;
   min-width: 0;
-  padding: 56px 64px;
+  padding: 48px 64px;             /* Figma about / resume (363:53150, 374:41258) */
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -759,18 +828,6 @@ main {
   height: 1px;
   background: var(--sn-border-color-1);
   flex-shrink: 0;
-}
-
-/* TEMPORARY. Marks the seam where two case studies were merged into one page,
-   so the join is obvious while the halves are still being rewritten. Heavier
-   than .page-divider on purpose — delete this rule and its markup once the page
-   reads as a single piece. */
-.part-divider {
-  height: 4px;
-  background: var(--sn-border-color-brand-action);
-  border-radius: 2px;
-  flex-shrink: 0;
-  margin: 16px 0;
 }
 
 .about-section {
@@ -824,16 +881,18 @@ main {
 /* ── Resume ── */
 #resume-page {
   background: var(--sn-surface-brand-pink-to-elevation-1);
-  padding: 56px max(40px, calc((100% - 960px) / 2));
+  padding: 56px max(40px, calc((100% - var(--page-group-max)) / 2)) 80px;
   min-height: calc(100vh - var(--nav-offset));
 }
 
 .resume-layout {
   display: flex;
-  gap: 24px;
+  gap: 8px;
   align-items: flex-start;
 }
 
+/* Figma "Action bar": a white 56px strip hung off the card's right edge —
+   12px padding, 12px between buttons, right corners rounded 16. */
 .sticky-actions {
   display: flex;
   flex-direction: column;
@@ -841,7 +900,10 @@ main {
   position: sticky;
   top: 24px;
   flex-shrink: 0;
-  width: 32px;
+  width: 56px;
+  padding: 12px;
+  background: var(--sn-surface-1);
+  border-radius: 0 var(--sn-radius-more-rounded) var(--sn-radius-more-rounded) 0;
 }
 
 /* Figma "Action bar" (441:104117). The 32px box, full radius and green icon all
@@ -1059,16 +1121,16 @@ main {
 */
 
 /* ─ Tablet: 768px ─
-   calc((100% - 960px) / 2) goes negative below 1040px, so max() already gives 40px.
+   calc((100% - var(--content-max)) / 2) goes negative below 1040px, so max() already gives 40px.
    We set it explicitly on both nav and every section to be safe. */
 @media (max-width: 1040px) {
   nav              { padding: 12px 40px; }
-  #hero            { padding: 64px 40px; }
+  #hero            { padding: 80px 80px 160px; }   /* Figma tablet Viewport */
   /* #projects keeps its larger top: the landing page is deliberately airier than
      the content pages, which sit at 56px (project pages at 24px). */
-  #projects        { padding: 80px 40px 120px; }
-  #resume-page     { padding: 56px 40px; }
-  #about-page      { padding: 56px 40px; }
+  #projects        { --projects-pad-top: 40px; padding: var(--projects-pad-top) 40px 240px; }   /* Figma tablet */
+  #resume-page     { padding: 56px 40px 80px; }
+  #about-page      { padding: 56px 40px 80px; }
 
   /* Card padding for the tablet design — Figma "Project page / V1 / tablet"
      (489:48330) is 804px wide, so this has to live in the 1040px block rather
@@ -1078,21 +1140,6 @@ main {
 }
 
 @media (max-width: 768px) {
-  .hero-hello  { font-size: 36px; }
-  .hero-intro  { font-size: 20px; }
-  .hero-card   { padding: 40px; }
-
-  /* Stack card image below info on narrow screens */
-  .project-card { flex-direction: column; height: auto; }
-  .project-card-left,
-  .project-card-right { padding: 24px; }
-  .project-card-right { flex: 0 0 180px; height: 180px; }
-  /* Sized by width here, so clear the desktop height caps — but back to 100%,
-     not none: height is auto at this width, so without a cap the artwork grows
-     past the 180px panel and gets clipped. */
-  .project-card-right img,
-  .card-art-phone .project-card-right img { width: 60%; height: auto; max-height: 100%; }
-
   /* Page card */
   .resume-inner   { gap: 16px; }
   .page-title-line     { font-size: 16px; }
@@ -1112,11 +1159,29 @@ main {
   /* Section top padding is 0 here because the sticky bar carries the 16px above the
      buttons itself (so it survives scroll); sides 16px, bottom 40px. Project keeps its
      own 16px top in project.css since it has a back-link, not a sticky bar. */
-  #resume-page, #about-page { padding: 0 16px 40px; }
+  #resume-page, #about-page { padding: 0 16px 80px; }
 
-  /* Portfolio hero + projects switch to mobile padding (16px sides) at <=640px */
-  #hero     { padding: 48px 16px; min-height: auto; }
-  #projects { padding: 48px 16px 80px; }
+  /* Portfolio hero + projects switch to mobile padding at <=640px. The hero
+     keeps filling the screen: Figma mobile (562:36858) is 24px top and sides,
+     160px below the chevron, with a tighter card and smaller type. */
+  #hero     { padding: 24px 24px 160px; }
+  .hero-card    { padding: 32px 40px 48px; gap: 12px; }
+  .hero-hello   { font-size: 32px; }
+  .hero-intro   { font-size: 20px; }
+  .hero-success { font-size: 16px; line-height: 24px; }
+  #projects { --projects-pad-top: 32px; padding: var(--projects-pad-top) 32px 80px; }
+
+  /* Figma mobile (562:36858): cards stack, info on top (hugging its content,
+     same 32/40/32/46 padding) over a 200px image panel; the button sits 16px
+     under the list, which is just the column gap. */
+  .project-card { flex-direction: column; height: auto; }
+  .project-card-right { flex: 0 0 200px; height: 200px; padding: 32px 40px; }
+  /* Sized by width here, so clear the desktop height caps — but back to 100%,
+     not none: height is auto at this width, so without a cap the artwork grows
+     past the 200px panel and gets clipped. */
+  .project-card-right img,
+  .card-art-phone .project-card-right img { width: 60%; height: auto; max-height: 100%; }
+  .more-projects-toggle { margin-top: 0; }
 
   /* Action buttons: move above the content as a sticky horizontal bar (was a vertical
      right-rail). The bar owns its spacing via padding (16px above, 12px below) so the
@@ -1127,7 +1192,8 @@ main {
     order: -1;                        /* place above the content card */
     flex-direction: row;              /* vertical -> horizontal */
     align-self: stretch;              /* full width so the bg masks content when pinned */
-    width: auto;                      /* reset desktop 32px so stretch applies */
+    width: auto;                      /* reset desktop 56px so stretch applies */
+    border-radius: 0;                 /* the desktop strip's rounded corners */
     top: var(--nav-offset);           /* pin directly under the fixed nav (window is the scroller) */
     padding: 20px 0 12px;             /* 16px visible above the buttons (+4px sits behind the
                                          bar's lower edge, since content starts at --nav-offset,
@@ -1138,7 +1204,12 @@ main {
 
   /* Project pages have no action buttons; match the back-link -> content gap (12px)
      to the button -> content gap on resume/about so the spacing is consistent. */
-  #project-detail .back-link { margin-bottom: 12px; }
+  #project-detail .project-nav { margin-bottom: 12px; }
+
+  /* Figma nova / mobile: previous / next shrink to 24px round icon buttons.
+     The visible label goes; the link's aria-label still names the project. */
+  .project-pager-label { display: none; }
+  .project-pager-link { width: 24px; padding: 0; justify-content: center; border-radius: var(--sn-radius-full); }
 }
 
 /* ─ Nav name: hidden only once it genuinely stops fitting ─
@@ -1165,63 +1236,14 @@ main {
   /* Figma "Project page / V1 / mobile" (491:48696): card padding 16px / 24px. */
   .page-card   { padding: 16px 24px; }
 
-  .hero-card   { padding: 24px; }
-  .hero-hello  { font-size: 28px; }
-  .hero-intro  { font-size: 18px; }
-  .hero-success { font-size: 16px; }
 }
 
 /* ── Dark Mode ── */
-[data-theme="dark"] nav {
-  border-bottom-color: var(--sn-surface-brand-green-action-main);
-}
-
-/* Keep a pink tint on the hero zone in dark mode — pink-to-elevation-1 flattens
-   to near-black, which made the hero blend into the project list. This keeps the
-   hero and project list visually distinct, like light mode. */
-[data-theme="dark"] #hero {
-  background: color-mix(in srgb, var(--sn-surface-brand-pink-action-main) 15%, var(--sn-surface-1));
-}
-
-/* Hero: surface-1 and pink-to-elevation-1 resolve to the same near-black in
-   dark mode, so the card needs a lighter tone to stay visible against it. */
-[data-theme="dark"] .hero-card {
-  background: var(--sn-surface-2);
-}
-
-/* Projects: render cards identically in dark mode ("essentially unchanged").
-   The tinted thumbnail panels composite rgba(--thumb-rgb) over --sn-surface-1,
-   which flips near-black in dark mode and makes the colors muddy. Pin every
-   token the card subtree consumes to its constant (theme-independent) primitive
-   so the panels, label/description text, and badges all keep their bright
-   light-mode appearance. */
-[data-theme="dark"] .project-card {
-  --sn-surface-1: var(--sn-color-gray-0);                        /* panel composite base → white */
-  --sn-text-1: var(--sn-color-gray-100);                         /* card label */
-  --sn-text-3: var(--sn-color-gray-60);                          /* card description */
-  --sn-surface-brand-pink-2: var(--sn-color-pink-20);            /* brand badge bg */
-  --sn-surface-brand-pink-3: var(--sn-color-pink-30);            /* brand badge border */
-  --sn-components-text-brand-pink-dark: var(--sn-color-pink-80); /* brand badge text */
-  --sn-surface-brand-green-2: var(--sn-color-green-1-20);        /* green badge bg */
-  --sn-surface-brand-green-3: var(--sn-color-green-1-30);        /* green badge border */
-  --sn-components-text-brand-green-dark: var(--sn-color-green-1-80); /* green badge text */
-  --sn-surface-state-warning-1: var(--sn-color-yellow-10);       /* "Under Construction" badge bg */
-  --sn-border-color-state-warning-action: var(--sn-color-yellow-70); /* warning badge border */
-
-  /* The hover/focus strokes have to be pinned for the same reason as everything
-     above: the card stays light in dark mode, but these two tokens flip to their
-     pale dark-mode values (#83D994 / #FF6AB2). On a light card that reads washed
-     out, and the pink focus stroke drops to 2.6:1 — under WCAG 1.4.11's 3:1.
-     Pinned to the constant primitives, hover and focus stay 1:1 with Figma and
-     the focus stroke holds 3.18:1 in both themes. */
-  --sn-surface-brand-green-action-hover: var(--sn-color-green-1-70);  /* #26993E */
-  --sn-surface-brand-pink-action-main: var(--sn-color-pink-60);       /* #FF459F */
-}
-
-/* Projects: no dark override. The page sits on the brand pink surface, which
-   resolves to elevation-none (#222328) in dark, and .page-card sits on surface-1
-   (#2B303B) — distinct, so the card keeps its edge without help. */
-
+/* Figma "Homepage / V3" dark (593:93578) is the Supernova tokens with no local
+   overrides: the hero sits on surface/brand/pink/to-elevation-1 (#222328), the
+   hero card and project list on surface/1 (#2B303B), and the project cards go
+   dark too — each tint composites over surface/1, and text, tags and the
+   hover/focus strokes flip with their tokens. */
 
 /* Footer */
 [data-theme="dark"] footer { color: var(--sn-text-3); }

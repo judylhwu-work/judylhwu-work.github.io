@@ -29,7 +29,7 @@
   <!-- HEAD — generated from scripts/partials/head.html; edit there, not here -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&family=DM+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/project.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
@@ -67,157 +67,227 @@
   <div class="page-content">
   <main id="main" tabindex="-1">
 
-    <section id="project-detail">
+    <section id="project-detail" class="case-v2">
 
-      <a href="/portfolio/#bark-app" class="back-link">← Back to all projects</a>
+      <div class="project-nav">
+        <a href="/portfolio/#bark-app" class="back-link"><span class="back-link-arrow" aria-hidden="true">←</span>Back to all projects</a>
+        <div class="project-pager" role="group" aria-label="More projects">
+          <a href="/projects/gramcity/" class="project-pager-link" aria-label="Previous project: GramCity"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg><span class="project-pager-label">Previous project</span></a>
+          <span class="project-pager-divider" aria-hidden="true"></span>
+          <span class="project-pager-link" aria-disabled="true"><span class="project-pager-label">Next project</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+      </div>
 
       <div class="resume-layout">
         <div class="page-card">
 
-          <div class="project-header">
-            <p class="project-cat-label">Consumer · Mobile Design</p>
-            <h1>BARK App</h1>
-            <p class="project-summary">A solo UX project for a mobile app connecting pup parents to find compatible playmates for their dogs. Led the full process from discovery research and competitive analysis through two rounds of usability testing and iteration.</p>
-          </div>
+          <div class="case-blocks">
 
-          <div class="page-divider"></div>
+            <div class="case-header">
+              <div class="project-header">
+                <p class="case-eyebrow">
+                  <span>Consumer</span><span class="case-eyebrow-divider" aria-hidden="true"></span><span>Mobile Design</span>
+                </p>
+                <h1>BARK App</h1>
+                <p class="project-summary">A solo UX project for a mobile app connecting pup parents to find compatible playmates for their dogs. Led the full process from discovery research and competitive analysis through two rounds of usability testing and iteration.</p>
+              </div>
 
-          <div class="project-meta">
-            <div class="meta-item">
-              <span class="meta-label">Role</span>
-              <span>UX Designer &amp; Researcher (Solo)</span>
+              <div class="case-meta-scroll" role="region" aria-label="Project details" tabindex="0">
+              <dl class="case-meta">
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Role</dt>
+                  <dd class="case-meta-value">UX lead</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Duration</dt>
+                  <dd class="case-meta-value">2 months</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Team</dt>
+                  <dd class="case-meta-value">Solo project</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Tools</dt>
+                  <dd class="case-meta-value">Sketch, InVision</dd>
+                </div>
+              </dl>
+              </div>
             </div>
-            <div class="meta-item">
-              <span class="meta-label">Duration</span>
-              <span>2 months</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Tools</span>
-              <span>Sketch, InVision</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Deliverables</span>
-              <span>Design concept, Journey maps, User personas, Research documentation</span>
-            </div>
-          </div>
 
-          <div class="page-divider"></div>
+            <div class="page-divider"></div>
 
-          <div class="project-body">
+            <div class="case-part">
+              <div class="case-section">
+                <h2 class="case-section-label">Overview</h2>
+                <p>BARK is an online social app for pup parents to find the perfect playmates for their dogs. Pup parents understand early socialization is important — but also know how hard it can be. Common options (puppy classes, dog parks, daycare) require free time, proximity, and compatibility luck. BARK removes all three barriers.</p>
+              </div>
 
-            <div class="project-section">
-              <h2>Overview</h2>
-              <p>BARK is an online social app for pup parents to find the perfect playmates for their dogs. Pup parents understand early socialization is important — but also know how hard it can be. Common options (puppy classes, dog parks, daycare) require free time, proximity, and compatibility luck. BARK removes all three barriers.</p>
               <img class="project-image" src="/assets/images/projects/bark-app/01-bark-app-overview.webp" data-full="/assets/images/projects/bark-app/01-bark-app-overview-full.webp" alt="BARK app overview" loading="lazy">
             </div>
 
-            <div class="project-section">
-              <h2>Problem</h2>
-              <p>Three compounding issues make dog socialization harder than it should be:</p>
-              <ul>
-                <li>Lack of free time makes it hard to set up and coordinate playdates</li>
-                <li>Some dogs are picky — compatibility matters, and you often don't know until they meet</li>
-                <li>Limited access to dog parks, classes, or daycare depending on location or budget</li>
-              </ul>
+            <div class="page-divider"></div>
 
-              <h3>Design questions</h3>
-              <ul>
-                <li>How might we provide a way for pup parents to easily socialize their dogs in a safe, comfortable environment?</li>
-                <li>How might we help users quickly set up playdates for their pups?</li>
-                <li>How might we allow both pup parents and their pups to enjoy the experience?</li>
-              </ul>
+            <div class="case-part">
+              <h2 class="case-part-heading">Problem</h2>
+
+              <div class="case-section">
+                <p>Three compounding issues make dog socialization harder than it should be:</p>
+                <ul>
+                  <li>Lack of free time makes it hard to set up and coordinate playdates</li>
+                  <li>Some dogs are picky — compatibility matters, and you often don't know until they meet</li>
+                  <li>Limited access to dog parks, classes, or daycare depending on location or budget</li>
+                </ul>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Design questions</h3>
+                <ul>
+                  <li>How might we provide a way for pup parents to easily socialize their dogs in a safe, comfortable environment?</li>
+                  <li>How might we help users quickly set up playdates for their pups?</li>
+                  <li>How might we allow both pup parents and their pups to enjoy the experience?</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="project-section">
-              <h2>Phase 1 · Research</h2>
+            <div class="page-divider"></div>
 
-              <h3>Competitive analysis</h3>
-              <p>No existing "doggy Tinder" apps were found — a genuine market gap. I analyzed adjacent apps: Tinder (for the swipe-match mechanic), Kippo (a social-first dating app for gamers), and Dig (a dating app for dog people). Key takeaways informed BARK's core UX patterns.</p>
+            <div class="case-part">
+              <h2 class="case-part-heading">Phase 1 · Research</h2>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Competitive analysis</h3>
+                <p>No existing "doggy Tinder" apps were found — a genuine market gap. I analyzed adjacent apps: Tinder (for the swipe-match mechanic), Kippo (a social-first dating app for gamers), and Dig (a dating app for dog people). Key takeaways informed BARK's core UX patterns.</p>
+              </div>
+
               <div class="project-image-grid cols-3">
                 <img src="/assets/images/projects/bark-app/02-competitive-analysis-tinder.webp" data-full="/assets/images/projects/bark-app/02-competitive-analysis-tinder-full.webp" alt="Competitive analysis: Tinder" loading="lazy">
                 <img src="/assets/images/projects/bark-app/03-competitive-analysis-kippo.webp" data-full="/assets/images/projects/bark-app/03-competitive-analysis-kippo-full.webp" alt="Competitive analysis: Kippo" loading="lazy">
                 <img src="/assets/images/projects/bark-app/04-competitive-analysis-dig.webp" data-full="/assets/images/projects/bark-app/04-competitive-analysis-dig-full.webp" alt="Competitive analysis: Dig" loading="lazy">
               </div>
 
-              <h3>Screener survey</h3>
-              <p>~200 responses collected from dog parents at Google. The data surfaced a clear demand gap:</p>
-              <ul>
-                <li>Only 12.2% were completely satisfied with their current socialization methods</li>
-                <li>41.1% were actively wanting something better</li>
-                <li>Top values: simplicity, convenience, accessibility, affordability</li>
-              </ul>
+              <div class="case-section">
+                <h3 class="case-section-label">Screener survey</h3>
+                <p>~200 responses collected from dog parents at Google. The data surfaced a clear demand gap:</p>
+                <ul>
+                  <li>Only 12.2% were completely satisfied with their current socialization methods</li>
+                  <li>41.1% were actively wanting something better</li>
+                  <li>Top values: simplicity, convenience, accessibility, affordability</li>
+                </ul>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/bark-app/05-screener-survey-results-chart.webp" data-full="/assets/images/projects/bark-app/05-screener-survey-results-chart-full.webp" alt="Screener survey results chart" loading="lazy">
                 <img src="/assets/images/projects/bark-app/06-satisfaction-level-breakdown.webp" data-full="/assets/images/projects/bark-app/06-satisfaction-level-breakdown-full.webp" alt="Satisfaction level breakdown" loading="lazy">
               </div>
+
               <img class="project-image" src="/assets/images/projects/bark-app/07-dog-parent-values-validation.webp" data-full="/assets/images/projects/bark-app/07-dog-parent-values-validation-full.webp" alt="Dog parent values validation" loading="lazy">
 
-              <h3>Interviews</h3>
-              <ul>
-                <li>Only 30% were content with their current playdate setup process</li>
-                <li>Some had regular "doggy best friends"; others relied on dog parks and hoped for the best</li>
-                <li>80% said they'd want to use a mobile app for this</li>
-                <li>Main concern: what if the dogs don't get along?</li>
-              </ul>
+              <div class="case-section">
+                <h3 class="case-section-label">Interviews</h3>
+                <ul>
+                  <li>Only 30% were content with their current playdate setup process</li>
+                  <li>Some had regular "doggy best friends"; others relied on dog parks and hoped for the best</li>
+                  <li>80% said they'd want to use a mobile app for this</li>
+                  <li>Main concern: what if the dogs don't get along?</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="project-section">
-              <h2>Phase 2 · Ideation</h2>
+            <div class="page-divider"></div>
 
-              <h3>User personas</h3>
+            <div class="case-part">
+              <h2 class="case-part-heading">Phase 2 · Ideation</h2>
+
+              <div class="case-section">
+                <h3 class="case-section-label">User personas</h3>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/bark-app/08-persona-kate-new-puppy-owner-limited.webp" data-full="/assets/images/projects/bark-app/08-persona-kate-new-puppy-owner-limited-full.webp" alt="Persona: Kate — new puppy owner, limited time" loading="lazy">
                 <img src="/assets/images/projects/bark-app/09-persona-michael-two-dogs-with-different.webp" data-full="/assets/images/projects/bark-app/09-persona-michael-two-dogs-with-different-full.webp" alt="Persona: Michael — two dogs with different temperaments" loading="lazy">
               </div>
 
-              <h3>Empathy maps</h3>
+              <div class="case-section">
+                <h3 class="case-section-label">Empathy maps</h3>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/bark-app/10-empathy-map-1.webp" data-full="/assets/images/projects/bark-app/10-empathy-map-1-full.webp" alt="Empathy map 1" loading="lazy">
                 <img src="/assets/images/projects/bark-app/11-empathy-map-2.webp" data-full="/assets/images/projects/bark-app/11-empathy-map-2-full.webp" alt="Empathy map 2" loading="lazy">
               </div>
 
-              <h3>Mood board</h3>
+              <div class="case-section">
+                <h3 class="case-section-label">Mood board</h3>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/bark-app/12-bark-mood-board.webp" data-full="/assets/images/projects/bark-app/12-bark-mood-board-full.webp" alt="BARK mood board" loading="lazy">
 
-              <h3>Wireflows</h3>
-              <p>Wireframes helped determine which screens were most essential and allowed experimentation with different layouts before committing to high-fidelity. The wireflow made the end-to-end user journey tangible early.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Wireflows</h3>
+                <p>Wireframes helped determine which screens were most essential and allowed experimentation with different layouts before committing to high-fidelity. The wireflow made the end-to-end user journey tangible early.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/bark-app/13-bark-wireflows.webp" data-full="/assets/images/projects/bark-app/13-bark-wireflows-full.webp" alt="BARK wireflows" loading="lazy">
             </div>
 
-            <div class="project-section">
-              <h2>Phase 3 · Design</h2>
-              <p>Defined the visual language through style guides before moving into high-fidelity screens — establishing typography, color, and component patterns first.</p>
+            <div class="page-divider"></div>
+
+            <div class="case-part">
+              <h2 class="case-part-heading">Phase 3 · Design</h2>
+
+              <div class="case-section">
+                <p>Defined the visual language through style guides before moving into high-fidelity screens — establishing typography, color, and component patterns first.</p>
+              </div>
+
               <div class="project-image-grid cols-2">
                 <img src="/assets/images/projects/bark-app/14-style-guide-1.webp" data-full="/assets/images/projects/bark-app/14-style-guide-1-full.webp" alt="Style guide 1" loading="lazy">
                 <img src="/assets/images/projects/bark-app/15-style-guide-2.webp" data-full="/assets/images/projects/bark-app/15-style-guide-2-full.webp" alt="Style guide 2" loading="lazy">
               </div>
             </div>
 
-            <div class="project-section">
-              <h2>Phase 4 · Test &amp; Iterate</h2>
-              <p>Two rounds of usability testing — in-person at a Google micro kitchen and remotely via Google Hangouts. Participants recruited via email to Dooglers @ Google: pup parents ages 21–45 interested in dog socialization.</p>
+            <div class="page-divider"></div>
 
-              <h3>Round 1 findings (4 participants)</h3>
-              <ul>
-                <li>50% finished in under 5 minutes with no issues</li>
-                <li>50% wanted more onboarding screens and tutorials</li>
-                <li>100% wanted an "undo" button on the Explore page</li>
-              </ul>
+            <div class="case-part">
+              <h2 class="case-part-heading">Phase 4 · Test &amp; Iterate</h2>
+
+              <div class="case-section">
+                <p>Two rounds of usability testing — in-person at a Google micro kitchen and remotely via Google Hangouts. Participants recruited via email to Dooglers @ Google: pup parents ages 21–45 interested in dog socialization.</p>
+              </div>
+
+              <div class="case-section">
+                <h3 class="case-section-label">Round 1 findings (4 participants)</h3>
+                <ul>
+                  <li>50% finished in under 5 minutes with no issues</li>
+                  <li>50% wanted more onboarding screens and tutorials</li>
+                  <li>100% wanted an "undo" button on the Explore page</li>
+                </ul>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/bark-app/16-usability-test-findings-summary.webp" data-full="/assets/images/projects/bark-app/16-usability-test-findings-summary-full.webp" alt="Usability test findings summary" loading="lazy">
 
-              <h3>Issue 1 · Explore page missing undo button (High severity)</h3>
-              <p>Inconsistent button treatment between pages left users without a way to reverse an accidental swipe. Added an undo button to the Explore page to match user expectations set by other card-swiping apps.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Issue 1 · Explore page missing undo button (High severity)</h3>
+                <p>Inconsistent button treatment between pages left users without a way to reverse an accidental swipe. Added an undo button to the Explore page to match user expectations set by other card-swiping apps.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/bark-app/17-undo-button-iteration-before-and-after.webp" data-full="/assets/images/projects/bark-app/17-undo-button-iteration-before-and-after-full.webp" alt="Undo button iteration: before and after" loading="lazy">
 
-              <h3>Issue 2 · Lack of onboarding screens (High severity)</h3>
-              <p>Users unfamiliar with dating apps found the initial flow confusing. Added onboarding tutorials that appear on first use to guide new users through key actions without assuming prior context.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Issue 2 · Lack of onboarding screens (High severity)</h3>
+                <p>Users unfamiliar with dating apps found the initial flow confusing. Added onboarding tutorials that appear on first use to guide new users through key actions without assuming prior context.</p>
+              </div>
 
-              <h3>Round 2 results (5 participants)</h3>
-              <p>100% of participants successfully created an account and found a match within 7 minutes. No new issues reported.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Round 2 results (5 participants)</h3>
+                <p>100% of participants successfully created an account and found a match within 7 minutes. No new issues reported.</p>
+              </div>
             </div>
 
-            <div class="project-section">
-              <h2>Final Designs</h2>
+            <div class="page-divider"></div>
+
+            <div class="case-part">
+              <h2 class="case-part-heading">Final Designs</h2>
+
               <div class="project-image-grid cols-3">
                 <img src="/assets/images/projects/bark-app/18-bark-final-design-1.webp" data-full="/assets/images/projects/bark-app/18-bark-final-design-1-full.webp" alt="BARK final design 1" loading="lazy">
                 <img src="/assets/images/projects/bark-app/19-bark-final-design-2.webp" data-full="/assets/images/projects/bark-app/19-bark-final-design-2-full.webp" alt="BARK final design 2" loading="lazy">
@@ -229,20 +299,24 @@
               </div>
             </div>
 
-            <div class="project-section">
-              <h2>Takeaways</h2>
-              <ul>
-                <li>Two rounds of usability testing is the right cadence — round 1 reveals issues, round 2 validates the fixes</li>
-                <li>Participants catch things you can't see yourself because you already know how it works</li>
-                <li>Making yourself relatable helps participants feel comfortable sharing honest feedback</li>
-                <li>Using an existing community (Dooglers @ Google) made recruitment easy, but limited the participant pool's diversity</li>
-                <li>A well-designed screener survey validates assumptions before you even start designing</li>
-              </ul>
-              <p>Next steps: A/B test the chat screen (owner's name vs. dog's name vs. both), design settings screens for preferences and filters, and integrate Google Maps for in-app directions to playdate locations.</p>
+            <div class="page-divider"></div>
+
+            <div class="case-part">
+              <h2 class="case-part-heading">Takeaways</h2>
+
+              <div class="case-section">
+                <ul>
+                  <li>Two rounds of usability testing is the right cadence — round 1 reveals issues, round 2 validates the fixes</li>
+                  <li>Participants catch things you can't see yourself because you already know how it works</li>
+                  <li>Making yourself relatable helps participants feel comfortable sharing honest feedback</li>
+                  <li>Using an existing community (Dooglers @ Google) made recruitment easy, but limited the participant pool's diversity</li>
+                  <li>A well-designed screener survey validates assumptions before you even start designing</li>
+                </ul>
+                <p>Next steps: A/B test the chat screen (owner's name vs. dog's name vs. both), design settings screens for preferences and filters, and integrate Google Maps for in-app directions to playdate locations.</p>
+              </div>
             </div>
 
           </div>
-
         </div>
 
       </div>

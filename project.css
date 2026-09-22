@@ -1,14 +1,14 @@
 /* ── Project page layout ── */
 #project-detail {
   background: var(--sn-surface-brand-pink-to-elevation-1);
-  padding: 24px max(40px, calc((100% - 960px) / 2));
+  padding: 32px max(40px, calc((100% - var(--content-max)) / 2)) 80px;   /* Figma: 32 top, 80 bottom */
 }
 
 /* ── Password gate ── */
 #project-gate {
   background: var(--sn-surface-brand-pink-to-elevation-1);
   min-height: calc(100vh - var(--nav-offset));
-  padding: 40px max(40px, calc((100% - 960px) / 2));
+  padding: 40px max(40px, calc((100% - var(--content-max)) / 2));
   display: flex;
   flex-direction: column;
 }
@@ -105,13 +105,6 @@
   color: var(--sn-text-brand-green-dark);
 }
 
-/* Used by the decrypted (NDA) case studies only — their markup lives in
-   private/projects/, so a scan of published HTML will report these as unused.
-   They are not. Check private/ before deleting anything in this file. */
-.project-status-badge {
-  margin-bottom: 16px;
-}
-
 .project-header h1 {
   font-family: 'Karla', sans-serif;
   font-size: 24px;
@@ -130,120 +123,18 @@
   line-height: 1.6;
 }
 
-/* NDA disclosure note shown at the top of protected case studies */
-/* NDA disclosure note shown at the top of protected case studies (private/ only) */
-.nda-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 16px;
-  padding: 12px 14px;
-  border-left: 3px solid var(--sn-border-color-1);
-  border-radius: 6px;
-  background: var(--sn-surface-1);
-  font-family: 'Public Sans', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--sn-text-2);
-}
-
-.nda-note svg {
-  flex-shrink: 0;
-  margin-top: 1px;
-  color: var(--sn-text-2);
-}
-
-.project-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.meta-label {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 10px;
-  line-height: 10px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  color: var(--sn-text-brand-green-dark);
-}
-
-.meta-item span:last-child {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
+/* NDA banner (Figma "Banner", 554:89385) — sits between the back link and the
+   page card on the three NDA case studies, the full width of the card. Used by
+   the decrypted pages only, so it lives in private/ markup. */
+.nda-banner {
+  margin-bottom: var(--sn-spacing-md);
+  padding: var(--sn-spacing-sm) var(--sn-spacing-md);
+  background: var(--sn-surface-state-info-2);
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 400;
-  color: var(--sn-text-2);
-  line-height: 1.5;
-}
-
-/* ── Body content ── */
-.project-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.project-section h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 10px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  color: var(--sn-text-brand-green-dark);
-  margin-bottom: 12px;
-}
-
-.project-section h3 {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--sn-font-size-12);
+  line-height: 18px;
   color: var(--sn-text-1);
-  margin: 1rem 0 0.375rem;
-}
-
-.project-section p {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--sn-text-2);
-  margin-bottom: 0.75rem;
-  line-height: 1.7;
-}
-
-.project-section ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.project-section ul li {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 14px;
-  color: var(--sn-text-2);
-  padding-left: 1.25rem;
-  position: relative;
-  line-height: 1.6;
-}
-
-.project-section ul li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  color: var(--sn-border-color-2);
-}
-
-/* ── Dark mode ── */
-[data-theme="dark"] .project-section ul li::before {
-  color: var(--sn-border-color-1);
 }
 
 /* ── Project images ── */
@@ -371,18 +262,21 @@ img.zoomable:hover { opacity: 0.88; }
 
 /* ── Responsive ── */
 @media (max-width: 1040px) {
-  #project-detail { padding: 24px 40px; }
+  #project-detail { padding: 32px 40px 80px; }   /* Figma nova / tablet */
 }
 
 @media (max-width: 768px) {
-  .project-meta { grid-template-columns: 1fr 1fr; }
   .project-image-grid.cols-3 { grid-template-columns: 1fr 1fr; }
 }
 
 /* Mobile: Figma "Project page / V1 / mobile" (491:48696) puts the page frame at
    16px top and 24px sides; bottom stays 40px to match resume/about at <=640px. */
 @media (max-width: 640px) {
-  #project-detail { padding: 16px 24px 40px; }
+  #project-detail { padding: 16px 16px 80px; }   /* Figma nova / mobile */
+
+  /* Same 12px the back link drops to here (style.css), so back link -> banner
+     -> card stay evenly spaced. */
+  .nda-banner { margin-bottom: var(--sn-spacing-sm); }
 }
 
 @media (max-width: 480px) {
@@ -392,46 +286,81 @@ img.zoomable:hover { opacity: 0.88; }
 
 
 /* ── Case-study template V2 (Figma "Project page / V1", 403:13840) ──
-   Introduced on the Nova page. The older case studies still use the V1 rules
-   above; these are deliberately separate class names so restyling Nova does not
-   reflow five long pages before we have looked at them. Fold the V1 rules into
-   these once every case study is migrated. */
+   Every case study uses this now: a header group, then chapters (.case-part)
+   of sections (.case-section) split by dividers. A few base rules above
+   (.project-header h1, .project-summary, .project-image) predate it and are
+   overridden here under .case-blocks. */
 
-/* Tag row: status pill, hairline divider, then category pills. */
-.case-tags {
+/* Header group (Figma "header", 553:88893): status tag, then eyebrow/title/
+   summary, then the callouts box, 24px apart. The badge is Supernova's own
+   brand variant; align-self keeps it from stretching across the column. */
+.case-header {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 8px;                      /* Figma spacing/xs */
+  gap: var(--sn-spacing-lg);
 }
 
-.case-tags .case-tag-divider {
+/* Categories are an eyebrow of plain text over the title, split by short
+   seafoam rules — not pills. */
+.case-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px var(--sn-spacing-xs);
+  font-family: var(--sn-font-family-body), sans-serif;
+  font-weight: 600;
+  font-size: var(--sn-font-size-12);
+  line-height: 18px;
+  text-transform: uppercase;
+  color: var(--sn-scale-palette-seafoam-90);
+}
+
+.case-eyebrow-divider {
   width: 1px;
-  height: 20px;
-  background: var(--sn-border-color-1);
+  height: 12px;
+  background: var(--sn-scale-palette-seafoam-40);
   flex-shrink: 0;
 }
 
-/* Meta callouts — Figma boxes these where V1 left them as bare label + value. */
+/* Meta callouts: one green box, items split by full-height hairlines with 12px
+   either side (each later item's left border). The box never wraps: when it is
+   wider than the column — mostly on mobile — it runs off the edge and its
+   wrapper scrolls sideways, the same pattern as the timeline. */
+.case-meta-scroll {
+  align-self: stretch;
+  overflow-x: auto;
+}
+
+.case-meta-scroll:focus-visible {
+  outline: 2px solid var(--sn-scale-palette-seafoam-90);
+  outline-offset: 2px;
+}
+
 .case-meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 16px;                     /* Figma spacing/md */
+  width: max-content;
+  padding: var(--sn-spacing-sm) var(--sn-spacing-md) var(--sn-spacing-xs);
+  border: 1px solid var(--sn-scale-palette-seafoam-30);
+  border-radius: var(--sn-radius-rounded);
+  background: var(--sn-surface-brand-green-1);
+  white-space: nowrap;
 }
 
 .case-meta-item {
   display: flex;
   flex-direction: column;
-  gap: 2px;                      /* Figma spacing/minimal */
-  padding: 12px 16px 8px;        /* Figma pt-sm / px-md / pb-xs */
-  border: 1px solid var(--sn-border-color-invert);
-  border-radius: var(--sn-radius-less-rounded);
-  background: var(--sn-surface-brand-green-1);
+  gap: var(--sn-spacing-minimal);
+}
+
+.case-meta-item + .case-meta-item {
+  margin-left: var(--sn-spacing-sm);
+  padding-left: var(--sn-spacing-sm);
+  border-left: 1px solid var(--sn-scale-palette-seafoam-30);
 }
 
 .case-meta-label {
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 600;
   font-size: 10px;
   line-height: 10px;
@@ -441,16 +370,16 @@ img.zoomable:hover { opacity: 0.88; }
 }
 
 .case-meta-value {
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 600;
-  font-size: 12px;
+  font-size: var(--sn-font-size-12);
   line-height: 18px;
   color: var(--sn-text-2);
 }
 
-/* Section = small label over body copy. Note the label green is seafoam/90,
-   a shade darker than the callout label's green — that difference is in the
-   design, not a slip. */
+/* Section = small label over body copy, every child 8px apart. Note the label
+   green is seafoam/90, a shade darker than the callout label's green — that
+   difference is in the design, not a slip. */
 .case-section {
   display: flex;
   flex-direction: column;
@@ -458,11 +387,10 @@ img.zoomable:hover { opacity: 0.88; }
 }
 
 .case-section-label {
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 600;
-  font-size: 10px;
-  line-height: 10px;
-  letter-spacing: 0.2px;
+  font-size: var(--sn-font-size-12);
+  line-height: 18px;
   text-transform: uppercase;
   color: var(--sn-scale-palette-seafoam-90);
 }
@@ -471,15 +399,11 @@ img.zoomable:hover { opacity: 0.88; }
    rule ties on specificity, comes later, and quietly flattens every section
    label back to 14px body text. */
 .case-section p:not(.case-section-label) {
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: var(--sn-text-1);
-}
-
-.case-section p + p {
-  margin-top: 8px;
 }
 
 /* The page splits into parts, each with its own heading and a rule above it. */
@@ -491,29 +415,49 @@ img.zoomable:hover { opacity: 0.88; }
   color: var(--sn-scale-palette-seafoam-90);
 }
 
+/* Section labels are real headings (h2 in the opening chapter, h3 under a
+   chapter heading) so the page outline reads correctly; the class sets the
+   look, so the level never changes the size. */
+.case-section-label {
+  margin: 0;
+}
+
+/* Bullet lists inside a section (Figma "Skills"): disc bullets on a 21px
+   indent, 6px between items, body type. */
+.case-section ul {
+  margin: 0;
+  padding-left: 21px;
+  list-style: disc;
+}
+
+.case-section li {
+  font-family: var(--sn-font-family-body), sans-serif;
+  font-weight: 400;
+  font-size: var(--sn-font-size-14);
+  line-height: 20px;
+  color: var(--sn-text-1);
+}
+
+.case-section li + li {
+  margin-top: 6px;
+}
+
+/* A chapter (Figma layer "chapter") holds a heading and its sections; the
+   sections, images and timeline inside it sit 24px apart at every width. */
 .case-part {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--sn-spacing-lg);
 }
 
-.case-body {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-/* Figma sets the page's own rhythm at 32px between blocks inside a part. */
+/* Chapters are 32px apart, with the divider rule centred in that gap
+   (32 above it, 32 below) — the same at every width. */
 .case-blocks {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--sn-spacing-xl);
 }
 
-@media (max-width: 640px) {
-  .case-meta { gap: 8px; }
-  .case-meta-item { flex: 1 1 140px; }
-}
 
 
 /* Header type for the V2 template. Figma puts the title in seafoam green and
@@ -530,46 +474,54 @@ img.zoomable:hover { opacity: 0.88; }
 }
 
 .case-blocks .project-summary {
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--sn-font-family-body), sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   color: var(--sn-text-1);
 }
 
-/* Figma stacks title and summary with no gap, then 16px to the next block. */
+/* Eyebrow, title and summary stack 8px apart. Figma sets the whole group at
+   80% opacity — deliberate in the design, so it is carried over as is. */
+/* Title plus the external-link icon some projects carry; the V1 row adds 12px
+   above and below, which the header's own 8px stack replaces. */
+.case-blocks .project-title-row {
+  margin: 0;
+}
+
 .case-blocks .project-header {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--sn-spacing-xs);
+  opacity: 0.8;
 }
 
-/* The NDA line is plain 12/18 text in the design, not the bordered callout V1
-   uses. The lock is a glyph inline with the sentence. */
-.case-blocks .nda-note {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  font-family: 'Public Sans', sans-serif;
-  font-size: 12px;
-  line-height: 18px;
-  color: var(--sn-text-1);
+/* Card padding: Figma "2026 - V2" (403:13846) is 40 top, 56 sides, 80 bottom on
+   desktop and tablet (553:88932); mobile is below. */
+.case-v2 .page-card { padding: var(--sn-spacing-2xl) 56px 80px; }
+
+/* Out-specify the shared tablet / mobile .page-card rules in style.css. */
+@media (max-width: 1040px) {
+  #project-detail.case-v2 .page-card { padding: var(--sn-spacing-2xl) 56px 80px; }
 }
 
-.case-blocks .nda-note svg {
-  width: 12px;
-  height: 12px;
-  align-self: center;
+/* Figma nova / mobile (553:88540): 24px card padding, 80 below; the title and
+   summary step down to 20px and 14/20. */
+@media (max-width: 640px) {
+  #project-detail.case-v2 .page-card { padding: var(--sn-spacing-lg) var(--sn-spacing-lg) 80px; }
+  .case-blocks .project-header h1 { font-size: 20px; }
+  .case-blocks .project-summary { font-size: var(--sn-font-size-14); line-height: 20px; }
 }
 
-/* Card padding and rhythm: 56/64 inside, 32px between parts, 16px within. */
 .case-blocks .project-image-grid {
   gap: 8px;
+}
+
+/* V1 gives images a 16px top margin; in V2 the chapter's 24px gap is the only
+   spacing, or images would sit 40px below the text above them. */
+.case-blocks .project-image,
+.case-blocks .project-image-grid {
+  margin-top: 0;
 }
 
 /* Square corners. V1 rounds case-study images (8px on .project-image, 6px in
@@ -599,4 +551,126 @@ img.zoomable:hover { opacity: 0.88; }
    the five V1 case studies keep their current threshold until they migrate. */
 @media (max-width: 640px) {
   .case-blocks .project-image-grid.cols-2 { grid-template-columns: 1fr; }
+}
+
+
+/* Timeline — Figma "timeline" (554:92463), placed after Impact on the Nova page
+   (558:33015). The track is far wider than the card (~2,750px vs 800px), so it
+   scrolls sideways inside the card at every width; the pink band scrolls with
+   the items. The region is focusable so keyboard users can scroll it too. */
+.timeline {
+  overflow-x: auto;
+}
+
+.timeline:focus-visible {
+  outline: 2px solid var(--sn-scale-base-brand-60);
+  outline-offset: 2px;
+}
+
+/* One continuous 4px rule runs under every date. Drawing it on the track rather
+   than per item keeps it seamless; it sits at 45px, the height of a date row. */
+.timeline-track {
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  margin: 0;
+  padding: var(--sn-spacing-2xl) var(--sn-spacing-xl);
+  list-style: none;
+  background:
+    linear-gradient(var(--sn-scale-base-brand-50), var(--sn-scale-base-brand-50))
+      var(--sn-spacing-xl) calc(var(--sn-spacing-2xl) + 45px) /
+      calc(100% - 2 * var(--sn-spacing-xl)) 4px no-repeat,
+    var(--sn-scale-base-brand-20);
+}
+
+/* Each milestone is as wide as its title (which never wraps); the note below
+   wraps to that width. The 8px side padding is Figma's "indent" columns. */
+.timeline-item {
+  display: flex;
+  width: min-content;
+  padding: 0 var(--sn-spacing-xs);
+  text-align: center;
+}
+
+/* "main" in Figma: date, a 4px bar, then title and note. The bar is the date's
+   bottom border — transparent at rest so the track's rule shows through. */
+.timeline-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: var(--sn-radius-more-rounded);
+}
+
+.timeline-date {
+  display: block;
+  height: 49px;
+  padding: var(--sn-spacing-xs) var(--sn-spacing-md);
+  border-bottom: 4px solid transparent;
+  font-family: var(--sn-font-family-header), sans-serif;
+  font-weight: 800;
+  font-size: var(--sn-font-size-18);
+  line-height: 1.6;
+  white-space: nowrap;
+  color: var(--sn-scale-base-brand-60);
+}
+
+.timeline-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sn-spacing-minimal);
+  padding: var(--sn-spacing-sm) var(--sn-spacing-md);
+  font-family: var(--sn-font-family-body), sans-serif;
+  font-weight: 600;
+}
+
+.timeline-title {
+  font-size: var(--sn-font-size-14);
+  line-height: 20px;
+  white-space: nowrap;
+  color: var(--sn-text-2);
+}
+
+.timeline-note {
+  font-size: var(--sn-font-size-12);
+  line-height: 18px;
+  color: var(--sn-text-3);
+}
+
+.timeline-note u {
+  text-decoration-thickness: from-font;
+}
+
+/* Tool names are repo paths, so the design sets them in DM Mono. */
+.timeline-note-mono {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+}
+
+/* Hover (Figma item "state=hover", 554:92483): the milestone becomes a green
+   card with a 2px outside stroke — an outline, so nothing shifts. Instant, no
+   transition, as in the prototype. Pointer devices only, so a tap on a phone
+   doesn't leave a card stuck on. The "--" spacers have no hover state. */
+@media (hover: hover) {
+  .timeline-item:not(.timeline-gap):hover .timeline-main {
+    background: var(--sn-scale-state-success-70);
+    outline: var(--sn-border-width-focus) solid var(--sn-border-color-invert);
+  }
+
+  .timeline-item:not(.timeline-gap):hover .timeline-date {
+    border-bottom-color: var(--sn-scale-state-success-30);
+    color: var(--sn-text-invert);
+  }
+
+  .timeline-item:not(.timeline-gap):hover .timeline-title {
+    color: var(--sn-text-invert);
+  }
+
+  .timeline-item:not(.timeline-gap):hover .timeline-note {
+    color: var(--sn-text-brand-green-invert);
+  }
+}
+
+/* The "--" spacers mark stretches of time between milestones: fixed 80px. */
+.timeline-gap {
+  width: 80px;
 }

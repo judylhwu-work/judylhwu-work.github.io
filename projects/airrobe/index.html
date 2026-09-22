@@ -29,7 +29,7 @@
   <!-- HEAD — generated from scripts/partials/head.html; edit there, not here -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@500;700;800&family=Public+Sans:wght@400;600;700&family=DM+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/project.css">
   <link rel="stylesheet" href="/supernova-design-system/dist/tokens.primitives.css">
@@ -67,91 +67,117 @@
   <div class="page-content">
   <main id="main" tabindex="-1">
 
-    <section id="project-detail">
+    <section id="project-detail" class="case-v2">
 
-      <a href="/portfolio/#airrobe" class="back-link">← Back to all projects</a>
+      <div class="project-nav">
+        <a href="/portfolio/#airrobe" class="back-link"><span class="back-link-arrow" aria-hidden="true">←</span>Back to all projects</a>
+        <div class="project-pager" role="group" aria-label="More projects">
+          <a href="/projects/definitions/" class="project-pager-link" aria-label="Previous project: Definitions"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg><span class="project-pager-label">Previous project</span></a>
+          <span class="project-pager-divider" aria-hidden="true"></span>
+          <a href="/projects/prenda/" class="project-pager-link" aria-label="Next project: Prenda"><span class="project-pager-label">Next project</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a>
+        </div>
+      </div>
 
       <div class="resume-layout">
         <div class="page-card">
 
-          <div class="project-header">
-            <p class="project-cat-label">Re-commerce · Product Search · Design Systems</p>
-            <div class="project-title-row">
-              <h1>AirRobe</h1>
-              <a href="https://www.airrobe.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit AirRobe website">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-            <p class="project-summary">As the first UX design hire, I owned AirRobe's entire user experience for shop.airrobe.com — redesigning the product search experience, building design system foundations, and improving global navigation with a focus on usability and information architecture.</p>
-          </div>
+          <div class="case-blocks">
 
-          <div class="page-divider"></div>
+            <div class="case-header">
+              <div class="project-header">
+                <p class="case-eyebrow">
+                  <span>Re-commerce</span><span class="case-eyebrow-divider" aria-hidden="true"></span><span>Product Search</span><span class="case-eyebrow-divider" aria-hidden="true"></span><span>Design Systems</span>
+                </p>
+                <div class="project-title-row">
+                  <h1>AirRobe</h1>
+                  <a href="https://www.airrobe.com" target="_blank" rel="noopener" class="project-website-link" aria-label="Visit AirRobe website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+                <p class="project-summary">As the first UX design hire, I owned AirRobe's entire user experience for shop.airrobe.com — redesigning the product search experience, building design system foundations, and improving global navigation with a focus on usability and information architecture.</p>
+              </div>
 
-          <div class="project-meta">
-            <div class="meta-item">
-              <span class="meta-label">Role</span>
-              <span>User Experience Designer (First UX hire)</span>
+              <div class="case-meta-scroll" role="region" aria-label="Project details" tabindex="0">
+              <dl class="case-meta">
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Role</dt>
+                  <dd class="case-meta-value">UX lead</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Duration</dt>
+                  <dd class="case-meta-value">Jan - Feb ‘22</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Team</dt>
+                  <dd class="case-meta-value">CEO, Tech leads, Art director, CX lead</dd>
+                </div>
+                <div class="case-meta-item">
+                  <dt class="case-meta-label">Tools</dt>
+                  <dd class="case-meta-value">Figma, Notion</dd>
+                </div>
+              </dl>
+              </div>
             </div>
-            <div class="meta-item">
-              <span class="meta-label">Duration</span>
-              <span>2 months (2021–2022)</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Team</span>
-              <span>CEO, VP Engineering, Lead Engineer, Art Director, CX Manager</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Tools</span>
-              <span>Figma, Storybook, Jira</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Deliverables</span>
-              <span>High fidelity prototypes, Wireframes, Journey maps</span>
-            </div>
-          </div>
 
-          <div class="page-divider"></div>
+            <div class="page-divider"></div>
 
-          <div class="project-body">
+            <div class="case-part">
+              <div class="case-section">
+                <h2 class="case-section-label">Overview</h2>
+                <p>AirRobe reduces fashion's environmental impact by promoting Circular Fashion — focusing on reuse, recycling, and extending product life to cut water use, carbon emissions, and waste. Circular fashion emphasizes designing for durability, using recycled materials, and promoting repair and recycling to keep resources in use as long as possible.</p>
+                <p>As the first UX design hire, I owned the entire user experience for shop.airrobe.com, navigated UX best practices across the company, and built the design library foundations based on Google's Material Design.</p>
+              </div>
 
-            <div class="project-section">
-              <h2>Overview</h2>
-              <p>AirRobe reduces fashion's environmental impact by promoting Circular Fashion — focusing on reuse, recycling, and extending product life to cut water use, carbon emissions, and waste. Circular fashion emphasizes designing for durability, using recycled materials, and promoting repair and recycling to keep resources in use as long as possible.</p>
-              <p>As the first UX design hire, I owned the entire user experience for shop.airrobe.com, navigated UX best practices across the company, and built the design library foundations based on Google's Material Design.</p>
               <img class="project-image" src="/assets/images/projects/airrobe/01-airrobe-product-overview.webp" data-full="/assets/images/projects/airrobe/01-airrobe-product-overview-full.webp" alt="AirRobe product overview" loading="lazy">
+
+              <div class="case-section">
+                <h2 class="case-section-label">Problem</h2>
+                <p>The product search experience was difficult to navigate — inconsistent filtering, unclear listing states, and a checkout flow that didn't account for the platform's three distinct transaction types: Buy, Rent, and Peek. The primary focus was improving usability and the global navigation's information hierarchy.</p>
+              </div>
             </div>
 
-            <div class="project-section">
-              <h2>Problem</h2>
-              <p>The product search experience was difficult to navigate — inconsistent filtering, unclear listing states, and a checkout flow that didn't account for the platform's three distinct transaction types: Buy, Rent, and Peek. The primary focus was improving usability and the global navigation's information hierarchy.</p>
-            </div>
+            <div class="page-divider"></div>
 
-            <div class="project-section">
-              <h2>Product Search Experience</h2>
+            <div class="case-part">
+              <h2 class="case-part-heading">Product Search Experience</h2>
 
-              <h3>Filtering system revamp</h3>
-              <p>Filtering was completely redesigned with a focus on information architecture, accessibility, and usability. Listings are broken down into unique tabs — All, Active listings, and AirRobe Wardrobe — and stamped with their respective transaction tags: Buy, Rent, and Peek. Each item is also tagged with its size and condition for quick scanning.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Filtering system revamp</h3>
+                <p>Filtering was completely redesigned with a focus on information architecture, accessibility, and usability. Listings are broken down into unique tabs — All, Active listings, and AirRobe Wardrobe — and stamped with their respective transaction tags: Buy, Rent, and Peek. Each item is also tagged with its size and condition for quick scanning.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/airrobe/02-filtering-system-with-tabs-and-transaction.webp" data-full="/assets/images/projects/airrobe/02-filtering-system-with-tabs-and-transaction-full.webp" alt="Filtering system with tabs and transaction tags" loading="lazy">
 
-              <h3>Buy listings</h3>
-              <p>To increase transparency, transaction tags also appear on the product page itself. Buying is straightforward — just hit the "buy" button. For users not fully ready to commit, "add to favorites" lets them defer the decision without losing the item.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Buy listings</h3>
+                <p>To increase transparency, transaction tags also appear on the product page itself. Buying is straightforward — just hit the "buy" button. For users not fully ready to commit, "add to favorites" lets them defer the decision without losing the item.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/airrobe/03-buy-listing-experience-with-transaction-tags.webp" data-full="/assets/images/projects/airrobe/03-buy-listing-experience-with-transaction-tags-full.webp" alt="Buy listing experience with transaction tags and favorites" loading="lazy">
 
-              <h3>Rent listings</h3>
-              <p>The rent experience is cleaner and mirrors the buy experience. Users hit "rent," choose a date range, confirm, and check out — minimal friction throughout.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Rent listings</h3>
+                <p>The rent experience is cleaner and mirrors the buy experience. Users hit "rent," choose a date range, confirm, and check out — minimal friction throughout.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/airrobe/04-rent-listing-experience-with-date-range.webp" data-full="/assets/images/projects/airrobe/04-rent-listing-experience-with-date-range-full.webp" alt="Rent listing experience with date range selection" loading="lazy">
 
-              <h3>Private listings (Peek)</h3>
-              <p>Items tagged "Peek" are private listings — not officially for sale, but open to offers. A simple modal lets shoppers show interest and make buy or rent offers directly to the owner. If the owner is interested, they follow up directly.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Private listings (Peek)</h3>
+                <p>Items tagged "Peek" are private listings — not officially for sale, but open to offers. A simple modal lets shoppers show interest and make buy or rent offers directly to the owner. If the owner is interested, they follow up directly.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/airrobe/05-private-listing-peek-with-offer-modal.webp" data-full="/assets/images/projects/airrobe/05-private-listing-peek-with-offer-modal-full.webp" alt="Private listing (Peek) with offer modal" loading="lazy">
 
-              <h3>Details beyond the product description</h3>
-              <p>Each listing now surfaces product specs — estimated retail price, label size and fit notes, and material composition. A size chart tab provides an international size comparison table, which is critical as AirRobe is building toward a global market beyond the US and Australia. Seller profiles include a bio, stats, reviews, and a map for direct pickup — giving shoppers more control over their own carbon footprint.</p>
+              <div class="case-section">
+                <h3 class="case-section-label">Details beyond the product description</h3>
+                <p>Each listing now surfaces product specs — estimated retail price, label size and fit notes, and material composition. A size chart tab provides an international size comparison table, which is critical as AirRobe is building toward a global market beyond the US and Australia. Seller profiles include a bio, stats, reviews, and a map for direct pickup — giving shoppers more control over their own carbon footprint.</p>
+              </div>
+
               <img class="project-image" src="/assets/images/projects/airrobe/06-product-details-page-with-specs-size.webp" data-full="/assets/images/projects/airrobe/06-product-details-page-with-specs-size-full.webp" alt="Product details page with specs, size chart, and seller info" loading="lazy">
             </div>
 
           </div>
-
         </div>
 
       </div>
