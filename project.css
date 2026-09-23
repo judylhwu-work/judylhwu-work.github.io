@@ -652,7 +652,7 @@ img.zoomable:hover { opacity: 0.88; }
    doesn't leave a card stuck on. The "--" spacers have no hover state. */
 @media (hover: hover) {
   .timeline-item:not(.timeline-gap):hover .timeline-main {
-    background: var(--sn-scale-state-success-70);
+    background: var(--sn-scale-state-success-80);
     outline: var(--sn-border-width-focus) solid var(--sn-border-color-invert);
   }
 
