@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Judy Wu. All rights reserved. See LICENSE. */
 /* <Mode name> mode — shell.   (starter: only SHELL modes need this file)
  *
  * Re-present the page that is already there. Read content from the DOM, never

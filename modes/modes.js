@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Judy Wu. All rights reserved. See LICENSE. */
 /* Site modes — the engine.
  *
  * A mode is a second way to present the same pages. Professional is the base;

@@ -1,3 +1,4 @@
+/* Copyright (c) 2026 Judy Wu. All rights reserved. See LICENSE. */
 /* iPod mode — shell.
  *
  * A shell mode never carries content of its own. This script reads the page it is
