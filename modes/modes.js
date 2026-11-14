@@ -153,7 +153,7 @@
   }
 
   function buildToggle() {
-    var btn = doc.querySelector('.nav-mode-toggle');
+    var btn = doc.querySelector('nav .nav-mode-toggle');
     var target = byId[config.toggle];
     if (!btn || !target || target.id === config['default']) return;
     btn.setAttribute('aria-label', 'Switch to ' + target.label + ' mode');

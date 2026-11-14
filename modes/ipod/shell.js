@@ -88,7 +88,7 @@
 
     var ghost = navButton('.nav-mode-toggle');
     if (ghost) {
-      ghost.classList.remove('nav-mode-toggle'); ghost.classList.add('ipod-mode-exit');
+      ghost.classList.add('ipod-mode-exit'); // keeps .nav-mode-toggle: the nav's narrow-screen sizing applies too
       ghost.setAttribute('aria-label', 'Switch to ' + professional + ' mode');
       ghost.addEventListener('click', function () { window.SiteModes.set('professional', { focusMain: true }); });
       inner.appendChild(ghost);

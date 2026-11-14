@@ -29,6 +29,27 @@
 }
 :root[data-mode="ipod"] main { flex: 1 0 auto; display: flex; flex-direction: column; }
 
+/* The page's header sits exactly where Professional's nav does, so switching modes
+   never moves the ghost or the moon. Every number mirrors the nav in style.css,
+   less the 4px frame around this mode:
+     height 60.39 (58 at <=480) = frame 4 + 8 + row 34.39 (32) + 10 + border 4;
+                              the nav's row is its links' height: 6 + 20.39 line + 6 + 2
+     side    nav max(40px, (100% - 912px) / 2), 40 at <=1040, 16 at <=480; minus 4
+     gap     24 between the address and the buttons, as .nav-right */
+:root[data-mode="ipod"] .page-content > .ipod-header {
+  padding: 8px max(36px, calc((100% - 912px) / 2)) 10px;
+}
+:root[data-mode="ipod"] .page-content > .ipod-header .ipod-header-inner {
+  max-width: none; min-height: 34.390625px; gap: var(--sn-spacing-lg);
+}
+@media (max-width: 1040px) {
+  :root[data-mode="ipod"] .page-content > .ipod-header { padding-inline: 36px; }
+}
+@media (max-width: 480px) {
+  :root[data-mode="ipod"] .page-content > .ipod-header { padding-inline: 12px; }
+  :root[data-mode="ipod"] .page-content > .ipod-header .ipod-header-inner { min-height: 32px; }
+}
+
 /* ── landing ── */
 /* the hero isn't part of this mode; the cards stay in the page (the player is
    built from them) but the player shows them */
@@ -72,7 +93,7 @@
     padding: var(--sn-spacing-lg) var(--sn-spacing-lg) var(--sn-spacing-2xl);
   }
   :root[data-mode="ipod"] .ipod-home { padding: var(--sn-spacing-3xl); gap: var(--sn-spacing-xl); }  /* 10:1380: 48, 32 apart */
-  :root[data-mode="ipod"] .ipod-header { padding: var(--sn-spacing-md) var(--sn-spacing-lg); }
+  :root[data-mode="ipod"] .ipod-header--window { padding: var(--sn-spacing-md) var(--sn-spacing-lg); }
 }
 /* Phones and tablets in portrait, and short landscape screens: the window takes
    the whole browser (Figma 10:1388), inside the frame's own border. */
