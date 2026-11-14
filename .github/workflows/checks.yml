@@ -86,6 +86,13 @@ jobs:
         # image. The script falls back Chrome -> Chromium, or honours CHROME_PATH.
         run: npm run check
 
+      - name: Every site mode passes its gate
+        # For each mode in modes/modes.json, on every page, light and dark: it boots
+        # from a ?mode= link, keeps all of the page's content, switches back to
+        # Professional cleanly, remembers the choice, and passes axe (WCAG 2.2 AA).
+        # See modes/README.md.
+        run: npm run check:modes
+
       # Skipped automatically unless the CLIENT_NAME secret is set. This repo is
       # public and so is the StaticCrypt unlock page, so the NDA client's name must
       # not appear in any committed file. Only paths are printed, never the match,

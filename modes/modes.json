@@ -1,0 +1,28 @@
+{
+  "_doc": "Site mode registry, the single source of truth for which modes exist. apply-meta.py copies it into every page's <head>; the boot script there and modes/modes.js read it from the page. After editing, run python3 scripts/apply-meta.py. \"toggle\" is the mode the ghost button in the nav switches to. How to add a mode: modes/README.md.",
+  "default": "professional",
+  "toggle": "ipod",
+  "storageKey": "mode",
+  "modes": [
+    {
+      "id": "professional",
+      "label": "Professional",
+      "description": "The classic portfolio",
+      "depth": "base"
+    },
+    {
+      "id": "ipod",
+      "label": "iPod",
+      "description": "Browse my work on a click wheel",
+      "depth": "shell",
+      "css": [
+        "/modes/ipod/tokens.css",
+        "/modes/ipod/atoms.css",
+        "/modes/ipod/molecules.css",
+        "/modes/ipod/organisms.css",
+        "/modes/ipod/templates.css"
+      ],
+      "shell": "/modes/ipod/shell.js"
+    }
+  ]
+}

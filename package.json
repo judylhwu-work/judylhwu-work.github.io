@@ -6,7 +6,8 @@
   "scripts": {
     "encrypt": "bash scripts/encrypt.sh",
     "check": "node scripts/check-pages.js",
-    "check:tokens": "node scripts/check-tokens.js"
+    "check:tokens": "node scripts/check-tokens.js",
+    "check:modes": "node scripts/check-modes.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/judylhwu-work/judylhwu-work.github.io#readme",
   "devDependencies": {
+    "axe-core": "^4.10.3",
     "playwright-core": "^1.63.0",
     "staticrypt": "^3.5.4"
   }

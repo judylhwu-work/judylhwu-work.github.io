@@ -1,0 +1,75 @@
+/* iPod mode — molecules.
+ *
+ * Small groups of atoms that work as one unit.
+ *
+ *   .ipod-row         number + label + chip: one menu item            (Figma _item 2:142)
+ *   .ipod-crumb-row   crumb + Back, Back centred on the crumb line    (Figma "top" 9:1198)
+ *   .ipod-notes       how-to-use lines under the player               (Figma 2:481)
+ *   .ipod-scrollbar   the window's drawn scrollbar: track + thumb     (Figma 9:1258)
+ */
+
+:root[data-mode="ipod"] .ipod-row {
+  width: 100%; height: 40px; padding: var(--sn-spacing-xs);
+  display: flex; align-items: center; gap: var(--sn-spacing-xs);
+  text-align: left; background: transparent; border: 0; border-radius: 0;
+  color: var(--ipod-display-label); cursor: pointer;
+}
+:root[data-mode="ipod"] .ipod-row-num {
+  flex: none; min-width: 21px;
+  padding-right: var(--sn-spacing-3xs); margin-right: calc(-1 * var(--sn-spacing-xs));
+  font: 900 var(--sn-font-size-14)/20px var(--sn-font-family-body);
+  color: var(--ipod-display-number); text-align: right; font-variant-numeric: tabular-nums;
+}
+:root[data-mode="ipod"] .ipod-row-label {
+  flex: 1 0 0; min-width: 0;
+  font: var(--sn-type-text-md-semibold); color: var(--ipod-display-label);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+:root[data-mode="ipod"] .ipod-row.is-focused { background: var(--ipod-display-selection); }
+:root[data-mode="ipod"] .ipod-row:focus-visible {
+  outline: var(--sn-border-width-focus) solid var(--ipod-display-focus); outline-offset: -2px;
+}
+
+:root[data-mode="ipod"] .ipod-crumb-row {
+  display: flex; align-items: center; gap: var(--sn-spacing-xs); height: 18px;
+}
+
+:root[data-mode="ipod"] .ipod-notes {
+  margin: 0; max-width: min(640px, 100%); text-align: center;
+  padding: var(--sn-spacing-sm) var(--sn-spacing-md);
+  border: var(--sn-border-width-lg) solid var(--ipod-note-border);
+  border-radius: var(--sn-radius-more-rounded);
+  background: var(--ipod-note-surface); color: var(--ipod-note-ink);
+  font: var(--sn-type-text-md-semibold);
+}
+:root[data-mode="ipod"] .ipod-notes > span { display: block; white-space: nowrap; }
+/* Figma keeps the notes at three lines (315 wide), even where that runs into the
+   page's 48px side padding on a phone; the very narrowest screens let it wrap. */
+@media (max-width: 359px) {
+  :root[data-mode="ipod"] .ipod-notes > span { white-space: normal; }
+}
+
+/* drawn, not native, so it matches Figma in every browser (Safari and iOS ignore
+   styled native bars). Native scrolling still drives it; it only mirrors. */
+:root[data-mode="ipod"] .ipod-scrollbar {
+  flex: none; position: relative;
+  width: calc(14px + 2 * var(--sn-spacing-minimal) + var(--ipod-frame-border-width));
+  padding: var(--sn-spacing-minimal);
+  background: var(--ipod-scrollbar-track);
+  border-left: var(--ipod-frame-border-width) solid var(--ipod-frame-border);
+}
+:root[data-mode="ipod"] .ipod-scrollbar-thumb {
+  position: absolute; left: var(--sn-spacing-minimal); top: var(--sn-spacing-minimal);
+  width: 14px; min-height: 48px;
+  border-radius: var(--sn-radius-full); background: var(--ipod-scrollbar-thumb);
+  touch-action: none; cursor: grab;
+}
+:root[data-mode="ipod"] .ipod-scrollbar-thumb.is-dragging { background: var(--ipod-scrollbar-thumb-active); }
+:root[data-mode="ipod"] .ipod-scrollbar-thumb.is-dragging { cursor: grabbing; }
+:root[data-mode="ipod"] .ipod-scrollbar.is-idle .ipod-scrollbar-thumb { display: none; }
+
+/* hover only where there is a real pointer: on touch screens :hover sticks after a tap */
+@media (hover: hover) {
+  :root[data-mode="ipod"] .ipod-row:hover { background: var(--ipod-display-selection); }
+  :root[data-mode="ipod"] .ipod-scrollbar-thumb:hover { background: var(--ipod-scrollbar-thumb-active); }
+}

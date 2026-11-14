@@ -18,6 +18,7 @@ projects/<slug>/       One folder per case study (e.g. projects/nova/)
 style.css              Shared site styles
 project.css            Project detail page styles
 theme.js               Dark mode toggle
+modes/                 Site modes (Professional, iPod, …): registry, engine, one folder per mode
 lightbox.js            Image lightbox on project pages
 assets/images/         Static image assets
 assets/images/projects/<slug>/  Case-study images — two WebP sizes each (see below)
@@ -29,6 +30,7 @@ scripts/check-tokens.js Fails if a --sn-* token the site uses no longer exists
 scripts/encrypt.sh     StaticCrypt build for the NDA case studies
 scripts/verify-gates.js Checks the encrypted pages still decrypt
 scripts/check-pages.js Loads every page in a real browser and checks it works
+scripts/check-modes.js The gate every site mode must pass (parity, reversible, axe)
 .github/workflows/checks.yml  Runs those checks on every push and PR
 ```
 
@@ -111,6 +113,18 @@ Both sites are served from the same `judylhwu-work.github.io` domain, so these r
 There is deliberately **no vendored copy** in this repo. An earlier `supernova/` folder was deleted because it silently went stale — do not reintroduce one, and do not link a `../supernova-design-system/` sibling path.
 
 Locally, `supernova-design-system` is a git-ignored **symlink** to the sibling repo on disk, which is what makes those absolute paths resolve when you serve this folder.
+
+## Site modes
+
+The site can be viewed in more than one **mode**: Professional (the default) and iPod,
+a click-wheel shell over the same pages. A mode changes presentation only; the pages
+stay the single source of content. A ghost icon in the nav (an easter egg) switches
+to iPod mode, the visitor's choice is remembered, and `?mode=ipod` opens any page in
+that mode.
+
+Modes are registered in `modes/modes.json` and injected into every page's head by
+`apply-meta.py`, like the nav. How they work, the token tiers, and how to add one:
+[`modes/README.md`](modes/README.md).
 
 ## Local development
 

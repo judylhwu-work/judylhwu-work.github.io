@@ -1,0 +1,8 @@
+/* <Mode name> mode — molecules.   (starter)
+ *
+ * Small groups of atoms that act as one unit (a list row, a field with its label).
+ * Read only --starter-* tokens (tokens.css) and Supernova's spacing / type scales.
+ * Prefix every selector with :root[data-mode="starter"] so nothing leaks into
+ * other modes. Delete this file, and its line in modes.json, if the mode
+ * doesn't need it.
+ */

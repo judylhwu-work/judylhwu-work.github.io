@@ -47,6 +47,7 @@ for slug in "${SLUGS[@]}"; do
      && [ ! "scripts/encrypt.sh" -nt "$OUT" ] \
      && [ ! "scripts/page-meta.json" -nt "$OUT" ] \
      && [ ! "scripts/apply-meta.py" -nt "$OUT" ] \
+     && [ ! "modes/modes.json" -nt "$OUT" ] \
      && [ -z "$(find scripts/partials -type f -newer "$OUT" 2>/dev/null)" ] \
      && STATICRYPT_PASSWORD="$PASSWORD" node scripts/verify-gates.js --quiet "$slug" >/dev/null 2>&1; then
     echo "unchanged: $slug"

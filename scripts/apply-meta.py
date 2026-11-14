@@ -74,6 +74,20 @@ LEADING_COMMENT_RE = re.compile(r"\A\s*<!--.*?-->\n", re.DOTALL)
 
 PROJECT_CSS_LINE = '  <link rel="stylesheet" href="/project.css">'
 
+# Site modes (modes/modes.json) ride in every page's head as inline JSON, so the
+# boot script can pick a mode before first paint without a network round trip.
+MODES = ROOT / "modes" / "modes.json"
+
+
+def modes_registry_line():
+    data = json.loads(MODES.read_text())
+    data.pop("_doc", None)
+    # the site's own address, for modes that show it (iPod's browser header)
+    data["site"] = ORIGIN.split("://", 1)[-1].rstrip("/")
+    # </ is escaped so no value can close the script element early.
+    payload = json.dumps(data, separators=(",", ":"), ensure_ascii=False).replace("</", "<\\/")
+    return f'  <script id="site-modes" type="application/json">{payload}</script>'
+
 
 def partial(name):
     text = (PARTIALS / name).read_text()
@@ -123,6 +137,7 @@ def head_block(rel):
         head = head.replace("{{PROJECT_CSS}}", PROJECT_CSS_LINE)
     else:
         head = re.sub(r"[ \t]*\{\{PROJECT_CSS\}\}\n", "", head)
+    head = head.replace("{{MODES_REGISTRY}}", modes_registry_line())
     return f"{HEAD_START}\n{head}\n{HEAD_END}\n"
 
 

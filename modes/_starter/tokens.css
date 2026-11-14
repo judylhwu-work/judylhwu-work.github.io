@@ -1,0 +1,28 @@
+/* <Mode name> mode — tokens.   (starter: copy this folder to modes/<id>/)
+ *
+ * The only file a TOKEN mode needs, and the bottom layer of every other mode.
+ * Replace "starter" with your mode id everywhere, including in every selector.
+ *
+ * Tier 2 overrides (a TOKEN mode): re-point Supernova's semantic tokens. Every Professional
+ * component already reads these, so the whole site re-colors with no other CSS.
+ * Point them at Supernova PRIMITIVES (--sn-color-*), never at hex values.
+ *
+ * Tier 3 mode tokens (COMPONENT and SHELL modes): name what this mode's own parts are for (--starter-*),
+ * and have the atoms/molecules/organisms read only these.
+ */
+
+:root[data-mode="starter"] {
+  /* tier 2 overrides — e.g. a pink mode:
+  --sn-surface-2:                   var(--sn-color-pink-10);
+  --sn-surface-brand-pink-to-elevation-1: var(--sn-color-pink-20);
+  */
+
+  /* tier 3 mode tokens — e.g.
+  --starter-card-surface:           var(--sn-surface-1);
+  --starter-card-radius:            var(--sn-radius-more-rounded);
+  */
+}
+
+/* Dark theme: only the pairings that would fail contrast, collected here. */
+:root[data-mode="starter"][data-theme="dark"] {
+}
