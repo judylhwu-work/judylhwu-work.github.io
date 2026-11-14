@@ -10,7 +10,7 @@
  *   .ipod-back        Back button on the crumb line                   (Figma Button 9:1152)
  *   .ipod-spoke       MENU / backward / forward / play on the wheel   (Figma 2:502–2:505)
  *   .ipod-center      the wheel's middle button                       (Figma 2:506)
- *   .ipod-host        the address, or a window's title, in a header   (Figma 2:408)
+ *   .ipod-host        the address, or site > page in a window header (Figma 2:408, 16:20563)
  *   (header buttons)  borrowed from the nav: sn-btn-icon-secondary sm  (Figma Button 16:20203)
  */
 
@@ -81,6 +81,12 @@
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 :root[data-mode="ipod"] .ipod-host-name { color: var(--ipod-chrome-ink); }
+:root[data-mode="ipod"] .ipod-host-link {
+  color: var(--ipod-chrome-link);
+  text-decoration: underline; text-decoration-thickness: from-font; text-underline-position: from-font;
+  border-radius: var(--sn-radius-minimal);
+}
+:root[data-mode="ipod"] .ipod-host-link:focus-visible { outline: var(--sn-border-width-focus) solid var(--ipod-chrome-link); outline-offset: 2px; }
 
 /* The header's buttons are Professional's own icon buttons (sn-btn-icon-secondary sm),
    cloned from the nav: same sizes, icons, hover and focus. Only one exception, in dark

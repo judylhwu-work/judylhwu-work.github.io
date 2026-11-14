@@ -75,12 +75,15 @@
     var h = el('div', 'ipod-header' + (type === 'window' ? ' ipod-header--window' : ''));
     var inner = el('div', 'ipod-header-inner');
     var host = el('p', 'ipod-host');
-    if (type === 'window') host.textContent = title;
-    else {
-      var site = window.SiteModes.site(), name = site.split('.')[0];
+    var site = window.SiteModes.site();
+    if (type === 'window') {
+      // Figma 16:20571: a breadcrumb, site > page; the site links back to the player
+      host.innerHTML = '<a class="ipod-host-link" href="' + esc(closeHref) + '">' + esc(site) + '</a> <span>&gt; ' + esc(title) + '</span>';
+    } else {
+      var name = site.split('.')[0];
       host.innerHTML = '<span class="ipod-host-name">' + esc(name) + '</span>' + esc(site.slice(name.length));
+      host.setAttribute('aria-hidden', 'true'); // decoration: an address bar
     }
-    host.setAttribute('aria-hidden', 'true'); // decoration: the real address is in the browser, the page's h1 names it
     inner.appendChild(host);
 
     var ghost = navButton('.nav-mode-toggle');
@@ -104,7 +107,8 @@
 
     if (type === 'window') {
       var close = el('a', 'sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm ipod-close',
-        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>');
+        // Figma draws close at 24 (ghost and moon at 16); same line icon family as the nav's
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>');
       close.href = closeHref;
       close.setAttribute('aria-label', 'Close window, back to the iPod');
       inner.appendChild(close);

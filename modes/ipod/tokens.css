@@ -33,6 +33,9 @@
      That is 3.48:1 on the green bar, under AA for 18px text, so the ink is one step
      darker. PROMOTE: a "text/brand/green/darker" token (#134C1F). */
   --ipod-chrome-accent:        var(--sn-color-green-1-90);
+  /* Figma: text/brand/action/main (#CC377F) for the breadcrumb link, 2.79:1 on the bar.
+     The darkest pink step passes in both themes (6.8:1 light, 5.7:1 dark). PROMOTE. */
+  --ipod-chrome-link:          var(--sn-color-pink-90);
   --ipod-chrome-max:           912px;                                  /* the landing header's inner width */
 
   /* ── case study window (Figma 9:1250) ── */

@@ -15,7 +15,9 @@
  */
 
 /* ── frame ── */
-:root[data-mode="ipod"] { overflow-y: auto; scrollbar-gutter: auto; }
+/* Keep Professional's scrollbar behaviour (style.css: always reserve the gutter), so
+   nothing shifts sideways when the mode changes; the gutter takes the mode's surface. */
+:root[data-mode="ipod"],
 :root[data-mode="ipod"] body { background: var(--ipod-page-surface); }
 :root[data-mode="ipod"] nav { display: none; }
 :root[data-mode="ipod"] .page-content {
