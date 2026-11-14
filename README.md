@@ -233,3 +233,7 @@ adding a protected case study, describe the employer generically ("a health-tech
 product org"), and remember `assets/og/*.png` bakes text into an image.
 
 **Caveats:** security is bounded by password strength (encrypted files can be brute-forced offline), and once decrypted the content can be re-shared. This stops casual decoding, scraping, and source-on-GitHub exposure — it is not airtight access control.
+
+## License
+
+Copyright (c) 2026 Judy Wu. All rights reserved. Viewing and running the code to evaluate my work is welcome; reuse is not. See [LICENSE](LICENSE).

@@ -1,0 +1,22 @@
+Copyright (c) 2026 Judy Wu. All rights reserved.
+
+This repository holds the source of judylhwu-work.github.io: its code, design,
+writing, images and case studies, including every site mode under modes/.
+
+You are welcome to view, read and run this code in order to evaluate my work,
+for example as part of a hiring review.
+
+You may not copy, modify, redistribute, publish or reuse any part of it, in
+whole or in part, for any other purpose without my written permission.
+
+No license is granted by implication. Publishing this repository publicly does
+not place any of it in the public domain or under an open-source license.
+
+Third-party material keeps its own license:
+  - Font Awesome Free icons: CC BY 4.0 (https://fontawesome.com/license/free)
+  - The StaticCrypt password template (scripts/staticrypt-template.html): MIT
+    (https://github.com/robinmoisson/staticrypt)
+  - Supernova design tokens, linked from a separate repository, are covered by
+    that repository's own terms.
+
+For permission requests, contact me through the links on judylhwu-work.github.io.

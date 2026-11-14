@@ -195,3 +195,7 @@ Collected from the `PROMOTE` notes in `modes/ipod/tokens.css`:
 - an always-dark surface set: display surface, title, label, crumb (tier 1 pins today)
 - a light overlay at 15% (row selection, hover)
 - a darker green surface for dark theme (bars and notes)
+
+---
+
+Copyright (c) 2026 Judy Wu. All rights reserved. See [LICENSE](../LICENSE).
