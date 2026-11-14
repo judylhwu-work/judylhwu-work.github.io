@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Judy Wu. All rights reserved. See LICENSE. */
 /* Site modes — styles every mode shares.
  *
- * Loaded on every page in every mode: the ghost button and one helper. Everything a
+ * Loaded on every page in every mode: the bao button and one helper. Everything a
  * particular mode adds lives in modes/<id>/ and loads only while that mode is on.
  * Professional tokens only (--sn-*), so the button matches the nav it sits in.
  */
@@ -11,13 +11,13 @@
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* ── The nav's ghost button: a Supernova icon button (sn-btn-icon-secondary sm),
+/* ── The nav's bao button: a Supernova icon button (sn-btn-icon-secondary sm),
    so it needs nothing here beyond keeping the glyph centred. ── */
 .nav-mode-toggle[hidden] { display: none; }
-.nav-mode-toggle svg { display: block; }
+.nav-mode-toggle .nav-mode-icon { display: block; border-radius: 50%; } /* the favicon, kept in colour, cropped round */
 
 /* The narrowest phones: the nav has no room for one more 32px button at the
-   usual 24px gap, so the ghost sits 8px from the moon instead. */
+   usual 24px gap, so bao sits 8px from the moon instead. */
 @media (max-width: 400px) {
   .nav-mode-toggle { margin-right: calc(-1 * var(--sn-spacing-md)); }
 }

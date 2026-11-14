@@ -6,7 +6,7 @@
  * for a shell mode, a script that rebuilds the page's layout from the content
  * already on it. This file:
  *
- *   - wires the nav's ghost button (the easter egg) to the registry's "toggle" mode,
+ *   - wires the nav's bao button (the easter egg) to the registry's "toggle" mode,
  *   - switches modes in place (no reload): loads the new mode's assets, then flips
  *     <html data-mode>, then lets the old shell clean up and the new one mount,
  *   - remembers the visitor's choice (localStorage, key from the registry), so the
@@ -137,7 +137,7 @@
     } catch (e) { /* analytics is best-effort */ }
   }
 
-  /* ---------- the nav's ghost button: a hidden easter egg ---------- */
+  /* ---------- the nav's bao button: a hidden easter egg ---------- */
 
   var live = null;
 

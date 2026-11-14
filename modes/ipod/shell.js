@@ -4,7 +4,7 @@
  * A shell mode never carries content of its own. This script reads the page it is
  * on and re-presents it (Figma Portfolio-v2, designs 3:269):
  *
- *   every page   a browser header with the address, the mode (ghost) and theme
+ *   every page   a browser header with the address, the mode (bao) and theme
  *                (moon) buttons; the site nav steps aside
  *   portfolio    the click-wheel player, built from the project cards already in
  *                the HTML (title, link, NDA flag, status)
@@ -62,7 +62,7 @@
 
   // type: 'landing' (address) or 'window' (page title + close)
   //
-  // The buttons are Professional's own: the nav's ghost and moon are cloned, so they
+  // The buttons are Professional's own: the nav's bao and moon are cloned, so they
   // carry the same Supernova classes (sn-btn-icon-secondary sm), icons, sizes and
   // states. Only what they do changes here. Close uses the same button and icon set.
   function navButton(sel) {
@@ -87,12 +87,12 @@
     }
     inner.appendChild(host);
 
-    var ghost = navButton('.nav-mode-toggle');
-    if (ghost) {
-      ghost.classList.add('ipod-mode-exit'); // keeps .nav-mode-toggle: the nav's narrow-screen sizing applies too
-      ghost.setAttribute('aria-label', 'Switch to ' + professional + ' mode');
-      ghost.addEventListener('click', function () { window.SiteModes.set('professional', { focusMain: true }); });
-      inner.appendChild(ghost);
+    var modeBtn = navButton('.nav-mode-toggle');
+    if (modeBtn) {
+      modeBtn.classList.add('ipod-mode-exit'); // keeps .nav-mode-toggle: the nav's narrow-screen sizing applies too
+      modeBtn.setAttribute('aria-label', 'Switch to ' + professional + ' mode');
+      modeBtn.addEventListener('click', function () { window.SiteModes.set('professional', { focusMain: true }); });
+      inner.appendChild(modeBtn);
     }
 
     var theme = navButton('.nav-dark-mode');
@@ -108,7 +108,7 @@
 
     if (type === 'window') {
       var close = el('a', 'sn-btn-icon sn-btn-icon-secondary sn-btn-icon-sm ipod-close',
-        // Figma draws close at 24 (ghost and moon at 16); same line icon family as the nav's
+        // Figma draws close at 24 (moon at 16, bao at 24); same line icon family as the moon
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>');
       close.href = closeHref;
       close.setAttribute('aria-label', 'Close window, back to the iPod');

@@ -31,7 +31,7 @@
 :root[data-mode="ipod"] main { flex: 1 0 auto; display: flex; flex-direction: column; }
 
 /* The page's header sits exactly where Professional's nav does, so switching modes
-   never moves the ghost or the moon. Every number mirrors the nav in style.css,
+   never moves bao or the moon. Every number mirrors the nav in style.css,
    less the 4px frame around this mode:
      height 60.39 (58 at <=480) = frame 4 + 8 + row 34.39 (32) + 10 + border 4;
                               the nav's row is its links' height: 6 + 20.39 line + 6 + 2
