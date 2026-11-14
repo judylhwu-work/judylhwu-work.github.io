@@ -1,0 +1,106 @@
+/* iPod mode — organisms.
+ *
+ * Distinct sections of the interface, built from the atoms and molecules.
+ *
+ *   .ipod-display     the screen: header + scrolling list               (Figma display 2:621)
+ *   .ipod-wheel       the click wheel: four spokes around the center     (Figma dial 2:501)
+ *   .ipod-player      display + wheel in the pink device                 (Figma media player 4:379)
+ *   .ipod-header      address bar / window title bar with its buttons    (Figma header 16:20594)
+ *   .ipod-window      a page, opened as a window over the player         (Figma case study 9:1250)
+ */
+
+/* ── display ── */
+:root[data-mode="ipod"] .ipod-display {
+  width: 300px; height: 300px;
+  flex: none; overflow: hidden;
+  padding: var(--sn-spacing-lg);
+  display: flex; flex-direction: column; gap: var(--sn-spacing-xs);
+  background: var(--ipod-display-surface); color: var(--ipod-display-title);
+  border-radius: var(--ipod-display-radius);
+  /* Figma: a 4px OUTSIDE stroke. Outside = it doesn't change the 300 box, so it is a
+     spread shadow rather than a border. */
+  box-shadow: 0 0 0 var(--sn-border-width-lg) var(--ipod-display-ring);
+  /* the portrait device draws the same display at 0.8 (Figma 10:2526: 240, 3.2px ring) */
+  zoom: var(--ipod-display-scale);
+  view-transition-name: ipod-screen;
+}
+:root[data-mode="ipod"] .ipod-display-content { flex: 1 0 0; min-height: 0; display: flex; flex-direction: column; gap: var(--sn-spacing-sm); }
+:root[data-mode="ipod"] .ipod-display-header { flex: none; display: flex; flex-direction: column; gap: var(--sn-spacing-xs); }
+/* only the list scrolls; crumb, Back and title stay put */
+:root[data-mode="ipod"] .ipod-list {
+  list-style: none; margin: 0; padding: 0;
+  flex: 1 0 0; min-height: 0; overflow-y: auto; scrollbar-width: none;
+  display: flex; flex-direction: column;
+}
+:root[data-mode="ipod"] .ipod-list::-webkit-scrollbar { display: none; }
+:root[data-mode="ipod"] .ipod-list > li { flex: none; }
+
+/* ── click wheel: 280 + 4px ring; labels 100px from the centre ── */
+:root[data-mode="ipod"] .ipod-wheel {
+  --spoke-offset: 100px;
+  position: relative; flex: none; display: flex; align-items: center;
+  padding: var(--sn-spacing-7xl);
+  background: var(--ipod-wheel-surface);
+  border: var(--sn-border-width-lg) solid var(--ipod-wheel-border);
+  border-radius: var(--sn-radius-full);
+  touch-action: none;
+  zoom: var(--ipod-wheel-scale);
+}
+:root[data-mode="ipod"] .ipod-spoke--menu { transform: translate(-50%, calc(-50% - var(--spoke-offset))); }
+:root[data-mode="ipod"] .ipod-spoke--play { transform: translate(-50%, calc(-50% + var(--spoke-offset))); }
+:root[data-mode="ipod"] .ipod-spoke--prev { transform: translate(calc(-50% - var(--spoke-offset)), -50%); }
+:root[data-mode="ipod"] .ipod-spoke--next { transform: translate(calc(-50% + var(--spoke-offset)), -50%); }
+
+/* ── player ── */
+:root[data-mode="ipod"] .ipod-player {
+  display: flex; align-items: center; gap: var(--sn-spacing-2xl);
+  padding: var(--sn-spacing-2xl) var(--sn-spacing-5xl) var(--sn-spacing-2xl) var(--sn-spacing-2xl);
+  background: var(--ipod-player-surface);
+  border: var(--ipod-player-border-width) solid var(--ipod-player-border);
+  border-radius: var(--ipod-player-radius);
+  max-width: 100%;
+}
+
+/* ── header: type=landing page (2:411) and type=case study (16:20571) ── */
+:root[data-mode="ipod"] .ipod-header {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  padding: var(--sn-spacing-md) var(--sn-spacing-xl);
+  background: var(--ipod-chrome-surface);
+  border-bottom: var(--ipod-frame-border-width) solid var(--ipod-frame-border);
+}
+:root[data-mode="ipod"] .ipod-header-inner {
+  flex: 1 0 0; min-width: 0; max-width: var(--ipod-chrome-max);
+  display: flex; align-items: center; gap: var(--sn-spacing-md);
+}
+:root[data-mode="ipod"] .ipod-header--window .ipod-header-inner { max-width: none; }
+
+/* ── window: the page, opened over the player ── */
+:root[data-mode="ipod"] .ipod-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; justify-content: center;
+  padding: var(--sn-spacing-2xl) var(--sn-spacing-7xl);   /* Figma 9:1249: 40 / 80 */
+  background: var(--ipod-overlay);
+}
+:root[data-mode="ipod"] .ipod-window {
+  flex: 1 0 0; min-width: 0; max-width: var(--ipod-window-max); height: 100%;
+  display: flex; flex-direction: column; overflow: clip;
+  border: var(--ipod-frame-border-width) solid var(--ipod-frame-border);
+  border-radius: var(--ipod-window-radius);
+  background: var(--ipod-window-surface);
+  view-transition-name: ipod-window;
+  animation: ipod-window-in .28s cubic-bezier(.2, .7, .2, 1) both;
+}
+:root[data-mode="ipod"] .ipod-window-content { flex: 1 0 0; min-height: 0; display: flex; }
+:root[data-mode="ipod"] .ipod-window-body {
+  flex: 1 0 0; min-width: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--sn-spacing-7xl);
+  background: var(--ipod-window-surface);
+  scrollbar-width: none;
+}
+:root[data-mode="ipod"] .ipod-window-body::-webkit-scrollbar { display: none; }
+:root[data-mode="ipod"] .ipod-window-body:focus-visible { outline: var(--sn-border-width-focus) solid var(--ipod-chrome-accent); outline-offset: -4px; }
+
+@keyframes ipod-window-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-mode="ipod"] .ipod-window { animation: none; }
+}

@@ -1,0 +1,97 @@
+/* iPod mode — atoms.
+ *
+ * The smallest parts: one element each, no layout of their own beyond their box.
+ * Every value comes from tokens.css (--ipod-*) or Supernova's spacing and type
+ * scales. Scoped to :root[data-mode="ipod"] so they never touch Professional.
+ *
+ *   .ipod-chip        count or lock tag on a menu row                 (Figma Chip 2:120)
+ *   .ipod-crumb       breadcrumb line at the top of the display       (Figma 2:589)
+ *   .ipod-title       where you are, under the crumb                  (Figma 2:590)
+ *   .ipod-back        Back button on the crumb line                   (Figma Button 9:1152)
+ *   .ipod-spoke       MENU / backward / forward / play on the wheel   (Figma 2:502–2:505)
+ *   .ipod-center      the wheel's middle button                       (Figma 2:506)
+ *   .ipod-host        the address, or a window's title, in a header   (Figma 2:408)
+ *   (header buttons)  borrowed from the nav: sn-btn-icon-secondary sm  (Figma Button 16:20203)
+ */
+
+:root[data-mode="ipod"] .ipod-chip {
+  flex: none; height: 24px; max-width: 240px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--sn-spacing-3xs) var(--sn-spacing-xs);
+  border-radius: var(--sn-radius-less-rounded);
+  background: var(--ipod-chip-surface); color: var(--ipod-chip-ink);
+  font: var(--sn-type-label-sm-regular);
+}
+/* icon-only chips (lock) are square, Figma 24 x 24 */
+:root[data-mode="ipod"] .ipod-chip--icon { width: 24px; padding: 0; }
+:root[data-mode="ipod"] .ipod-chip svg { display: block; }
+
+:root[data-mode="ipod"] .ipod-crumb {
+  flex: 1 0 0; min-width: 0; margin: 0;
+  font: var(--sn-type-header-sm-black); line-height: 18px;
+  color: var(--ipod-display-crumb);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+:root[data-mode="ipod"] .ipod-title {
+  margin: 0; font: var(--sn-type-header-lg-black); line-height: 24px;
+  color: var(--ipod-display-title);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+:root[data-mode="ipod"] .ipod-back {
+  flex: none; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--sn-spacing-xs);
+  padding: var(--sn-spacing-xs); border: 0; border-radius: var(--sn-radius-less-rounded);
+  background: transparent; color: var(--ipod-back-ink);
+  font: var(--sn-type-label-md-semibold); cursor: pointer;
+}
+:root[data-mode="ipod"] .ipod-back:active { background: var(--ipod-chip-surface); color: var(--ipod-chip-ink); }
+:root[data-mode="ipod"] .ipod-back:focus-visible { outline: var(--sn-border-width-focus) solid var(--ipod-display-focus); outline-offset: 0; }
+
+:root[data-mode="ipod"] .ipod-spoke {
+  position: absolute; z-index: 1; left: 50%; top: 50%;
+  min-width: 56px; height: 56px; padding: 0 var(--sn-spacing-xs);
+  display: flex; align-items: center; justify-content: center;
+  border: 0; border-radius: var(--sn-radius-full); background: transparent;
+  font: var(--sn-type-header-lg-black); color: var(--ipod-wheel-ink); cursor: pointer;
+}
+:root[data-mode="ipod"] .ipod-spoke svg { display: block; }
+:root[data-mode="ipod"] .ipod-spoke:active { background: var(--ipod-wheel-press); color: var(--ipod-wheel-hover-ink); }
+
+:root[data-mode="ipod"] .ipod-center {
+  position: relative; z-index: 1; flex: none; width: 120px; height: 120px; padding: 0;
+  background: var(--ipod-center-surface);
+  border: var(--sn-border-width-lg) solid var(--ipod-center-ring);
+  border-radius: var(--sn-radius-full); cursor: pointer;
+}
+:root[data-mode="ipod"] .ipod-center:active { background: var(--ipod-center-press); }
+
+/* keyboard focus on the device: a ring separated from the pink by a light gap,
+   so it reads at 3:1+ against both the shell and the control */
+:root[data-mode="ipod"] .ipod-center:focus-visible,
+:root[data-mode="ipod"] .ipod-spoke:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ipod-focus-gap), 0 0 0 5px var(--ipod-focus-ring);
+}
+
+:root[data-mode="ipod"] .ipod-host {
+  flex: 1 0 0; min-width: 0; margin: 0;
+  font: var(--sn-type-header-sm-black); color: var(--ipod-chrome-accent);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+:root[data-mode="ipod"] .ipod-host-name { color: var(--ipod-chrome-ink); }
+
+/* The header's buttons are Professional's own icon buttons (sn-btn-icon-secondary sm),
+   cloned from the nav: same sizes, icons, hover and focus. Only one exception, in dark
+   theme: the button's green icon is the same green as the bar (1:1), so there it takes
+   the bar's darker ink, and white on its hover fill. */
+:root[data-mode="ipod"][data-theme="dark"] .ipod-header .sn-btn-icon-secondary { color: var(--ipod-chrome-accent); }
+
+/* hover only where there is a real pointer: on touch screens :hover sticks after a tap */
+@media (hover: hover) {
+  :root[data-mode="ipod"] .ipod-back:hover { background: var(--ipod-display-selection); }
+  :root[data-mode="ipod"] .ipod-spoke:hover { background: var(--ipod-wheel-hover); color: var(--ipod-wheel-hover-ink); }
+  :root[data-mode="ipod"] .ipod-center:hover { background: var(--ipod-wheel-hover); }
+  :root[data-mode="ipod"][data-theme="dark"] .ipod-header .sn-btn-icon-secondary:hover { color: var(--sn-color-gray-0); }
+}

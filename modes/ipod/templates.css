@@ -1,0 +1,96 @@
+/* iPod mode — templates.
+ *
+ * Page-level layout: where the organisms sit on each kind of page. The pages'
+ * HTML is untouched; these rules hide or rearrange what is already there and
+ * place what shell.js adds.
+ *
+ *   frame       every page: the browser window fills the screen; the site nav
+ *               steps aside (the header carries the mode, theme and close buttons)
+ *   landing     /portfolio/: header, then the player and notes (Figma 1:127)
+ *   window      case studies, about, resume, the NDA gate and 404: the page opens
+ *               as a window over the player (Figma 9:1248)
+ *   responsive  the Figma device variants: desktop / touch landscape, touch
+ *               portrait (10:1378, 10:1894), full-screen windows (10:1388, 10:1904)
+ *   motion      View Transitions between pages
+ */
+
+/* ── frame ── */
+:root[data-mode="ipod"] { overflow-y: auto; scrollbar-gutter: auto; }
+:root[data-mode="ipod"] body { background: var(--ipod-page-surface); }
+:root[data-mode="ipod"] nav { display: none; }
+:root[data-mode="ipod"] .page-content {
+  margin-top: 0;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  background: var(--ipod-page-surface);
+  border: var(--ipod-frame-border-width) solid var(--ipod-frame-border);
+}
+:root[data-mode="ipod"] main { flex: 1 0 auto; display: flex; flex-direction: column; }
+
+/* ── landing ── */
+/* the hero isn't part of this mode; the cards stay in the page (the player is
+   built from them) but the player shows them */
+:root[data-mode="ipod"] #hero,
+:root[data-mode="ipod"] #projects { display: none; }
+
+:root[data-mode="ipod"] .ipod-home {
+  flex: 1 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: var(--sn-spacing-3xl);
+  padding: 120px var(--sn-spacing-7xl) var(--sn-spacing-7xl);   /* Figma 2:34: 120 / 80 / 80, 48 apart */
+}
+
+/* ── window ── */
+/* the page behind the window doesn't scroll; the window does */
+:root[data-mode="ipod"].ipod-has-window,
+:root[data-mode="ipod"].ipod-has-window body { overflow: hidden; }
+/* the page's own sections sit straight on the window, without their pink washes */
+:root[data-mode="ipod"] .ipod-window-body :is(#project-detail, #project-gate, #about-page, #resume-page, #notfound-page) {
+  background: transparent; min-height: 0; padding: 0;
+}
+:root[data-mode="ipod"] .ipod-window-body .page-card { border-radius: var(--sn-radius-more-rounded); }
+/* the page's own card keeps its own surface inside the window: its text styles are
+   tuned for it, and several (resume links, 404 copy) fall under 4.5:1 on green-2 */
+:root[data-mode="ipod"] .ipod-window-body .sticky-actions { top: 0; }
+
+/* ── responsive ── */
+@media (max-width: 1100px) {
+  :root[data-mode="ipod"] .ipod-home { padding: var(--sn-spacing-2xl); }
+  :root[data-mode="ipod"] .ipod-overlay { padding: var(--sn-spacing-2xl); }
+  :root[data-mode="ipod"] .ipod-window-body { padding: var(--sn-spacing-2xl); }
+}
+/* Layout follows orientation, not width: landscape = screen and wheel side by side;
+   portrait = stacked (Figma media player, device property 4:379). */
+@media (orientation: portrait) {
+  :root[data-mode="ipod"] {
+    --ipod-display-scale: 0.8;    /* Figma draws the 300 display at 240 */
+    --ipod-wheel-scale: 0.6944;   /* ... and the 288 wheel at 200 */
+  }
+  :root[data-mode="ipod"] .ipod-player {
+    flex-direction: column; gap: var(--sn-spacing-lg);
+    padding: var(--sn-spacing-lg) var(--sn-spacing-lg) var(--sn-spacing-2xl);
+  }
+  :root[data-mode="ipod"] .ipod-home { padding: var(--sn-spacing-3xl); gap: var(--sn-spacing-xl); }  /* 10:1380: 48, 32 apart */
+  :root[data-mode="ipod"] .ipod-header { padding: var(--sn-spacing-md) var(--sn-spacing-lg); }
+}
+/* Phones and tablets in portrait, and short landscape screens: the window takes
+   the whole browser (Figma 10:1388), inside the frame's own border. */
+@media (orientation: portrait), (max-height: 500px) {
+  :root[data-mode="ipod"] .ipod-overlay {
+    padding: 0; background: var(--ipod-page-surface);
+    border: var(--ipod-frame-border-width) solid var(--ipod-frame-border);
+  }
+  :root[data-mode="ipod"] .ipod-window { border-radius: 0; }
+  :root[data-mode="ipod"] .ipod-window .ipod-header { padding: var(--sn-spacing-md) var(--sn-spacing-lg); }
+  :root[data-mode="ipod"] .ipod-window-body { padding: var(--sn-spacing-lg); }
+  :root[data-mode="ipod"] .ipod-home--backdrop { visibility: hidden; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  :root[data-mode="ipod"] .ipod-home { padding: var(--sn-spacing-md); gap: var(--sn-spacing-md); }
+}
+
+/* ── motion: the player holds still between pages; the window grows in ── */
+@view-transition { navigation: auto; }
+::view-transition-group(ipod-screen) { animation-duration: .32s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}

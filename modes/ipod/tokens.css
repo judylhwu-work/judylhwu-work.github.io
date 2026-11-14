@@ -1,0 +1,104 @@
+/* iPod mode — tokens.
+ *
+ * The bottom layer of the mode. Every color, size and radius the iPod's atoms,
+ * molecules and organisms use is named here once, and only here, as an --ipod-*
+ * token. The files above this one never reach for a Supernova token directly.
+ *
+ *   Tier 1  Supernova primitives   --sn-color-pink-40         raw values, never flip
+ *   Tier 2  Supernova semantics    --sn-surface-brand-pink-3  flip with light / dark
+ *   Tier 3  mode tokens (here)     --ipod-player-surface      what a part IS FOR in this mode
+ *
+ * Tier 3 points at tier 2 wherever the part should follow the theme, and at tier 1
+ * where it must not: the display is a dark screen in both themes, so it is pinned to
+ * primitives. Dark-theme exceptions are the second block below, never scattered
+ * through the component files.
+ *
+ * Values follow Figma Portfolio-v2: designs 3:269, components 4:269.
+ *
+ * PROMOTE: tokens marked PROMOTE have no Supernova equivalent yet, so they are held
+ * here. When Supernova gains them, point these at the new token and delete the note.
+ * (The list is collected in modes/README.md.)
+ */
+
+:root[data-mode="ipod"] {
+  /* ── frame: the retro browser around every page ── */
+  --ipod-frame-border:         var(--sn-surface-brand-green-action-hover); /* PROMOTE: Figma border/color/brand/green/action (#26993E) */
+  --ipod-frame-border-width:   var(--sn-border-width-lg);
+  --ipod-page-surface:         var(--sn-surface-brand-green-3);       /* Figma content 2:34 */
+
+  /* ── header: address bar and window title bar (Figma header 16:20594) ── */
+  --ipod-chrome-surface:       var(--sn-surface-brand-green-logo);
+  --ipod-chrome-ink:           var(--sn-text-black);                  /* "judylhwu-work" (text/1; stays dark on the green in dark) */
+  /* Figma: text/brand/green/dark (#1D732E) for ".github.io", window titles and icons.
+     That is 3.48:1 on the green bar, under AA for 18px text, so the ink is one step
+     darker. PROMOTE: a "text/brand/green/darker" token (#134C1F). */
+  --ipod-chrome-accent:        var(--sn-color-green-1-90);
+  --ipod-chrome-max:           912px;                                  /* the landing header's inner width */
+
+  /* ── case study window (Figma 9:1250) ── */
+  --ipod-overlay:              color-mix(in srgb, var(--sn-color-gray-100) 50%, transparent); /* PROMOTE: scrim-50 */
+  --ipod-window-radius:        32px;                                   /* PROMOTE: radius scale stops at more-rounded */
+  --ipod-window-max:           1200px;
+  --ipod-window-surface:       var(--sn-surface-brand-green-2);       /* content scroll 9:1256 */
+  --ipod-scrollbar-track:      var(--sn-surface-brand-green-1);       /* 9:1258 */
+  --ipod-scrollbar-thumb:      var(--sn-surface-brand-green-logo);
+  --ipod-scrollbar-thumb-active: var(--sn-surface-brand-green-action-main);
+
+  /* ── player: the pink device ── */
+  --ipod-player-surface:       var(--sn-surface-brand-pink-3);
+  --ipod-player-border:        var(--sn-border-color-brand-action);
+  --ipod-player-border-width:  var(--sn-border-width-lg);
+  --ipod-player-radius:        64px;                                   /* PROMOTE */
+
+  /* ── display: the screen. Dark in BOTH themes, so tier 1 only. ── */
+  --ipod-display-surface:      var(--sn-color-gray-100);              /* PROMOTE: an "always-dark surface" set */
+  --ipod-display-ring:         var(--sn-color-pink-20);               /* Figma border/color/brand/pink/1, drawn outside */
+  --ipod-display-radius:       32px;                                   /* PROMOTE */
+  --ipod-display-title:        var(--sn-color-gray-0);
+  --ipod-display-crumb:        var(--sn-color-pink-40);
+  --ipod-display-label:        var(--sn-color-green-1-10);
+  --ipod-display-number:       var(--sn-color-green-1-40);
+  --ipod-display-selection:    color-mix(in srgb, var(--sn-color-gray-0) 15%, transparent); /* PROMOTE: overlay-light-15 */
+  --ipod-display-focus:        var(--sn-color-pink-40);
+  --ipod-chip-surface:         var(--sn-color-pink-40);
+  --ipod-chip-ink:             var(--sn-color-gray-100);
+  --ipod-back-ink:             var(--sn-color-pink-40);               /* Figma asks text/brand/action/main: 3.3:1 here, fails AA */
+
+  /* ── click wheel ── */
+  --ipod-wheel-surface:        var(--sn-surface-brand-pink-logo);
+  --ipod-wheel-border:         var(--sn-border-color-brand-action);
+  --ipod-wheel-ink:            var(--sn-text-brand-pink-dark);
+  --ipod-wheel-hover:          var(--sn-surface-brand-green-action-main);
+  --ipod-wheel-hover-ink:      var(--sn-text-black);
+  --ipod-wheel-press:          var(--sn-surface-brand-pink-action-main);
+  --ipod-center-surface:       var(--sn-surface-brand-pink-action-main);
+  --ipod-center-ring:          var(--sn-color-pink-20);               /* PROMOTE: same as --ipod-display-ring */
+  --ipod-center-press:         var(--sn-surface-brand-pink-action-hover);
+  --ipod-focus-gap:            var(--sn-text-white);
+  --ipod-focus-ring:           var(--sn-border-color-brand-action);
+
+  /* ── accessibility notes (Figma 2:481) ── */
+  --ipod-note-surface:         var(--sn-surface-brand-green-2);
+  --ipod-note-border:          var(--sn-surface-brand-green-logo);    /* PROMOTE: Figma border/color/brand/green/3 (#83D994) */
+  --ipod-note-ink:             var(--sn-text-brand-green-dark);
+
+  /* ── shared sizes ── */
+  --ipod-display-scale:        1;
+  --ipod-wheel-scale:          1;
+}
+
+/* Dark theme: Figma has no dark frames, so these keep the light design's layers and
+   fix only the pairings that would fail contrast. */
+:root[data-mode="ipod"][data-theme="dark"] {
+  /* green-3 is a mid green in dark (#26993E): the pages' green links sit at 2:1 on it.
+     green-1 is the darkest semantic green, so the desktop steps down to it. */
+  --ipod-page-surface:         var(--sn-surface-brand-green-1);
+  /* dark green-logo (#59CC71) keeps the bars bright; the darker ink reads at 4.95:1 */
+  --ipod-window-surface:       var(--sn-surface-1);
+  --ipod-scrollbar-track:      var(--sn-surface-2);
+  /* green-2 turns mid green in dark; the notes step down to a primitive. PROMOTE: a
+     darker green surface for dark theme. */
+  --ipod-note-surface:         var(--sn-color-green-1-100);
+  /* text-brand-pink-dark equals the wheel surface in dark (1:1). */
+  --ipod-wheel-ink:            var(--sn-text-brand-pink-invert);
+}

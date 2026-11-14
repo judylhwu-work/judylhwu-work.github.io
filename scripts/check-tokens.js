@@ -50,6 +50,8 @@ const siteFiles = [
   ...walk(path.join(ROOT, 'scripts'), f => f.endsWith('.html')),
   ...['about', 'portfolio', 'resume'].map(d => path.join(ROOT, d, 'index.html')),
   path.join(ROOT, '404.html'),
+  // site modes: the picker, and every mode's own layers
+  ...walk(path.join(ROOT, 'modes'), f => f.endsWith('.css') || f.endsWith('.js')),
 ].filter(fs.existsSync);
 
 const used = new Map();   // token -> files referencing it
