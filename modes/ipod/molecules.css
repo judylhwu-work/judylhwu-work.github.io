@@ -36,19 +36,22 @@
 }
 
 :root[data-mode="ipod"] .ipod-notes {
-  margin: 0; max-width: min(640px, 100%); text-align: center;
-  padding: var(--sn-spacing-sm) var(--sn-spacing-md);
+  /* Figma 2:481: 315 wide, max 640; the text fills the box, one line per hint.
+     Browsers set Inter a touch wider than Figma, so the box grows to keep each hint
+     on one line where there is room, and shrinks with the page on a phone, where
+     the hints wrap inside it. */
+  box-sizing: border-box; margin: 0; text-align: center;
+  width: fit-content; min-width: min(var(--ipod-notes-width), 100%);
+  max-width: min(var(--ipod-notes-max), 100%);
+  /* Figma draws the 4px border inside the box, over its 12 / 16 padding */
+  padding: calc(var(--sn-spacing-sm) - var(--sn-border-width-lg)) calc(var(--sn-spacing-md) - var(--sn-border-width-lg));
   border: var(--sn-border-width-lg) solid var(--ipod-note-border);
   border-radius: var(--sn-radius-more-rounded);
   background: var(--ipod-note-surface); color: var(--ipod-note-ink);
   font: var(--sn-type-text-md-semibold);
+  overflow-wrap: break-word;
 }
-:root[data-mode="ipod"] .ipod-notes > span { display: block; white-space: nowrap; }
-/* Figma keeps the notes at three lines (315 wide), even where that runs into the
-   page's 48px side padding on a phone; the very narrowest screens let it wrap. */
-@media (max-width: 359px) {
-  :root[data-mode="ipod"] .ipod-notes > span { white-space: normal; }
-}
+:root[data-mode="ipod"] .ipod-notes > span { display: block; text-wrap: balance; }
 
 /* drawn, not native, so it matches Figma in every browser (Safari and iOS ignore
    styled native bars). Native scrolling still drives it; it only mirrors. */

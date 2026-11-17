@@ -85,6 +85,8 @@
   --ipod-note-surface:         var(--sn-surface-brand-green-2);
   --ipod-note-border:          var(--sn-surface-brand-green-logo);    /* PROMOTE: Figma border/color/brand/green/3 (#83D994) */
   --ipod-note-ink:             var(--sn-text-brand-green-dark);
+  --ipod-notes-width:          315px;
+  --ipod-notes-max:            640px;
 
   /* ── shared sizes ── */
   --ipod-display-scale:        1;
